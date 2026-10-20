@@ -91,7 +91,7 @@ Kemudian buka browser dan akses: `http://localhost:8000`
 
 ### Opsi 4: VS Code Live Server
 
-Jika menggunakan VS Code, install ekstension "Live Server" dan klik "Go Live" pada file `index.html`.
+Jika menggunakan VS Code, install ekstensi "Live Server" dan klik "Go Live" pada file `index.html`.
 
 ---
 
@@ -101,38 +101,33 @@ Jika menggunakan VS Code, install ekstension "Live Server" dan klik "Go Live" pa
 
 | Anggota | Peran | Tugas | Branch / Kontribusi |
 |---------|-------|-------|-------------------|
-| Coder 1 (@username-1) | Coder 1 | Beranda (index.html), Tentang Kami (about.html), Kursus (courses.html), Galeri (portfolio.html), Harga (pricing.html) | feature/homepage, feature/about, feature/courses, feature/gallery, feature/pricing |
+| Coder 1 (@username-1) | Coder 1 | Beranda (index.html), Tentang Kami (about.html), Kursus (courses.html), Galeri (portfolio.html), Harga (pricing.html) | chore/setup-template, feature/homepage, feature/about, feature/courses, feature/gallery, feature/pricing |
 | Coder 2 (@username-2) | Coder 2 | Navbar & footer (semua halaman), Kontak (contact.html), 3 Artikel (artikel-*.html), 3 Berita (berita-*.html), CSS artikel | feature/navbar-footer, feature/contact, feature/posts, feature/news |
 | Reviewer (@username-3) | Reviewer | Memeriksa setiap Pull Request, memberi komentar, meminta perbaikan, lalu approve & merge setelah diperbaiki. Catatan review ada di folder `review/` | review/review.md, review/codes/ |
-| Dokumentator (@username-4) | Dokumentator | README.md dan presentasi project | presentasi/JendEdu-Presentasi.pptx, presentasi/JendEdu-Presentasi-dengan-Naskah.pptx |
+| Dokumentator (@username-4) | Dokumentator | Menyusun profil bisnis dan timeline kerja, menulis README.md, membuat presentasi (2 versi) beserta naskah presenter, mengambil screenshot situs, serta me-review dan meng-approve PR catatan review | docs/readme: README.md, presentasi/JendEdu-Presentasi.pptx, presentasi/JendEdu-Presentasi-dengan-Naskah.pptx |
 
 ### Alur Kerja (Workflow)
 
-1. **Buat Branch**: Buat branch baru dari `main` dengan nama sesuai fitur (contoh: `feature/homepage`, `feature/contact`)
-2. **Kerjakan Fitur**: Lakukan coding dan testing di branch lokal
-3. **Commit**: Commit perubahan dengan pesan yang deskriptif
-4. **Push**: Push branch ke remote repository
-5. **Buka Pull Request**: Buka PR dengan deskripsi lengkap tentang perubahan yang dibuat
-6. **Review**: Reviewer (@username-3) memeriksa kode, memberikan feedback/komentar, dan meminta perbaikan jika diperlukan
-7. **Perbaikan**: Penulis fitur melakukan perbaikan sesuai feedback
-8. **Approve**: Setelah semua feedback terpenuhi, Reviewer approve PR
-9. **Merge**: Merge PR ke branch `main`
+Setiap anggota bekerja lewat **fork** pribadi dari [Borayaa/JendEdu](https://github.com/Borayaa/JendEdu). **Tidak ada yang push langsung ke `main`** — `main` hanya berubah lewat Pull Request yang sudah di-approve.
 
-### Panduan Langkah demi Langkah per Peran (Windows)
+1. **Fork**: Fork `Borayaa/JendEdu` ke akun GitHub sendiri, clone fork tersebut, lalu tambahkan remote `upstream` ke `Borayaa/JendEdu`
+2. **Sinkron**: `git switch main` lalu `git pull upstream main`
+3. **Buat Branch**: Buat branch baru dari `main` dengan nama sesuai fitur (contoh: `feature/homepage`, `feature/contact`)
+4. **Kerjakan Fitur**: Kerjakan halaman/fitur di branch tersebut, lalu cek di browser
+5. **Commit**: Commit perubahan dengan pesan yang deskriptif
+6. **Push**: Push branch `feature/...` ke fork sendiri (`git push -u origin feature/...`)
+7. **Buka Pull Request**: Dari fork ke `Borayaa/JendEdu` branch `main`, minta review ke Reviewer (@username-3)
+8. **Review**: Reviewer memeriksa kode, memberi komentar, dan meminta perbaikan jika diperlukan
+9. **Perbaikan**: Penulis memperbaiki lalu push lagi ke branch yang sama di fork (PR ter-update otomatis)
+10. **Approve & Merge**: Setelah semua komentar terpenuhi, Reviewer approve dan merge PR ke `main`
 
-Repositori ini (**JendEdu-template**) berisi versi final semua file. Setiap anggota meng-*clone* repo template ini dan repo kerja [Borayaa/JendEdu](https://github.com/Borayaa/JendEdu), lalu menyalin file bagiannya dari template ke repo kerja lewat Command Prompt dan mengirimnya lewat Pull Request. Mulai dari [`panduan/00-mulai-di-sini.md`](panduan/00-mulai-di-sini.md):
-
-| Panduan | Untuk |
-|---------|-------|
-| [01 - Persiapan Semua Anggota](panduan/01-persiapan-semua-anggota.md) | Semua anggota (install Git, clone repo) |
-| [02 - Coder 1](panduan/02-coder-1.md) | Beranda, Tentang Kami, Kursus, Galeri, Harga |
-| [03 - Coder 2](panduan/03-coder-2.md) | Navbar & footer, Kontak, Artikel, Berita |
-| [04 - Reviewer](panduan/04-reviewer.md) | Review, approve, dan merge Pull Request |
-| [05 - Dokumentator](panduan/05-dokumentator.md) | README.md dan presentasi |
+```
+folder lokal ──push branch──▶ fork kamu (origin) ──Pull Request──▶ Borayaa/JendEdu main (upstream)
+```
 
 ---
 
-## Struktur Folder
+## 8. Struktur Folder
 
 ```
 JendEdu/
@@ -164,7 +159,7 @@ JendEdu/
 
 ```
 
-## 8. Daftar Halaman
+## 9. Daftar Halaman
 
 | Halaman | File | Deskripsi |
 |---------|------|-----------|
@@ -183,7 +178,7 @@ JendEdu/
 
 Berita dan artikel dapat diakses dari footer di setiap halaman (bagian "Artikel Terbaru" dan "Berita Terkini") serta dari sidebar di setiap artikel.
 
-## 9. Kustomisasi
+## 10. Kustomisasi
 
 ### Mengubah Harga
 
@@ -195,7 +190,7 @@ Informasi kontak tersebar di beberapa tempat:
 1. **Footer**: Edit bagian footer di setiap file HTML
    - Alamat: Jl. Pendidikan Raya No. 21 Tebet Jakarta Selatan
    - Email: halo@jendedu.id
-   - Telepon: (sesuaikan dengan nomor Anda)
+   - Telepon: (021) 8765-4321
 
 2. **Halaman Kontak** (`contact.html`): Edit bagian kontak dan update Google Maps embed
 
@@ -219,12 +214,12 @@ Saat mengganti gambar, perhatikan dimensi yang sudah ada:
 
 Semua gambar dalam proyek ini bersumber dari Unsplash (Unsplash License) dan bebas digunakan.
 
-## 10. Kredit & Lisensi
+## 11. Kredit & Lisensi
 
-Template ini menggunakan "Above Educational Bootstrap Responsive Template" oleh WebThemez di bawah lisensi Creative Commons Attribution 3.0.
+Website ini menggunakan "Above Educational Bootstrap Responsive Template" oleh WebThemez di bawah lisensi Creative Commons Attribution 3.0.
 
 **Atribusi:**
-- Kredit template: "Template oleh WebThemez" (tautan di footer dapat tetap ada atau diganti sesuai kebijakan)
+- Kredit template: "Template oleh WebThemez" (tautan di footer wajib dipertahankan, sesuai ketentuan lisensi CC BY 3.0 yang mensyaratkan atribusi)
 - Teknologi: Bootstrap 3.3.1, jQuery, FlexSlider, Fancybox, Quicksand, Font Awesome 4
 - Gambar: Unsplash (Unsplash License - bebas penggunaan komersial)
 

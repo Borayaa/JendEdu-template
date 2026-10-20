@@ -4,17 +4,21 @@
 - **Periode:** Oktober 2026
 - **Repositori:** JendEdu (situs statis Bootstrap 3, Bahasa Indonesia)
 
+Nomor PR di dokumen ini adalah contoh; nomor sebenarnya di GitHub bisa berbeda — cocokkan dengan nama branch.
+
+> **Catatan:** File di root template untuk PR #3, #4, #5, #7 adalah draft yang sengaja berisi kesalahan; versi yang sudah diperbaiki ada di `review/codes/`. Nomor baris di bawah mengacu pada file draft di root template (sama dengan file yang ada di PR).
+
 ## Ringkasan Status
 
 | PR | Judul | Branch | Author | Status |
 |----|-------|--------|--------|--------|
 | #1 | Setup template dasar & struktur folder | `chore/setup-template` | @username-1 | ✅ Approved & merged |
 | #2 | Halaman Beranda (index.html) | `feature/homepage` | @username-1 | ✅ Approved & merged |
-| #3 | Tambah halaman Harga | `feature/pricing-page` | @username-1 | 🔴 Changes requested |
-| #4 | Navbar dan footer bersama | `feature/navbar-footer` | @username-2 | 🔴 Changes requested |
-| #5 | Halaman Kontak | `feature/contact-page` | @username-2 | 🔴 Changes requested |
-| #6 | Tiga halaman artikel + CSS artikel | `feature/artikel-pages` | @username-2 | ✅ Approved & merged |
-| #7 | Tiga halaman berita | `feature/berita-pages` | @username-2 | 🔴 Changes requested |
+| #3 | Tambah halaman Harga | `feature/pricing` | @username-1 | 🔴 Changes requested |
+| #4 | Navbar dan footer bersama (CSS) | `feature/navbar-footer` | @username-2 | 🔴 Changes requested |
+| #5 | Halaman Kontak | `feature/contact` | @username-2 | 🔴 Changes requested |
+| #6 | Tiga halaman artikel + CSS artikel | `feature/posts` | @username-2 | ✅ Approved & merged |
+| #7 | Tiga halaman berita | `feature/news` | @username-2 | 🔴 Changes requested |
 | #8 | README.md | `docs/readme` | @username-4 | ✅ Approved & merged |
 
 Label komentar: 🔴 Wajib diperbaiki - 🟡 Saran - 🟢 Nit (hal kecil, opsional).
@@ -23,42 +27,40 @@ Label komentar: 🔴 Wajib diperbaiki - 🟡 Saran - 🟢 Nit (hal kecil, opsion
 
 ## PR #3 - Tambah halaman Harga
 
-- **Branch:** `feature/pricing-page` -> `main`
+- **Branch:** `feature/pricing` -> `main`
 - **Author:** @username-1
-- **Snapshot kode:** [codes/PR-03_pricing.html](codes/PR-03_pricing.html)
+- **File di PR:** `pricing.html`
 
-**Deskripsi:** Menambahkan `pricing.html` berisi paket SD, SMP, dan SMA beserta tombol pendaftaran dan catatan diskon tahunan.
+**Deskripsi:** Menambahkan `pricing.html` berisi paket SD, SMP, SMA, dan UTBK Intensif beserta tombol pendaftaran dan catatan diskon tahunan.
 
 ### Komentar review
 
-**`PR-03_pricing.html` baris 28-37**
+**`pricing.html` baris 50-58**
 
 ```html
-<section id="inner-headline">
-...
-</div>
-
-<section id="content">
+	<section id="inner-headline">
+	...
+	</div>
+	<section id="content">
 ```
 
-🔴 **Wajib diperbaiki.** Tag `<section id="inner-headline">` tidak pernah ditutup dengan `</section>`, sehingga `#content` tersarang di dalamnya dan gaya header judul ikut mengenai konten. Ini juga bug yang sama dengan template aslinya, jadi mohon dirapikan sekalian.
+🔴 **Wajib diperbaiki.** Tag `<section id="inner-headline">` (baris 50) tidak pernah ditutup dengan `</section>`, sehingga `#content` tersarang di dalamnya dan gaya header judul ikut mengenai konten.
 
 ```suggestion
-</div>
-</section>
-
-<section id="content">
+	</div>
+	</section>
+	<section id="content">
 ```
 
-**`PR-03_pricing.html` baris 46, 65, 84**
+**`pricing.html` baris 68, 90, 112**
 
 ```html
 <h6>Rp 99000 / bln</h6>
-<h6>Rp129.000 / bulan</h6>
+<h6>Rp129.000 / bln</h6>
 <h6>Rp 159.000 /bulan</h6>
 ```
 
-🔴 **Wajib diperbaiki.** Format harga tidak konsisten di ketiga paket (spasi setelah "Rp", titik ribuan, "bln" vs "bulan"). Samakan dengan format `Rp99.000 / bulan` seperti di meta description dan halaman Beranda.
+🔴 **Wajib diperbaiki.** Format harga tidak konsisten di ketiga paket (spasi setelah "Rp", titik ribuan, "bln" vs "bulan"). Samakan dengan format `Rp99.000 / bulan` seperti di meta description dan paket UTBK (baris 134).
 
 ```suggestion
 <h6>Rp99.000 / bulan</h6>
@@ -66,237 +68,269 @@ Label komentar: 🔴 Wajib diperbaiki - 🟡 Saran - 🟢 Nit (hal kecil, opsion
 
 (Terapkan pola yang sama untuk Rp129.000 dan Rp159.000.)
 
-**`PR-03_pricing.html` baris 55, 74, 93**
+**`pricing.html` baris 80, 102, 124**
 
 ```html
 <a href="#" class="btn btn-medium btn-theme"><i class="icon-bolt"></i> Daftar Sekarang</a>
 ```
 
-🔴 **Wajib diperbaiki.** Tombol "Daftar Sekarang" memakai `href="#"` sehingga tidak ke mana-mana. Arahkan ke halaman Kontak.
+🔴 **Wajib diperbaiki.** Tombol memakai `href="#"` sehingga tidak ke mana-mana. Arahkan ke halaman Kontak, seperti tombol paket UTBK Intensif (baris 146).
 
 ```suggestion
 <a href="contact.html" class="btn btn-medium btn-theme"><i class="icon-bolt"></i> Daftar Sekarang</a>
 ```
 
-**`PR-03_pricing.html` baris 74**
+**`pricing.html` baris 102**
 
 ```html
-<i class="icon-bolt"></i> Get Now</a>
+<a href="#" class="btn btn-medium btn-theme"><i class="icon-bolt"></i> Get Now</a>
 ```
 
-🔴 **Wajib diperbaiki.** Teks masih bahasa Inggris. Seluruh situs memakai Bahasa Indonesia, jadi ganti menjadi "Daftar Sekarang".
+🔴 **Wajib diperbaiki.** Teks masih bahasa Inggris. Seluruh situs memakai Bahasa Indonesia, jadi ganti menjadi "Daftar Sekarang" (sekaligus perbaiki `href="#"` di atas).
 
-**`PR-03_pricing.html` baris 12**
+**`pricing.html` baris 33**
 
 ```html
-<img src="img/logo.png"/>
+<a class="navbar-brand" href="index.html"><img src="img/logo.png"/></a>
 ```
 
 🟡 **Saran.** Gambar logo belum punya atribut `alt`. Tambahkan untuk aksesibilitas dan SEO.
 
 ```suggestion
-<img src="img/logo.png" alt="JendEdu"/>
+<a class="navbar-brand" href="index.html"><img src="img/logo.png" alt="JendEdu"/></a>
 ```
 
-**`PR-03_pricing.html` baris 100**
+**`pricing.html` baris 153**
 
 ```html
 <p class="text-center" style="margin-top:30px; color:red; font-size:18px;">
 ```
 
-🟡 **Saran.** Hindari inline style. Pindahkan ke kelas di `css/style.css`, dan warna merah terlalu mencolok dibanding tema situs. Cukup `class="text-center"` dengan margin dari CSS.
+🟡 **Saran.** Warna merah dan ukuran font lewat inline style terlalu mencolok dibanding tema situs dan sulit dirawat. Hapus `color` dan `font-size`; margin atas boleh dipertahankan sementara.
 
-**Catatan tambahan:** 🟢 Paket UTBK Intensif ada di brief tetapi belum ada di PR ini. Mohon konfirmasi apakah akan ditambahkan di PR ini atau PR terpisah.
+```suggestion
+<p class="text-center" style="margin-top:30px;">
+```
 
 **Keputusan: Request changes**
 
 Checklist yang harus diperbaiki sebelum approval:
 
-- [ ] Tutup `</section>` untuk `#inner-headline`
-- [ ] Samakan format semua harga (`Rp99.000 / bulan`)
-- [ ] Ganti semua `href="#"` pada tombol "Daftar Sekarang" menjadi `contact.html`
-- [ ] Ganti "Get Now" menjadi "Daftar Sekarang"
-- [ ] Tambah `alt` pada logo
-- [ ] Pindahkan inline style ke CSS
-- [ ] Konfirmasi paket UTBK Intensif
+- [ ] Tutup `</section>` untuk `#inner-headline` (baris 50-58)
+- [ ] Samakan format semua harga (`Rp99.000 / bulan`) (baris 68, 90, 112)
+- [ ] Ganti semua `href="#"` pada tombol "Daftar Sekarang" menjadi `contact.html` (baris 80, 102, 124)
+- [ ] Ganti "Get Now" menjadi "Daftar Sekarang" (baris 102)
+- [ ] Tambah `alt` pada logo (baris 33)
+- [ ] Hapus `color:red; font-size:18px;` dari inline style (baris 153)
+
+Versi setelah diperbaiki: [`review/codes/pricing.html`](codes/pricing.html)
 
 ---
 
-## PR #4 - Navbar dan footer bersama
+## PR #4 - Navbar dan footer bersama (CSS)
 
 - **Branch:** `feature/navbar-footer` -> `main`
 - **Author:** @username-2
-- **Snapshot kode:** [codes/PR-04_navbar-footer.html](codes/PR-04_navbar-footer.html)
+- **File di PR:** `css/style.css` (serta `img/logo.png`)
 
-**Deskripsi:** Membuat navbar dan footer yang dipakai semua halaman, termasuk daftar artikel terbaru dan tautan media sosial.
+**Deskripsi:** Membawa `css/style.css` berisi gaya navbar, footer, dan artikel/berita yang dipakai semua halaman. Markup navbar dan footer sendiri ada di dalam tiap halaman HTML.
 
 ### Komentar review
 
-**`PR-04_navbar-footer.html` baris 18 dan 21**
+**`css/style.css` baris 8**
 
-```html
-<li class="active"><a href="index.html">Beranda</a></li>
-...
-<li class="active"><a href="portfolio.html">Galeri</a></li>
-```
-
-🔴 **Wajib diperbaiki.** Dua item menu sama-sama `active`. Hanya halaman yang sedang dibuka yang boleh `active`. Di snapshot ini sepertinya baris Galeri tersalin dari halaman lain.
-
-```suggestion
-<li><a href="portfolio.html">Galeri</a></li>
-```
-
-**`PR-04_navbar-footer.html` baris 8**
-
-```html
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+```css
+@import url('http://fonts.googleapis.com/css?family=Noto+Serif:400,400italic,700|Open+Sans:400,600,700');
 ```
 
 🔴 **Wajib diperbaiki.** Impor font memakai `http://`, memicu peringatan mixed content di situs HTTPS dan font bisa diblokir.
 
 ```suggestion
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+@import url('https://fonts.googleapis.com/css?family=Noto+Serif:400,400italic,700|Open+Sans:400,600,700');
 ```
 
-**`PR-04_navbar-footer.html` baris 51**
+**`css/style.css` baris 89-92**
 
-```html
-<a href="artikel-belajar-online-efektif-smp.htm">
+```css
+.navbar-brand {
+    font-size: 18px;
+    margin-top: 5px;
+}
 ```
 
-🔴 **Wajib diperbaiki.** Ekstensi salah (`.htm`), padahal berkasnya `artikel-belajar-online-efektif-smp.html`. Tautan ini akan 404.
+🔴 **Wajib diperbaiki.** Aturan `.navbar-brand` sudah ada di baris 76-85; blok kedua ini menimpa `font-size` dan `margin-top` secara diam-diam sehingga logo/brand bergeser dan sulit dilacak. Hapus blok duplikat ini; ubah nilai di aturan pertama bila memang perlu.
+
+**`css/style.css` baris 100**
+
+```css
+header .navbar-default{
+    min-width: 960px;
+    background-color: #FFFFFF;
+}
+```
+
+🔴 **Wajib diperbaiki.** Lebar minimum tetap 960px memaksa navbar melebihi layar ponsel dan tablet sehingga muncul scroll horizontal. Navbar Bootstrap sudah responsif; hapus baris ini.
+
+**`css/style.css` baris 1013**
+
+```css
+footer ul.link-list li a{
+	color: #0E7A66;
+}
+```
+
+🟡 **Saran.** Hijau tua di atas latar footer `#14A085` kontrasnya sangat rendah (sulit dibaca, tidak lolos WCAG). Gunakan putih seperti `footer a` (baris 1328).
 
 ```suggestion
-<a href="artikel-belajar-online-efektif-smp.html">
+	color: #FFFFFF;
 ```
 
-**`PR-04_navbar-footer.html` baris 59**
+**`css/style.css` baris 1788**
 
-```html
-<a href="https://www.instagram.com/jendedu" target="_blank">
+```css
+	line-heigth: 1.8em;
 ```
 
-🟡 **Saran.** `target="_blank"` tanpa `rel` membuka celah `window.opener`. Tambahkan `rel="noopener"`.
+🔴 **Wajib diperbaiki.** Typo nama properti (`line-heigth`), sehingga diabaikan browser dan jarak baris isi artikel/berita tidak sesuai desain.
 
 ```suggestion
-<a href="https://www.instagram.com/jendedu" target="_blank" rel="noopener">
+	line-height: 1.8em;
 ```
 
-**`PR-04_navbar-footer.html` baris 14 dan 35**
+**`css/style.css` baris 1792-1793**
 
-```html
-<img src="img/logo.png">
-<h5 class="widgetheading">Our Contact</h5>
+```css
+	margin-top: 30px !important;
+	font-size: 20px !important;
 ```
 
-🟡 **Saran.** Logo belum punya `alt="JendEdu"`. Judul widget "Our Contact" masih bahasa Inggris, ganti menjadi "Hubungi Kami". 🟢 Nomor WhatsApp 0812-3456-7890 juga belum ada di footer, sesuaikan dengan halaman Kontak.
+🟡 **Saran.** `!important` tidak diperlukan di `.post-body h3` dan menyulitkan penimpaan gaya di kemudian hari. Hapus.
+
+```suggestion
+	margin-top: 30px;
+	font-size: 20px;
+```
 
 **Keputusan: Request changes**
 
 Checklist yang harus diperbaiki sebelum approval:
 
-- [ ] Hanya satu `class="active"` per halaman
-- [ ] Ubah impor font ke `https://`
-- [ ] Perbaiki tautan `.htm` menjadi `.html`
-- [ ] Tambah `rel="noopener"` pada tautan `_blank`
-- [ ] Tambah `alt` pada logo
-- [ ] Ganti "Our Contact" menjadi "Hubungi Kami"
+- [ ] Ubah impor font ke `https://` (baris 8)
+- [ ] Hapus aturan `.navbar-brand` ganda (baris 89-92)
+- [ ] Hapus `min-width: 960px` pada navbar (baris 100)
+- [ ] Kembalikan warna tautan footer ke putih agar kontras cukup (baris 1013)
+- [ ] Perbaiki typo `line-heigth` menjadi `line-height` (baris 1788)
+- [ ] Hapus `!important` yang tidak perlu (baris 1792-1793)
+
+Versi setelah diperbaiki: [`review/codes/css/style.css`](codes/css/style.css)
 
 ---
 
 ## PR #5 - Halaman Kontak
 
-- **Branch:** `feature/contact-page` -> `main`
+- **Branch:** `feature/contact` -> `main`
 - **Author:** @username-2
-- **Snapshot kode:** [codes/PR-05_contact.html](codes/PR-05_contact.html)
+- **File di PR:** `contact.html`
 
 **Deskripsi:** Menambahkan `contact.html` dengan peta lokasi, formulir pesan, dan informasi kontak perusahaan.
 
 ### Komentar review
 
-**`PR-05_contact.html` baris 11**
+**`contact.html` baris 14-22 dan 73**
 
 ```html
 <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+...
+<div id="map" style="width:100%; height:300px;"></div>
 ```
 
-🔴 **Wajib diperbaiki.** Ini versi lama Google Maps JavaScript API: parameter `sensor=false` sudah tidak dipakai, tidak ada API key, dan memakai `http://`. Peta kemungkinan besar gagal tampil. Untuk situs statis, cukup pakai embed iframe yang tidak butuh key.
+🔴 **Wajib diperbaiki.** Ini versi lama Google Maps JavaScript API: parameter `sensor=false` sudah tidak dipakai, tidak ada API key, dan memakai `http://`. Peta kemungkinan besar gagal tampil. Untuk situs statis, cukup pakai embed iframe yang tidak butuh key; skrip `initMap()` (baris 14-22) lalu bisa dihapus.
 
 ```suggestion
 <iframe src="https://maps.google.com/maps?q=Tebet,%20Jakarta%20Selatan&z=14&output=embed" width="100%" height="300" style="border:0;" allowfullscreen loading="lazy" title="Lokasi JendEdu"></iframe>
 ```
 
-Dengan begitu skrip `initMap()` (baris 12-19) dan `<div id="map">` (baris 26) bisa dihapus.
-
-**`PR-05_contact.html` baris 37 dan 41**
+**`contact.html` baris 96**
 
 ```html
-<input type="text" class="form-control" id="name" name="name">
-<input type="email" class="form-control" id="name" name="email">
+<input type="email" class="form-control" id="name" name="email" placeholder="">
 ```
 
-🔴 **Wajib diperbaiki.** `id="name"` dipakai dua kali. Akibatnya `label for="email"` tidak terhubung ke input yang benar dan validasi JS bisa salah sasaran.
+🔴 **Wajib diperbaiki.** `id="name"` dipakai dua kali (juga di baris 91). Akibatnya `label for="email"` tidak terhubung ke input yang benar dan validasi JS bisa salah sasaran.
 
 ```suggestion
-<input type="email" class="form-control" id="email" name="email">
+<input type="email" class="form-control" id="email" name="email" placeholder="">
 ```
 
-**`PR-05_contact.html` baris 33 dan 47**
+**`contact.html` baris 116 dan 109**
 
 ```html
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Kirim pesan kepada kami.</p>
+<h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Kirim pesan kepada kami.</h5>
 <input type="submit" value="Submit" class="btn btn-default">
 ```
 
-🔴 **Wajib diperbaiki.** Masih ada teks Lorem ipsum dan tombol berlabel "Submit". Ganti dengan teks Indonesia, misalnya "Ada pertanyaan seputar kursus, paket belajar, atau pendaftaran? Tim kami siap membantu Anda." dan tombol "Kirim Pesan".
+🔴 **Wajib diperbaiki.** Masih ada teks Lorem ipsum dan tombol berlabel "Submit". Ganti dengan teks Indonesia dan tombol "Kirim Pesan".
+
+```suggestion
+<h5>Ada pertanyaan seputar kursus, paket belajar, atau pendaftaran? Tim kami siap membantu Anda.</h5>
+```
 
 ```suggestion
 <input type="submit" value="Kirim Pesan" class="btn btn-default">
 ```
 
-**`PR-05_contact.html` baris 32**
+**`contact.html` baris 80**
 
 ```html
 <br><br>
 ```
 
-🟡 **Saran.** Jarak dengan `<br><br>` rapuh di layar kecil. Gunakan class spacing dari CSS (mis. `margin-top` pada form) atau satu `<br>` saja seperti halaman lain.
+🟡 **Saran.** Jarak dengan `<br><br>` rapuh di layar kecil. Gunakan satu `<br>` saja seperti halaman lain.
 
-**`PR-05_contact.html` baris 26**
-
-```html
-<div id="map" style="width:100%; height:300px;"></div>
+```suggestion
+<br>
 ```
 
-🟢 **Nit.** Inline style, sebaiknya dipindah ke CSS jika elemen ini tetap dipakai.
+**`contact.html` baris 123** (blok alamat, setelah baris Telepon)
 
-**`PR-05_contact.html` baris 52-57** (blok alamat)
+```html
+Telepon: (021) 8765-4321<br>
+Email: halo@jendedu.id<br>
+```
 
-🟡 **Saran.** Tambahkan WhatsApp dan jam layanan (Senin-Sabtu, 08.00-20.00 WIB) agar sama dengan footer, dan bungkus email dengan `<a href="mailto:halo@jendedu.id">`.
+🟡 **Saran.** Tambahkan WhatsApp dan jam layanan (Senin-Sabtu, 08.00-20.00 WIB) agar sama dengan footer, dan bungkus email dengan tautan `mailto:`.
+
+```suggestion
+WhatsApp: 0812-3456-7890<br>
+Email: <a href="mailto:halo@jendedu.id">halo@jendedu.id</a><br>
+Jam layanan: Senin–Sabtu, 08.00–20.00 WIB<br>
+```
 
 **Keputusan: Request changes**
 
 Checklist yang harus diperbaiki sebelum approval:
 
-- [ ] Ganti Google Maps JS API lama dengan iframe embed `https://`
-- [ ] Hilangkan `id` ganda (`id="email"` untuk input email)
-- [ ] Hapus Lorem ipsum, ganti tombol menjadi "Kirim Pesan"
-- [ ] Ganti `<br><br>` dengan spacing yang lebih rapi
-- [ ] Lengkapi info kontak (WhatsApp, jam layanan, tautan `mailto:`)
+- [ ] Ganti Google Maps JS API lama dengan iframe embed `https://` (baris 14-22, 73)
+- [ ] Hilangkan `id` ganda: `id="email"` untuk input email (baris 96)
+- [ ] Hapus Lorem ipsum, ganti tombol menjadi "Kirim Pesan" (baris 116, 109)
+- [ ] Ganti `<br><br>` dengan satu `<br>` (baris 80)
+- [ ] Lengkapi info kontak: WhatsApp, jam layanan, tautan `mailto:` (baris 123)
+
+Versi setelah diperbaiki: [`review/codes/contact.html`](codes/contact.html)
 
 ---
 
 ## PR #7 - Tiga halaman berita
 
-- **Branch:** `feature/berita-pages` -> `main`
+- **Branch:** `feature/news` -> `main`
 - **Author:** @username-2
-- **Snapshot kode:** [codes/PR-07_berita-beasiswa.html](codes/PR-07_berita-beasiswa.html)
+- **File di PR:** `berita-beasiswa-jendedu-2027.html` (dan dua halaman berita lainnya)
 
-**Deskripsi:** Menambahkan tiga halaman berita; snapshot ini memakai `berita-beasiswa-jendedu-2027.html` sebagai contoh.
+**Deskripsi:** Menambahkan tiga halaman berita; komentar di bawah memakai `berita-beasiswa-jendedu-2027.html` sebagai contoh.
 
 ### Komentar review
 
-**`PR-07_berita-beasiswa.html` baris 13**
+**`berita-beasiswa-jendedu-2027.html` baris 63**
 
 ```html
 <h1>Program Beasiswa JendEdu 2026/2027 Resmi Dibuka</h2>
@@ -308,7 +342,7 @@ Checklist yang harus diperbaiki sebelum approval:
 <h1>Program Beasiswa JendEdu 2026/2027 Resmi Dibuka</h1>
 ```
 
-**`PR-07_berita-beasiswa.html` baris 18**
+**`berita-beasiswa-jendedu-2027.html` baris 69**
 
 ```html
 <img src="img/blog/berita-3.jpg" style="width:100%; margin:20px 0;">
@@ -320,7 +354,7 @@ Checklist yang harus diperbaiki sebelum approval:
 <img class="img-responsive post-image" src="img/blog/berita-3.jpg" alt="Siswa tersenyum saat belajar di meja, penerima beasiswa JendEdu">
 ```
 
-**`PR-07_berita-beasiswa.html` baris 28**
+**`berita-beasiswa-jendedu-2027.html` baris 96**
 
 ```html
 <a href="kontak.html">Kontak</a>
@@ -332,15 +366,23 @@ Checklist yang harus diperbaiki sebelum approval:
 <a href="contact.html">Kontak</a>
 ```
 
-**`PR-07_berita-beasiswa.html` baris 25**
+**`berita-beasiswa-jendedu-2027.html` baris 85**
 
 ```html
 <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
 ```
 
-🔴 **Wajib diperbaiki.** Placeholder Lorem ipsum di daftar persyaratan. Isi dengan persyaratan sebenarnya (rapor, surat keterangan, esai, persetujuan orang tua, dll.).
+🔴 **Wajib diperbaiki.** Placeholder Lorem ipsum di daftar persyaratan. Isi dengan persyaratan sebenarnya (rapor, surat keterangan, esai, persetujuan orang tua, perangkat dan internet).
 
-**`PR-07_berita-beasiswa.html` baris 21**
+```suggestion
+<li>Melampirkan fotokopi rapor semester terakhir.</li>
+<li>Melampirkan surat keterangan tidak mampu atau surat rekomendasi dari sekolah.</li>
+<li>Menulis esai singkat sekitar 300 kata tentang cita-cita dan alasan membutuhkan beasiswa.</li>
+<li>Mendapat persetujuan orang tua atau wali.</li>
+<li>Memiliki perangkat (ponsel, tablet, atau laptop) dan sambungan internet yang memadai.</li>
+```
+
+**`berita-beasiswa-jendedu-2027.html` baris 72**
 
 ```html
 <br><br>
@@ -348,7 +390,7 @@ Checklist yang harus diperbaiki sebelum approval:
 
 🟡 **Saran.** Hapus `<br><br>` sebagai pengatur jarak. `.post-body` sudah mengatur margin antar elemen.
 
-**`PR-07_berita-beasiswa.html` baris 30**
+**`berita-beasiswa-jendedu-2027.html` baris 100**
 
 ```html
 <a href="index.html" class="btn btn-theme">Back to Home</a>
@@ -356,29 +398,53 @@ Checklist yang harus diperbaiki sebelum approval:
 
 🟡 **Saran.** Teks masih Inggris. Ganti menjadi "Kembali ke Beranda" dan bungkus dengan `<div class="post-back">`.
 
-**`PR-07_berita-beasiswa.html` baris 43**
+```suggestion
+<div class="post-back">
+	<a href="index.html" class="btn btn-theme"><i class="fa fa-angle-left"></i> Kembali ke Beranda</a>
+</div>
+```
+
+**`berita-beasiswa-jendedu-2027.html` baris 114**
 
 ```html
 <a href="https://wa.me/6281234567890" target="_blank" class="btn btn-theme">Chat WhatsApp</a>
 ```
 
-🟡 **Saran.** Tambahkan `rel="noopener"`. 🟢 Sidebar "Mulai Belajar" pada halaman lain mengarah ke `pricing.html`, mohon samakan.
+🟡 **Saran.** `target="_blank"` tanpa `rel="noopener"` membuka celah `window.opener`. Selain itu, sidebar "Mulai Belajar" pada dua halaman berita lain mengarah ke `pricing.html`, mohon samakan.
 
-**`PR-07_berita-beasiswa.html` baris 35-39**
+```suggestion
+<a href="pricing.html" class="btn btn-theme">Lihat Paket Harga</a>
+```
 
-🟢 **Nit.** Daftar "Berita Terkini" hanya berisi 2 item; tambahkan berita yang sedang dibuka agar konsisten dengan dua halaman berita lain, dan tambahkan widget "Artikel Terbaru".
+**`berita-beasiswa-jendedu-2027.html` baris 105-110**
+
+```html
+<ul class="link-list">
+	<li>...berita-kelas-live-utbk-2027.html...</li>
+	<li>...berita-kemitraan-sekolah.html...</li>
+</ul>
+```
+
+🟢 **Nit.** Daftar "Berita Terkini" hanya berisi 2 item; tambahkan berita yang sedang dibuka agar konsisten dengan dua halaman berita lain (dan dengan footer), serta tambahkan widget "Artikel Terbaru" sebelum widget "Mulai Belajar" (baris 111).
+
+```suggestion
+	<li><a href="berita-beasiswa-jendedu-2027.html">Program Beasiswa JendEdu 2026/2027 Resmi Dibuka</a></li>
+```
 
 **Keputusan: Request changes**
 
 Checklist yang harus diperbaiki sebelum approval:
 
-- [ ] Perbaiki `<h1>...</h2>` menjadi `<h1>...</h1>`
-- [ ] Tambah `alt` dan ganti inline style dengan class CSS pada gambar
-- [ ] Perbaiki tautan `kontak.html` menjadi `contact.html`
-- [ ] Hapus Lorem ipsum, isi persyaratan sebenarnya
-- [ ] Hapus `<br><br>`, ganti "Back to Home" menjadi "Kembali ke Beranda"
-- [ ] Tambah `rel="noopener"` pada tautan `_blank`
-- [ ] Terapkan perbaikan yang sama pada dua halaman berita lainnya
+- [ ] Perbaiki `<h1>...</h2>` menjadi `<h1>...</h1>` (baris 63)
+- [ ] Tambah `alt` dan ganti inline style dengan class CSS pada gambar (baris 69)
+- [ ] Perbaiki tautan `kontak.html` menjadi `contact.html` (baris 96)
+- [ ] Hapus Lorem ipsum, isi persyaratan sebenarnya (baris 85)
+- [ ] Hapus `<br><br>`, ganti "Back to Home" menjadi "Kembali ke Beranda" (baris 72, 100)
+- [ ] Ganti tombol WhatsApp `_blank` tanpa `rel` dengan tautan ke `pricing.html` (baris 114)
+- [ ] Lengkapi sidebar: berita yang sedang dibuka dan widget "Artikel Terbaru" (baris 105-111)
+- [ ] Terapkan perbaikan yang sama pada dua halaman berita lainnya bila ada
+
+Versi setelah diperbaiki: [`review/codes/berita-beasiswa-jendedu-2027.html`](codes/berita-beasiswa-jendedu-2027.html)
 
 ---
 

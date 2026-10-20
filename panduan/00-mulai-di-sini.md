@@ -11,15 +11,40 @@ Ada dua repo (tempat menyimpan proyek):
 | Repo | Fungsi | Boleh diubah? |
 |------|--------|---------------|
 | https://github.com/Borayaa/JendEdu-template | Sumber file jadi (HTML, CSS, gambar, dll). | **Tidak.** Hanya dibaca dan disalin. Jangan edit atau push ke sini. |
-| https://github.com/Borayaa/JendEdu | Repo tempat tim bekerja (branch `main`). | Ya, tapi lewat branch dan Pull Request. |
+| https://github.com/Borayaa/JendEdu | Repo tim (disebut **upstream**, branch `main`). Tujuan semua Pull Request. | Tidak langsung di-push. Setiap anggota bekerja di **fork**-nya sendiri lalu mengirim Pull Request ke sini. |
 
 Repo `JendEdu` dimulai dalam keadaan **kosong** (belum ada file). Semua file masuk sedikit demi sedikit lewat Pull Request di bawah.
 
-Caranya: kalian **menyalin file dari template ke JendEdu sedikit demi sedikit**. Setiap potongan kerja dibuat di satu **branch** sendiri, lalu dikirim lewat **Pull Request (PR)**, diperiksa Reviewer, dan baru digabung ke `main`.
+Caranya: kalian **menyalin file dari template ke folder JendEdu di komputermu sedikit demi sedikit**. Setiap potongan kerja dibuat di satu **branch** sendiri, di-push ke **fork** milikmu (salinan repo di akun GitHub-mu), lalu dikirim lewat **Pull Request (PR)** ke repo tim, diperiksa Reviewer, dan baru digabung ke `main`.
+
+### Gambaran alur fork
+
+```mermaid
+flowchart LR
+    T["Template<br/>Borayaa/JendEdu-template<br/>(hanya dibaca)"] -->|"copy / xcopy"| L["Folder lokal<br/>C:\Proyek\JendEdu"]
+    L -->|"git push"| O["Fork kamu (origin)<br/>username-kamu/JendEdu"]
+    O -->|"Pull Request"| U["Upstream<br/>Borayaa/JendEdu"]
+    U -->|"git pull upstream main"| L
+```
+
+Versi teks:
+
+```
+template (dibaca saja)
+   |  copy / xcopy
+   v
+folder lokal  C:\Proyek\JendEdu
+   |  git push origin <branch>
+   v
+fork kamu (origin)  github.com/<username-kamu>/JendEdu
+   |  Pull Request (base: Borayaa/JendEdu main)
+   v
+upstream  github.com/Borayaa/JendEdu   --(git pull upstream main)--> kembali ke folder lokal
+```
 
 ## Langkah pertama untuk SEMUA anggota
 
-Baca dan kerjakan dulu: **[01-persiapan-semua-anggota.md](01-persiapan-semua-anggota.md)** (install Git, atur nama, clone repo).
+Baca dan kerjakan dulu: **[01-persiapan-semua-anggota.md](01-persiapan-semua-anggota.md)** (install Git, atur nama, fork dan clone repo).
 
 Setelah itu buka panduan sesuai peranmu.
 
@@ -76,15 +101,41 @@ Aturan emas:
 - Jangan pernah mengerjakan langsung di `main`.
 - Tidak ada yang meng-approve PR miliknya sendiri.
 - Folder `panduan\` (panduan ini) **tidak** disalin ke repo JendEdu.
+- Dokumentator menyalin `README.md` dan folder `presentasi\` dari template; README itu untuk repo JendEdu.
+
+> **⚠️ Jangan pernah `git push` ke `main`.** Hanya branch kerja (`feature/...`, `chore/...`, `docs/...`) yang di-push, ke fork-mu (`origin`). `main` hanya berubah lewat Pull Request yang sudah di-merge. Fork-mu di GitHub boleh tertinggal (`X commits behind`); itu tidak masalah.
+
+## Draft vs versi perbaikan
+
+> **Soal nomor PR:** kolom `PR` di bawah memakai nomor contoh dari `review\review.md` ("PR #3 di review.md"). Nomor sebenarnya di GitHub bisa berbeda, tergantung urutan PR dibuka. Kenali PR lewat **nama branch**.
+
+Beberapa file di root `JendEdu-template` sengaja berupa **draft dengan kesalahan** supaya code review benar-benar ada isinya. Versi yang sudah benar ada di folder `review\codes\`.
+
+| PR (nomor di review.md) | Branch | Author | File draft (di root, disalin pertama) | File perbaikan (disalin setelah review) |
+|----|--------|--------|---------------------------------------|------------------------------------------|
+| #3 | `feature/pricing` | Coder 1 (@username-1) | `pricing.html` | `review\codes\pricing.html` |
+| #4 | `feature/navbar-footer` | Coder 2 (@username-2) | `css\style.css` | `review\codes\css\style.css` |
+| #5 | `feature/contact` | Coder 2 | `contact.html` | `review\codes\contact.html` |
+| #7 | `feature/news` | Coder 2 | `berita-beasiswa-jendedu-2027.html` | `review\codes\berita-beasiswa-jendedu-2027.html` |
+
+PR lain (setup-template, homepage, about, courses, gallery, posts, docs/readme, docs/review-log) **tidak punya draft**: Reviewer memeriksa dengan checklist lalu **langsung Approve**.
+
+Ceritanya, 3 langkah:
+
+1. Author menyalin **draft** dari root template, commit, push, dan buka PR.
+2. Reviewer menemukan kesalahan dan memilih **Request changes**. Author baru boleh menyalin **file perbaikan** dari `review\codes\`, lalu commit dan push ke branch yang sama (jangan ke `main`).
+3. Reviewer memeriksa ulang, **Approve**, lalu **Merge**.
+
+Jangan menyalin dari `review\codes\` sebelum Reviewer berkomentar, dan jangan menyalin folder `review\` (itu milik PR `docs/review-log` di akhir).
 
 ## Alur kerja singkat (diulang untuk setiap tugas)
 
-1. **Git Bash:** pindah ke `main`, ambil update terbaru, buat branch baru.
+1. **Git Bash:** pindah ke `main`, ambil update terbaru dari upstream (`git pull upstream main`), buat branch baru.
 2. **Command Prompt:** salin file dari template.
-3. **Git Bash:** `git add`, `git commit`, `git push`.
-4. **Browser (github.com):** buka Pull Request dan pilih Reviewer.
-5. Reviewer memberi komentar, kamu memperbaiki, lalu Reviewer approve dan merge.
-6. Semua orang: `git switch main` lalu `git pull origin main`.
+3. **Git Bash:** `git add`, `git commit`, `git push -u origin <nama-branch>` (terkirim ke fork-mu).
+4. **Browser (github.com):** buka Pull Request lintas fork ke `Borayaa/JendEdu`, centang **Allow edits by maintainers**, dan pilih Reviewer.
+5. Reviewer memberi komentar, kamu memperbaiki (`git push` lagi), lalu Reviewer approve dan merge.
+6. Semua orang: `git switch main` lalu `git pull upstream main`. Tidak ada yang pernah `git push` ke `main`.
 
 Detail lengkapnya ada di panduan peran masing-masing.
 
@@ -98,11 +149,14 @@ Detail lengkapnya ada di panduan peran masing-masing.
 | **Commit** | "Simpan" perubahan beserta pesan singkat. Seperti save point di game. |
 | **Push** | Mengirim commit dari komputermu ke GitHub. |
 | **Pull** | Mengambil perubahan terbaru dari GitHub ke komputermu. |
+| **Fork** | Salinan repo di akun GitHub-mu sendiri, misalnya `github.com/username-1/JendEdu`. Kamu bebas push ke sini. |
+| **Origin** | Nama (alias) di komputermu untuk **fork-mu**. `git push origin ...` mengirim ke fork. |
+| **Upstream** | Nama (alias) untuk **repo tim** `Borayaa/JendEdu`. Dipakai untuk mengambil update (`git pull upstream main`) dan sebagai tujuan Pull Request. |
 | **Pull Request (PR)** | Permintaan agar branch-mu digabung ke `main`. Orang lain bisa memeriksanya dulu. |
 | **Review** | Pemeriksaan PR oleh teman: membaca, memberi komentar, minta perbaikan. |
 | **Approve** | Persetujuan Reviewer bahwa PR sudah bagus. |
 | **Merge** | Menggabungkan branch ke `main` setelah PR disetujui. |
-| **Collaborator** | Orang yang diberi izin menulis di sebuah repo. |
+| **Collaborator** | Orang yang diberi izin menulis di sebuah repo. Di tim ini hanya Reviewer, agar bisa meng-approve dan merge. |
 
 ## Aplikasi apa untuk apa?
 

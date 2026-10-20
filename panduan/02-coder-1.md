@@ -1,14 +1,27 @@
 # Panduan Coder 1 (@username-1)
 
 > **Tugas kamu**
-> - Branch `chore/setup-template`: memasukkan aset template (js, fonts, img) ke repo **JendEdu**. Ini PR **PERTAMA**; semua orang menunggu PR ini di-merge.
+> - Branch `chore/setup-template`: memasukkan aset template (js, fonts, img) ke repo **JendEdu** lewat fork kamu. Ini PR **PERTAMA**; semua orang menunggu PR ini di-merge.
 > - Lima halaman: `feature/homepage`, `feature/about`, `feature/courses`, `feature/gallery`, `feature/pricing`.
 > - Setiap branch = satu Pull Request (PR) yang di-review oleh Reviewer (@username-3).
 
 **Sebelum mulai: selesaikan [01-persiapan-semua-anggota.md](01-persiapan-semua-anggota.md).** Pastikan:
 - Git sudah terpasang dan `git config --global user.name` / `user.email` sudah diisi.
-- Kamu sudah menerima undangan collaborator dari Borayaa.
-- Folder `C:\Proyek\JendEdu-template` dan `C:\Proyek\JendEdu` sudah ada (hasil `git clone`).
+- Kamu sudah mem-fork https://github.com/Borayaa/JendEdu menjadi https://github.com/username-1/JendEdu (**fork** kamu = `origin`).
+- Remote `upstream` (https://github.com/Borayaa/JendEdu.git) sudah ditambahkan; cek dengan `git remote -v`.
+- Folder `C:\Proyek\JendEdu-template` dan `C:\Proyek\JendEdu` (clone dari fork kamu) sudah ada.
+- Kamu **tidak** push langsung ke Borayaa/JendEdu; semua kerja lewat fork lalu PR.
+
+> **⚠️ Jangan pernah `git push` ke `main`.** Hanya branch kerja (`feature/...`, `chore/...`) yang di-push, dan hanya ke `origin` (fork kamu). `main` hanya berubah lewat PR yang di-merge. Fork kamu di GitHub boleh tertinggal (`X commits behind`); itu tidak masalah, karena branch baru selalu dibuat dari `main` lokal yang sudah di-pull dari upstream. Jangan klik/jalankan apa pun yang mem-push ke main.
+
+> **📌 Draft vs versi perbaikan**
+>
+> - File di **root** `C:\Proyek\JendEdu-template` adalah **draft**. Untuk PR yang ditugaskan ke kamu di bawah ini, draft itu **sengaja mengandung kesalahan** supaya Reviewer punya sesuatu untuk di-review.
+> - PR kamu yang berisi draft dengan kesalahan: **`feature/pricing` (disebut "PR #3" di review.md)** dengan file `pricing.html`. Nomor PR (#3, #4, dst.) di panduan ini mengikuti contoh di `review\review.md`. Nomor sebenarnya di GitHub bisa berbeda, tergantung urutan PR dibuka. Selalu kenali PR lewat **nama branch**-nya.
+> - Versi **yang sudah diperbaiki** ada di folder `C:\Proyek\JendEdu-template\review\codes\`.
+> - **Urutan yang benar:** (1) salin **draft** dari root dan buat PR; (2) **tunggu** Reviewer memberi **Request changes**; (3) baru setelah itu salin file perbaikan dari `review\codes\`, commit, dan push.
+> - **Jangan** menyalin dari `review\codes\` sebelum Reviewer berkomentar, dan **jangan pernah** menyalin folder `review\` ke proyek (itu bagian PR dokumentasi di akhir).
+> - PR kamu yang lain (`chore/setup-template`, `homepage`, `about`, `courses`, `gallery`) **tidak** punya kesalahan yang disengaja, jadi Reviewer langsung **Approve** (tetap dicek).
 
 ---
 
@@ -17,7 +30,7 @@
 | No | Branch | Kapan boleh mulai | Isi |
 |----|--------|-------------------|-----|
 | 1 | `chore/setup-template` | Langsung (kamu yang pertama) | js, fonts, img, readme.txt |
-| 2 | `feature/homepage` | Setelah PR #1 **dan** PR navbar-footer (Coder 2) sudah di-merge | `index.html` |
+| 2 | `feature/homepage` | Setelah PR `chore/setup-template` **dan** PR `feature/navbar-footer` (Coder 2) sudah di-merge | `index.html` |
 | 3 | `feature/about` | Sama seperti di atas | `about.html` |
 | 4 | `feature/courses` | Sama seperti di atas | `courses.html` |
 | 5 | `feature/gallery` | Sama seperti di atas | `portfolio.html` |
@@ -29,7 +42,7 @@ Kamu boleh mengerjakan branch 2-6 satu per satu (tunggu satu PR selesai di-merge
 
 - **Git Bash** = semua perintah `git ...`.
 - **Command Prompt (cmd)** = pindah folder, menyalin file (`copy`, `xcopy`, `robocopy`), membuka website (`start`).
-- **Browser (github.com)** = membuat PR.
+- **Browser (github.com)** = membuat PR dari fork kamu ke Borayaa/JendEdu.
 
 Cara membuka:
 - cmd: tekan `Win + R`, ketik `cmd`, Enter.
@@ -56,7 +69,7 @@ git switch main
 ```
 
 ```bash
-git pull origin main
+git pull upstream main
 ```
 
 ```bash
@@ -70,7 +83,7 @@ Output terakhir yang diharapkan: `Switched to a new branch 'chore/setup-template
 Buka **Command Prompt** (jangan tutup Git Bash, biarkan terbuka), lalu:
 
 ```cmd
-cd C:\Proyek\JendEdu
+cd /d C:\Proyek\JendEdu
 ```
 
 ```cmd
@@ -125,20 +138,28 @@ git commit -m "Setup aset template (js, fonts, img)"
 git push -u origin chore/setup-template
 ```
 
-Pertama kali push, akan muncul jendela browser untuk login GitHub (Git Credential Manager). Login lalu klik **Authorize**.
+Perintah ini mengirim branch ke **fork kamu** (`origin`). Pertama kali push, akan muncul jendela browser untuk login GitHub (Git Credential Manager). Login lalu klik **Authorize**.
 
 ### Langkah 1.4 - Buat Pull Request (Browser)
 
-1. Buka https://github.com/Borayaa/JendEdu
-2. Klik tombol kuning **Compare & pull request**.
-3. Pastikan `base: main` <- `compare: chore/setup-template`.
-4. Isi **judul**:
+Buka fork kamu di browser: https://github.com/username-1/JendEdu. Klik tombol kuning **Compare & pull request** (muncul di bar "chore/setup-template had recent pushes"). Kalau tombol tidak muncul: tab **Pull requests** -> **New pull request** -> **compare across forks**.
+
+Cek **empat dropdown** (ini penting):
+
+- base repository: `Borayaa/JendEdu`
+- base: `main`
+- head repository: `username-1/JendEdu`
+- compare: `chore/setup-template`
+
+Lalu isi judul dan deskripsi seperti di bawah.
+
+Judul:
 
 ```
 Setup aset template (js, fonts, img)
 ```
 
-5. Isi **deskripsi**:
+Deskripsi:
 
 ```
 ## Ringkasan
@@ -158,28 +179,33 @@ Menambahkan aset dasar dari template JendEdu supaya halaman-halaman berikutnya b
 Tidak ada halaman yang ditampilkan di PR ini. Cukup cek bahwa folder `js`, `fonts`, `img` ada.
 ```
 
-6. Di panel kanan, klik **Reviewers**, pilih **@username-3** (Reviewer).
-7. Klik **Create pull request**.
+Setelah deskripsi terisi: centang **Allow edits by maintainers** -> **Create pull request** -> minta review **@username-3** (panel kanan **Reviewers**, atau mention `@username-3` di komentar).
 
-Beritahu tim (grup chat) bahwa PR #1 sudah siap di-review.
+Beritahu tim (grup chat) bahwa PR `chore/setup-template` sudah siap di-review.
 
 ### Langkah 1.5 - Setelah di-merge (Git Bash)
 
-Reviewer akan me-merge PR. Setelah itu:
+Setelah Reviewer me-merge PR, perbarui `main` lokal dari upstream (tanpa push ke main):
 
 ```bash
 git switch main
 ```
 
 ```bash
-git pull origin main
+git pull upstream main
 ```
-
-Cek dengan `ls` bahwa folder `js`, `fonts`, `img` ada di `main`. Kamu boleh hapus branch lokal yang sudah selesai:
 
 ```bash
 git branch -d chore/setup-template
 ```
+
+```bash
+git push origin --delete chore/setup-template
+```
+
+Baris terakhir menghapus branch di fork kamu (opsional, tapi rapi). Hanya branch kerja yang pernah di-push; `main` tidak.
+
+Cek dengan `ls` bahwa folder `js`, `fonts`, `img` ada di `main`.
 
 ---
 
@@ -198,7 +224,7 @@ git switch main
 ```
 
 ```bash
-git pull origin main
+git pull upstream main
 ```
 
 ```bash
@@ -208,7 +234,7 @@ git switch -c feature/homepage
 ### Langkah 2.2 - Salin file (cmd)
 
 ```cmd
-cd C:\Proyek\JendEdu
+cd /d C:\Proyek\JendEdu
 ```
 
 ```cmd
@@ -231,7 +257,7 @@ Pastikan slider tampil, gambar muncul, navbar dan footer rapi.
 git status
 ```
 
-Harus ada `modified: index.html`.
+Harus ada `index.html` (daftar file baru / `Untracked files`, karena repo `JendEdu` awalnya kosong).
 
 ```bash
 git add index.html
@@ -245,9 +271,20 @@ git commit -m "Tambah halaman beranda (index.html)"
 git push -u origin feature/homepage
 ```
 
+Branch terkirim ke **fork kamu**.
+
 ### Langkah 2.4 - Buat PR (Browser)
 
-Buka https://github.com/Borayaa/JendEdu, klik **Compare & pull request**, base `main` <- compare `feature/homepage`.
+Buka fork kamu di browser: https://github.com/username-1/JendEdu. Klik tombol kuning **Compare & pull request** (muncul di bar "feature/homepage had recent pushes"). Kalau tombol tidak muncul: tab **Pull requests** -> **New pull request** -> **compare across forks**.
+
+Cek **empat dropdown** (ini penting):
+
+- base repository: `Borayaa/JendEdu`
+- base: `main`
+- head repository: `username-1/JendEdu`
+- compare: `feature/homepage`
+
+Isi judul dan deskripsi (di bawah), centang **Allow edits by maintainers**, lalu klik **Create pull request**. Setelah PR terbuat (halamannya di Borayaa/JendEdu), di panel kanan klik **Reviewers** dan pilih **@username-3**. Kalau tidak bisa memilih, tulis komentar `@username-3 mohon di-review` di PR.
 
 Judul:
 
@@ -275,7 +312,29 @@ Menambahkan halaman beranda JendEdu (`index.html`).
 
 ```
 
-Reviewers: **@username-3** -> **Create pull request**.
+Setelah deskripsi terisi: centang **Allow edits by maintainers** -> **Create pull request** -> minta review **@username-3** (panel kanan **Reviewers**, atau mention `@username-3` di komentar).
+
+### Langkah 2.5 - Setelah di-merge (Git Bash)
+
+Setelah Reviewer me-merge PR, perbarui `main` lokal dari upstream (tanpa push ke main):
+
+```bash
+git switch main
+```
+
+```bash
+git pull upstream main
+```
+
+```bash
+git branch -d feature/homepage
+```
+
+```bash
+git push origin --delete feature/homepage
+```
+
+Baris terakhir menghapus branch di fork kamu (opsional, tapi rapi). Hanya branch kerja yang pernah di-push; `main` tidak.
 
 ---
 
@@ -294,7 +353,7 @@ git switch main
 ```
 
 ```bash
-git pull origin main
+git pull upstream main
 ```
 
 ```bash
@@ -304,7 +363,7 @@ git switch -c feature/about
 ### Langkah 3.2 - Salin file (cmd)
 
 ```cmd
-cd C:\Proyek\JendEdu
+cd /d C:\Proyek\JendEdu
 ```
 
 ```cmd
@@ -335,7 +394,20 @@ git commit -m "Tambah halaman Tentang Kami (about.html)"
 git push -u origin feature/about
 ```
 
+Branch terkirim ke **fork kamu**.
+
 ### Langkah 3.4 - Buat PR (Browser)
+
+Buka fork kamu di browser: https://github.com/username-1/JendEdu. Klik tombol kuning **Compare & pull request** (muncul di bar "feature/about had recent pushes"). Kalau tombol tidak muncul: tab **Pull requests** -> **New pull request** -> **compare across forks**.
+
+Cek **empat dropdown** (ini penting):
+
+- base repository: `Borayaa/JendEdu`
+- base: `main`
+- head repository: `username-1/JendEdu`
+- compare: `feature/about`
+
+Isi judul dan deskripsi (di bawah), centang **Allow edits by maintainers**, lalu klik **Create pull request**. Setelah PR terbuat (halamannya di Borayaa/JendEdu), di panel kanan klik **Reviewers** dan pilih **@username-3**. Kalau tidak bisa memilih, tulis komentar `@username-3 mohon di-review` di PR.
 
 Judul:
 
@@ -363,7 +435,29 @@ Menambahkan halaman Tentang Kami berisi profil JendEdu dan tim pengajar.
 Bergantung pada PR setup-template dan navbar-footer yang sudah di-merge.
 ```
 
-Reviewers: **@username-3** -> **Create pull request**.
+Setelah deskripsi terisi: centang **Allow edits by maintainers** -> **Create pull request** -> minta review **@username-3** (panel kanan **Reviewers**, atau mention `@username-3` di komentar).
+
+### Langkah 3.5 - Setelah di-merge (Git Bash)
+
+Setelah Reviewer me-merge PR, perbarui `main` lokal dari upstream (tanpa push ke main):
+
+```bash
+git switch main
+```
+
+```bash
+git pull upstream main
+```
+
+```bash
+git branch -d feature/about
+```
+
+```bash
+git push origin --delete feature/about
+```
+
+Baris terakhir menghapus branch di fork kamu (opsional, tapi rapi). Hanya branch kerja yang pernah di-push; `main` tidak.
 
 ---
 
@@ -380,7 +474,7 @@ git switch main
 ```
 
 ```bash
-git pull origin main
+git pull upstream main
 ```
 
 ```bash
@@ -390,7 +484,7 @@ git switch -c feature/courses
 ### Langkah 4.2 - Salin file (cmd)
 
 ```cmd
-cd C:\Proyek\JendEdu
+cd /d C:\Proyek\JendEdu
 ```
 
 ```cmd
@@ -421,7 +515,20 @@ git commit -m "Tambah halaman Kursus (courses.html)"
 git push -u origin feature/courses
 ```
 
+Branch terkirim ke **fork kamu**.
+
 ### Langkah 4.4 - Buat PR (Browser)
+
+Buka fork kamu di browser: https://github.com/username-1/JendEdu. Klik tombol kuning **Compare & pull request** (muncul di bar "feature/courses had recent pushes"). Kalau tombol tidak muncul: tab **Pull requests** -> **New pull request** -> **compare across forks**.
+
+Cek **empat dropdown** (ini penting):
+
+- base repository: `Borayaa/JendEdu`
+- base: `main`
+- head repository: `username-1/JendEdu`
+- compare: `feature/courses`
+
+Isi judul dan deskripsi (di bawah), centang **Allow edits by maintainers**, lalu klik **Create pull request**. Setelah PR terbuat (halamannya di Borayaa/JendEdu), di panel kanan klik **Reviewers** dan pilih **@username-3**. Kalau tidak bisa memilih, tulis komentar `@username-3 mohon di-review` di PR.
 
 Judul:
 
@@ -449,7 +556,29 @@ Menambahkan halaman katalog kursus per jenjang.
 Bergantung pada PR setup-template dan navbar-footer yang sudah di-merge.
 ```
 
-Reviewers: **@username-3** -> **Create pull request**.
+Setelah deskripsi terisi: centang **Allow edits by maintainers** -> **Create pull request** -> minta review **@username-3** (panel kanan **Reviewers**, atau mention `@username-3` di komentar).
+
+### Langkah 4.5 - Setelah di-merge (Git Bash)
+
+Setelah Reviewer me-merge PR, perbarui `main` lokal dari upstream (tanpa push ke main):
+
+```bash
+git switch main
+```
+
+```bash
+git pull upstream main
+```
+
+```bash
+git branch -d feature/courses
+```
+
+```bash
+git push origin --delete feature/courses
+```
+
+Baris terakhir menghapus branch di fork kamu (opsional, tapi rapi). Hanya branch kerja yang pernah di-push; `main` tidak.
 
 ---
 
@@ -468,7 +597,7 @@ git switch main
 ```
 
 ```bash
-git pull origin main
+git pull upstream main
 ```
 
 ```bash
@@ -478,7 +607,7 @@ git switch -c feature/gallery
 ### Langkah 5.2 - Salin file (cmd)
 
 ```cmd
-cd C:\Proyek\JendEdu
+cd /d C:\Proyek\JendEdu
 ```
 
 ```cmd
@@ -509,7 +638,20 @@ git commit -m "Tambah halaman Galeri kegiatan (portfolio.html)"
 git push -u origin feature/gallery
 ```
 
+Branch terkirim ke **fork kamu**.
+
 ### Langkah 5.4 - Buat PR (Browser)
+
+Buka fork kamu di browser: https://github.com/username-1/JendEdu. Klik tombol kuning **Compare & pull request** (muncul di bar "feature/gallery had recent pushes"). Kalau tombol tidak muncul: tab **Pull requests** -> **New pull request** -> **compare across forks**.
+
+Cek **empat dropdown** (ini penting):
+
+- base repository: `Borayaa/JendEdu`
+- base: `main`
+- head repository: `username-1/JendEdu`
+- compare: `feature/gallery`
+
+Isi judul dan deskripsi (di bawah), centang **Allow edits by maintainers**, lalu klik **Create pull request**. Setelah PR terbuat (halamannya di Borayaa/JendEdu), di panel kanan klik **Reviewers** dan pilih **@username-3**. Kalau tidak bisa memilih, tulis komentar `@username-3 mohon di-review` di PR.
 
 Judul:
 
@@ -537,7 +679,29 @@ Menambahkan halaman galeri kegiatan JendEdu dengan filter jenjang.
 Nama file tetap `portfolio.html` (sesuai template), nama branch `gallery`.
 ```
 
-Reviewers: **@username-3** -> **Create pull request**.
+Setelah deskripsi terisi: centang **Allow edits by maintainers** -> **Create pull request** -> minta review **@username-3** (panel kanan **Reviewers**, atau mention `@username-3` di komentar).
+
+### Langkah 5.5 - Setelah di-merge (Git Bash)
+
+Setelah Reviewer me-merge PR, perbarui `main` lokal dari upstream (tanpa push ke main):
+
+```bash
+git switch main
+```
+
+```bash
+git pull upstream main
+```
+
+```bash
+git branch -d feature/gallery
+```
+
+```bash
+git push origin --delete feature/gallery
+```
+
+Baris terakhir menghapus branch di fork kamu (opsional, tapi rapi). Hanya branch kerja yang pernah di-push; `main` tidak.
 
 ---
 
@@ -554,7 +718,7 @@ git switch main
 ```
 
 ```bash
-git pull origin main
+git pull upstream main
 ```
 
 ```bash
@@ -564,7 +728,7 @@ git switch -c feature/pricing
 ### Langkah 6.2 - Salin file (cmd)
 
 ```cmd
-cd C:\Proyek\JendEdu
+cd /d C:\Proyek\JendEdu
 ```
 
 ```cmd
@@ -575,7 +739,7 @@ copy ..\JendEdu-template\pricing.html .
 start pricing.html
 ```
 
-Cek harga harus konsisten: **Rp99.000** (SD), **Rp129.000** (SMP), **Rp159.000** (SMA), **Rp249.000** (UTBK Intensif), semuanya "per bulan".
+Ini adalah **draft** (sengaja mengandung kesalahan untuk PR #3). Salin apa adanya; **jangan** mengambil dari `review\codes\` dulu. Harga yang benar nanti: **Rp99.000** (SD), **Rp129.000** (SMP), **Rp159.000** (SMA), **Rp249.000** (UTBK Intensif), semuanya "per bulan".
 
 ### Langkah 6.3 - Commit dan push (Git Bash)
 
@@ -595,7 +759,20 @@ git commit -m "Tambah halaman Paket Harga (pricing.html)"
 git push -u origin feature/pricing
 ```
 
+Branch terkirim ke **fork kamu**.
+
 ### Langkah 6.4 - Buat PR (Browser)
+
+Buka fork kamu di browser: https://github.com/username-1/JendEdu. Klik tombol kuning **Compare & pull request** (muncul di bar "feature/pricing had recent pushes"). Kalau tombol tidak muncul: tab **Pull requests** -> **New pull request** -> **compare across forks**.
+
+Cek **empat dropdown** (ini penting):
+
+- base repository: `Borayaa/JendEdu`
+- base: `main`
+- head repository: `username-1/JendEdu`
+- compare: `feature/pricing`
+
+Isi judul dan deskripsi (di bawah), centang **Allow edits by maintainers**, lalu klik **Create pull request**. Setelah PR terbuat (halamannya di Borayaa/JendEdu), di panel kanan klik **Reviewers** dan pilih **@username-3**. Kalau tidak bisa memilih, tulis komentar `@username-3 mohon di-review` di PR.
 
 Judul:
 
@@ -625,7 +802,99 @@ Menambahkan halaman paket harga kursus JendEdu.
 Bergantung pada PR setup-template dan navbar-footer yang sudah di-merge.
 ```
 
-Reviewers: **@username-3** -> **Create pull request**.
+Setelah deskripsi terisi: centang **Allow edits by maintainers** -> **Create pull request** -> minta review **@username-3** (panel kanan **Reviewers**, atau mention `@username-3` di komentar).
+
+### Langkah 6.5 - Setelah Reviewer meminta perbaikan (Request changes)
+
+Reviewer akan memeriksa `pricing.html` dan memberi status **Request changes** ("PR #3" di review.md; nomor di GitHub-mu bisa berbeda) dengan komentar di baris tertentu. Itu normal dan memang direncanakan. Lakukan urutan ini:
+
+1. **Baca komentar** di GitHub: buka PR kamu di Borayaa/JendEdu, tab **Files changed** (atau **Conversation**). Komentar yang sama juga tertulis di `C:\Proyek\JendEdu-template\review\review.md` bagian **PR #3**, lengkap dengan nomor baris. Pahami dulu apa yang salah.
+
+2. **Pastikan masih di branch `feature/pricing`** (Git Bash):
+
+```bash
+cd /c/Proyek/JendEdu
+```
+
+```bash
+git switch feature/pricing
+```
+
+3. **Salin file versi perbaikan** (cmd):
+
+```cmd
+cd /d C:\Proyek\JendEdu
+```
+
+```cmd
+copy /Y ..\JendEdu-template\review\codes\pricing.html .
+```
+
+Output yang diharapkan: `1 file(s) copied.` (`/Y` berarti timpa file lama tanpa bertanya).
+
+4. **Cek di browser** (cmd):
+
+```cmd
+start pricing.html
+```
+
+Pastikan keempat harga sudah `Rp99.000`, `Rp129.000`, `Rp159.000`, `Rp249.000` per bulan dan tampilan rapi.
+
+5. **Cek, add, commit, push** (Git Bash):
+
+```bash
+git status
+```
+
+Harus ada `modified: pricing.html` (file ini sudah ada di branch dari commit pertama).
+
+```bash
+git add pricing.html
+```
+
+```bash
+git commit -m "Perbaiki halaman Harga sesuai review PR #3"
+```
+
+```bash
+git push
+```
+
+Perintah ini mengirim ke branch yang sama di **fork kamu** (`origin`), tanpa `-u` dan tanpa PR baru; PR #3 di Borayaa/JendEdu ter-update otomatis. Jangan push ke `main`.
+
+6. **Balas setiap komentar** di GitHub dengan: `Sudah diperbaiki`. Jangan klik "Resolve conversation" sendiri kalau tidak diminta.
+
+7. **Tunggu** Reviewer meng-**Approve** dan me-merge PR. Setelah itu lanjut ke Langkah 6.6.
+
+> **Alternatif (opsional):** kamu boleh memperbaiki **manual** satu per satu sesuai komentar (buka `pricing.html`, ubah barisnya, simpan), bukan menyalin file. Tetapi hasil akhirnya **harus sama persis** dengan `review\codes\pricing.html`. Cek di cmd:
+>
+> ```cmd
+> fc ..\JendEdu-template\review\codes\pricing.html pricing.html
+> ```
+>
+> Hasil yang benar: `FC: no differences encountered`. Kalau ada perbedaan, FC menampilkan baris yang berbeda; perbaiki sampai sama.
+
+### Langkah 6.6 - Setelah di-merge (Git Bash)
+
+Setelah Reviewer me-merge PR, perbarui `main` lokal dari upstream (tanpa push ke main):
+
+```bash
+git switch main
+```
+
+```bash
+git pull upstream main
+```
+
+```bash
+git branch -d feature/pricing
+```
+
+```bash
+git push origin --delete feature/pricing
+```
+
+Baris terakhir menghapus branch di fork kamu (opsional, tapi rapi). Hanya branch kerja yang pernah di-push; `main` tidak.
 
 ---
 
@@ -638,74 +907,33 @@ Reviewer akan menulis komentar di tab **Files changed**. Labelnya:
 
 Kamu akan mendapat email / notifikasi GitHub. Buka PR-nya, tab **Conversation** atau **Files changed**.
 
-### Contoh nyata: format harga di `pricing.html`
+### Contoh nyata: PR #3 `pricing.html`
 
-Reviewer menulis di baris harga paket SMP:
+`pricing.html` yang kamu salin dari root adalah draft yang sengaja salah, jadi Reviewer pasti meminta perbaikan. Contoh komentar di baris harga paket (kutipan dari `review\review.md`):
 
-> 🔴 **Wajib**: Harga ditulis `Rp 129,000/bln`. Seharusnya `Rp129.000 per bulan` supaya konsisten dengan README dan halaman lain.
+> 🔴 **Wajib diperbaiki.** Format harga tidak konsisten di ketiga paket (spasi setelah "Rp", titik ribuan, "bln" vs "bulan"). Samakan dengan format `Rp99.000 / bulan`.
 
-Langkah memperbaiki (kamu masih di branch `feature/pricing`):
+Cara menanggapinya adalah alur lengkap di **Langkah 6.5** (bagian "Setelah Reviewer meminta perbaikan"):
 
-1. **Pastikan berada di branch yang benar** (Git Bash):
+1. Baca semua komentar di GitHub (dan di `review\review.md` bagian PR #3).
+2. Git Bash: `git switch feature/pricing`.
+3. cmd: `copy /Y ..\JendEdu-template\review\codes\pricing.html .` lalu `start pricing.html`.
+4. Git Bash: `git status`, `git add pricing.html`, `git commit -m "Perbaiki halaman Harga sesuai review PR #3"`, `git push`.
+5. Balas tiap komentar: "Sudah diperbaiki".
+6. Tunggu Approve dan merge, lalu Langkah 6.6.
 
-```bash
-cd /c/Proyek/JendEdu
-```
+Boleh juga memperbaiki manual per komentar (alternatif di Langkah 6.5), asal hasilnya sama dengan `review\codes\pricing.html` (cek dengan `fc ..\JendEdu-template\review\codes\pricing.html pricing.html`).
 
-```bash
-git switch feature/pricing
-```
+> Kalau reviewer memakai fitur **Insert a suggestion**, kamu bisa klik **Commit suggestion** di GitHub. Setelah itu jalankan `git pull origin feature/pricing` di Git Bash supaya laptopmu ikut terbaru.
 
-2. **Buka file** `C:\Proyek\JendEdu\pricing.html` di VS Code atau Notepad. Tekan `Ctrl + F`, cari `129`. Ubah:
-
-```html
-<span class="price">Rp 129,000/bln</span>
-```
-
-menjadi:
-
-```html
-<span class="price">Rp129.000 per bulan</span>
-```
-
-(Teks aslinya bisa sedikit berbeda; yang penting formatnya `Rp129.000 per bulan`.) Cari juga harga lain di file yang sama (`99`, `159`, `249`) supaya semuanya konsisten. Simpan dengan `Ctrl + S`.
-
-> Kalau reviewer memakai fitur **Insert a suggestion**, kamu bisa langsung klik **Commit suggestion** di GitHub. Tetapi setelah itu jalankan `git pull` di Git Bash supaya laptopmu ikut terbaru.
-
-3. **Cek di browser** (cmd):
-
-```cmd
-start pricing.html
-```
-
-4. **Commit dan push** (Git Bash):
-
-```bash
-git status
-```
-
-```bash
-git add pricing.html
-```
-
-```bash
-git commit -m "Perbaiki sesuai review: format harga di pricing.html"
-```
-
-```bash
-git push
-```
-
-Tidak perlu `-u` lagi dan tidak perlu membuat PR baru; PR yang sama otomatis ter-update.
-
-5. **Balas komentar** di GitHub: "Sudah diperbaiki, harga sekarang `Rp129.000 per bulan` di semua paket." Jangan klik "Resolve conversation" sendiri kalau tidak diminta; biasanya Reviewer yang me-resolve.
-6. Tunggu Reviewer meng-**Approve** dan me-merge.
+Untuk PR lain (homepage, about, courses, gallery, setup-template) biasanya tidak ada permintaan perbaikan; Reviewer langsung Approve.
 
 > Tips: kalau komentar menyangkut **navbar atau footer** (menu salah, tautan rusak di footer), itu urusan **Coder 2**. Beri tahu Coder 2 atau balas "Ini bagian Coder 2, sudah saya teruskan".
 
 ### Kalau ada konflik atau push ditolak
 
 - `! [rejected] ... (fetch first)`: jalankan `git pull origin feature/pricing` lalu `git push` lagi.
+- `fatal: 'upstream' does not appear to be a git repository`: jalankan `git remote add upstream https://github.com/Borayaa/JendEdu.git`, lalu ulangi perintah sebelumnya.
 - `CONFLICT (content)`: buka file yang disebut, cari tanda `<<<<<<<`, `=======`, `>>>>>>>`, pilih isi yang benar, hapus tanda-tandanya, lalu `git add <file>` dan `git commit`. Kalau bingung, minta bantuan tim.
 
 ---
@@ -719,10 +947,14 @@ Tidak perlu `-u` lagi dan tidak perlu membuat PR baru; PR yang sama otomatis ter
 | `The system cannot find the path specified` | Kamu belum `cd C:\Proyek\JendEdu` di cmd, atau folder template belum di-clone. |
 | `File not found - ...` saat copy | Pastikan file ada di `C:\Proyek\JendEdu-template` dan template sudah di-clone. |
 | `error: pathspec ... did not match` saat `git add` | Nama file salah ketik, atau file tidak disalin ke `C:\Proyek\JendEdu`. Jalankan `dir` di cmd. |
-| `Permission denied` / `403` saat push | Undangan collaborator belum diterima, atau login GitHub salah. Cek email / https://github.com/Borayaa/JendEdu/invitations. |
+| `Permission denied` / `403` saat push | Kamu mem-push ke `upstream` (Borayaa/JendEdu) secara tidak sengaja. Selalu pakai `origin` (fork kamu): `git push -u origin <nama-branch>`. Cek juga login GitHub benar. |
+| `fatal: 'upstream' does not appear to be a git repository` | Jalankan `git remote add upstream https://github.com/Borayaa/JendEdu.git`, lalu `git remote -v` untuk cek. |
+| PR menampilkan "There isn't anything to compare" | Dropdown base/head salah. Pastikan base repository `Borayaa/JendEdu` base `main`, head repository fork kamu, compare nama branch kamu. |
+| Fork tertulis "X commits behind" | Aman, abaikan. Fork boleh tertinggal; branch baru dibuat dari `main` lokal setelah `git pull upstream main`. Jangan push ke main. |
 | `fatal: A branch named ... already exists` | Branch sudah ada. Pakai `git switch <nama-branch>`, bukan `-c`. |
 | `Your local changes would be overwritten` saat `git switch` | Ada perubahan belum di-commit. Commit dulu, atau tanya tim sebelum memakai `git stash`. |
-| Halaman tampil tanpa gaya / tanpa gambar | PR setup-template atau navbar-footer belum di-merge ke `main`. Jalankan `git pull origin main`. |
+| `error: The branch ... is not fully merged` saat `git branch -d` | PR di-merge dengan cara lain (bukan merge commit). Kalau PR-nya memang sudah ter-merge di GitHub, aman memakai `git branch -D <nama-branch>`. |
+| Halaman tampil tanpa gaya / tanpa gambar | PR setup-template atau navbar-footer belum di-merge ke `main`. Jalankan `git pull upstream main`. |
 
 ---
 
@@ -733,10 +965,11 @@ Tidak perlu `-u` lagi dan tidak perlu membuat PR baru; PR yang sama otomatis ter
 - [ ] `feature/about` di-merge
 - [ ] `feature/courses` di-merge
 - [ ] `feature/gallery` di-merge
-- [ ] `feature/pricing` di-merge
+- [ ] `feature/pricing` ("PR #3" di review.md): draft dari root disalin lebih dulu, perbaikan dari `review\codes\pricing.html` disalin **setelah** Reviewer Request changes, lalu di-merge
+- [ ] Tidak pernah menyalin folder `review\` ke proyek
 - [ ] Semua komentar Reviewer sudah dibalas "Sudah diperbaiki"
 - [ ] Harga konsisten: Rp99.000 / Rp129.000 / Rp159.000 / Rp249.000 per bulan
-- [ ] `git switch main` dan `git pull origin main` sudah dijalankan; semua halaman terbuka normal dengan `start index.html`
+- [ ] `git switch main` dan `git pull upstream main` sudah dijalankan; semua halaman terbuka normal dengan `start index.html`
 - [ ] Folder `panduan\` **tidak** ikut disalin ke JendEdu
 
 ---
