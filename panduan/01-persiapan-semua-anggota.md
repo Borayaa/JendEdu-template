@@ -7,55 +7,81 @@ Kembali ke: [00-mulai-di-sini.md](00-mulai-di-sini.md)
 ## Daftar isi
 
 1. Buat akun GitHub
-2. Pemilik repo menambahkan anggota (khusus Borayaa)
-3. Terima undangan kolaborator
+2. Fork repo tim di browser
+3. Pemilik repo: tambahkan Reviewer, catatan pemilik, dan proteksi `main` (khusus Borayaa)
 4. Install Git for Windows
 5. Cara membuka Command Prompt dan Git Bash
 6. Atur nama dan email Git
 7. Buat folder kerja `C:\Proyek`
-8. Clone kedua repo
+8. Clone template dan fork, lalu tambah `upstream`
 9. (Opsional) Install VS Code
 10. Perbedaan cmd dan Git Bash
 11. Troubleshooting
 
 ---
 
+## Istilah penting: upstream dan fork
+
+- **Upstream** = repo tim `https://github.com/Borayaa/JendEdu`. Semua Pull Request ditujukan ke sini.
+- **Fork** = salinan repo tim di akunmu sendiri: `https://github.com/<username-kamu>/JendEdu` (contoh `https://github.com/username-1/JendEdu`). Di komputermu fork ini bernama **`origin`**.
+- Kamu **tidak** push ke `Borayaa/JendEdu` secara langsung. Kamu push ke fork-mu, lalu membuka Pull Request ke upstream.
+- Repo template tidak di-fork. Cukup di-clone langsung dan hanya dibaca.
+
+> **⚠️ Jangan pernah `git push` ke `main`.** Hanya branch kerja yang di-push (ke fork-mu). `main` hanya berubah lewat Pull Request yang di-merge.
+
 ## 1. Buat akun GitHub
 
 1. Buka https://github.com di browser.
 2. Klik **Sign up** dan ikuti langkahnya (email, password, username).
 3. Verifikasi email-mu.
-4. Catat **username** GitHub-mu, lalu kirim ke pemilik repo (Borayaa) untuk ditambahkan sebagai kolaborator.
+4. Catat **username** GitHub-mu. Kirim ke pemilik repo (Borayaa) dan ke teman satu tim. Khusus Reviewer: username ini dibutuhkan untuk undangan kolaborator (langkah 3).
 
 Kalau sudah punya akun, lewati langkah ini.
 
-## 2. Pemilik repo menambahkan anggota (khusus Borayaa)
+## 2. Fork repo tim di browser
 
-Bagian ini hanya untuk **pemilik** repo (Borayaa). Anggota lain boleh lewati ke langkah 3.
+Dikerjakan oleh **semua anggota** (Coder 1, Coder 2, Reviewer, Dokumentator). Pemilik repo (Borayaa) tidak bisa fork repo sendiri; lihat catatan di langkah 3.
+
+1. Login ke GitHub, lalu buka https://github.com/Borayaa/JendEdu.
+2. Klik tombol **Fork** di kanan atas.
+3. Di halaman **Create a new fork**: **Owner** = akunmu, **Repository name** = `JendEdu`. Biarkan **Copy the main branch only** tercentang.
+4. Klik **Create fork**.
+
+Hasilnya, kamu diarahkan ke fork-mu: `https://github.com/<username-kamu>/JendEdu` (contoh `https://github.com/username-1/JendEdu`), dengan tulisan kecil "forked from Borayaa/JendEdu" di bawah nama repo.
+
+## 3. Pemilik repo: tambahkan Reviewer, catatan pemilik, dan proteksi `main` (khusus Borayaa)
+
+Bagian ini hanya untuk **pemilik** repo (Borayaa). Anggota lain boleh lewati ke langkah 4.
+
+### Tambahkan hanya Reviewer sebagai kolaborator
+
+Coder 1, Coder 2, dan Dokumentator **tidak perlu** jadi kolaborator karena mereka bekerja lewat fork. Hanya **Reviewer** yang ditambahkan, agar bisa **Approve dan Merge** PR.
 
 1. Buka https://github.com/Borayaa/JendEdu di browser.
 2. Klik tab **Settings** (paling kanan di baris tab atas repo).
 3. Di menu kiri, klik **Collaborators**. GitHub mungkin meminta password; masukkan.
 4. Klik tombol hijau **Add people**.
-5. Ketik username anggota (contoh `username-1`), pilih dari daftar, klik **Add ... to this repository**. Role-nya **Write**.
-6. Ulangi untuk ketiga anggota lain, yaitu `username-2`, `username-3`, dan `username-4`. Tulis satu per satu dan ganti dengan username asli.
+5. Ketik username Reviewer (contoh `username-3`), pilih dari daftar, klik **Add ... to this repository**. Role-nya **Write**.
+6. Reviewer menerima undangan: lewat email GitHub berjudul "Borayaa invited you to collaborate on Borayaa/JendEdu" lalu **View invitation** dan **Accept invitation**, atau buka https://github.com/Borayaa/JendEdu/invitations (sambil login).
 
-Saran tambahan (aman diaktifkan agar `main` terlindungi):
+### Catatan untuk pemilik (Borayaa)
+
+GitHub tidak mengizinkan kamu mem-fork repomu sendiri. Kalau Borayaa juga ikut mengerjakan sebagai anggota tim:
+- Clone langsung `https://github.com/Borayaa/JendEdu.git` (tanpa fork).
+- **Lewati** `git remote add upstream ...`.
+- Di semua alur kerja, pakai `origin` sebagai pengganti `upstream` (contoh `git pull origin main`).
+- Branch-mu di-push ke repo yang sama dan PR-nya dibuat dari branch di repo yang sama.
+- Borayaa juga **tidak pernah** push ke `main`; kerja di branch lalu merge lewat PR.
+
+### Proteksi branch `main` (sangat disarankan)
+
 1. Masih di **Settings**, klik **Branches** di menu kiri.
 2. Klik **Add rule** (atau **Add branch ruleset**).
 3. Branch name pattern: `main`.
 4. Centang **Require a pull request before merging**, lalu **Require approvals** dengan nilai `1`.
 5. Klik **Create** / **Save changes**.
 
-## 3. Terima undangan kolaborator
-
-Sebelum bisa `push`, kamu **harus menerima undangan** dulu.
-
-1. Buka email yang kamu pakai untuk GitHub. Cari email dari GitHub berjudul seperti "Borayaa invited you to collaborate on Borayaa/JendEdu".
-2. Klik tombol **View invitation**, lalu klik **Accept invitation**.
-3. Alternatif kalau email tidak ketemu: buka https://github.com/Borayaa/JendEdu/invitations (sambil login), atau klik ikon lonceng notifikasi di GitHub.
-
-Kalau undangan tidak muncul, minta Borayaa mengecek kembali username-mu di **Settings > Collaborators**.
+Dengan aturan ini, siapa pun (termasuk pemilik) tidak bisa push langsung ke `main`.
 
 ## 4. Install Git for Windows
 
@@ -170,9 +196,9 @@ cd /d C:\Proyek
 
 (`/d` dipakai agar bisa pindah drive jika kamu sedang di drive lain.)
 
-## 8. Clone kedua repo
+## 8. Clone template dan fork, lalu tambah `upstream`
 
-Di **Git Bash**:
+Pastikan kamu sudah mem-fork repo (langkah 2). Di **Git Bash**:
 
 1. Pindah ke folder kerja:
 
@@ -186,21 +212,46 @@ cd /c/Proyek
 git clone https://github.com/Borayaa/JendEdu-template.git
 ```
 
-3. Clone repo tempat tim bekerja:
+3. Clone **fork-mu** (ganti `<username-kamu>` dengan username GitHub-mu, contoh `username-1`):
 
 ```
-git clone https://github.com/Borayaa/JendEdu.git
+git clone https://github.com/<username-kamu>/JendEdu.git
 ```
 
-Hasil yang diharapkan (contoh):
+4. Masuk ke folder JendEdu:
 
 ```
-Cloning into 'JendEdu'...
-remote: Enumerating objects: ...
-Receiving objects: 100% (...), done.
+cd JendEdu
 ```
 
-4. Cek isinya:
+5. Tambahkan repo tim sebagai `upstream`:
+
+```
+git remote add upstream https://github.com/Borayaa/JendEdu.git
+```
+
+6. Cek daftar remote:
+
+```
+git remote -v
+```
+
+Hasil yang diharapkan (contoh untuk `username-1`):
+
+```
+origin    https://github.com/username-1/JendEdu.git (fetch)
+origin    https://github.com/username-1/JendEdu.git (push)
+upstream  https://github.com/Borayaa/JendEdu.git (fetch)
+upstream  https://github.com/Borayaa/JendEdu.git (push)
+```
+
+`origin` harus mengarah ke **fork-mu**, `upstream` ke **Borayaa/JendEdu**. (Pemilik repo: lihat catatan di langkah 3.)
+
+7. Kembali ke `C:\Proyek` dan cek isinya:
+
+```
+cd ..
+```
 
 ```
 ls
@@ -217,12 +268,14 @@ Sekarang struktur di komputermu:
 ```
 C:\Proyek\
     JendEdu-template\     (sumber file, jangan diubah)
-    JendEdu\              (tempat kamu bekerja)
+    JendEdu\              (clone dari fork-mu, tempat kamu bekerja)
 ```
 
 Kedua folder harus **bersebelahan** seperti ini, karena perintah `copy` di panduan memakai `..\JendEdu-template`.
 
 PENTING: Jangan pernah mengedit atau `push` dari folder `JendEdu-template`.
+
+Fork-mu di GitHub boleh tertinggal (`X commits behind`). Itu tidak masalah, karena branch baru selalu dibuat dari `main` lokal yang sudah di-pull dari upstream. Jangan klik atau jalankan apa pun yang push ke `main`.
 
 ## 9. (Opsional) Install Visual Studio Code
 
@@ -276,7 +329,20 @@ Tip menempel (paste): di Git Bash gunakan **Shift + Insert** atau klik kanan lal
 - Folder sudah pernah di-clone. Tidak perlu clone lagi. Cek dengan `ls`.
 
 **`remote: Permission to Borayaa/JendEdu.git denied` / `403` saat push**
-- Kamu belum menerima undangan kolaborator (langkah 3), atau belum ditambahkan oleh Borayaa. Cek https://github.com/Borayaa/JendEdu/invitations.
+- Kamu tidak sengaja push ke `upstream` (repo tim). Push selalu ke `origin` (fork-mu), contoh `git push -u origin feature/<nama-fitur>`. Cek dengan `git remote -v`.
+
+**`fatal: 'upstream' does not appear to be a git repository`**
+- Remote `upstream` belum ditambahkan. Di Git Bash, di folder `/c/Proyek/JendEdu`, jalankan:
+
+```
+git remote add upstream https://github.com/Borayaa/JendEdu.git
+```
+
+**Di GitHub muncul "There isn't anything to compare"**
+- Dropdown base/head di halaman Pull Request salah. Pastikan: `base repository: Borayaa/JendEdu`, `base: main`, `head repository: <username-kamu>/JendEdu`, `compare: feature/<nama-fitur>`.
+
+**Fork-mu tertulis "X commits behind"**
+- Tidak masalah dan tidak perlu disamakan. Cukup jalankan `git switch main` lalu `git pull upstream main` sebelum membuat branch baru. Jangan push ke `main`.
 
 **Jendela login GitHub muncul saat push pertama**
 - Itu normal (Git Credential Manager). Klik **Sign in with your browser**, login ke GitHub, lalu klik **Authorize**. Selanjutnya tidak ditanya lagi.

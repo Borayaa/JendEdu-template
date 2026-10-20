@@ -4,7 +4,9 @@
 > - Membuat PR `docs/readme`: menyalin `README.md` dan folder `presentasi\` ke repo JendEdu, mengganti semua placeholder nama dan username dengan data asli, dan melengkapi screenshot di presentasi.
 > - Menjadi **pe-review dan approver** untuk PR `docs/review-log` milik Reviewer (tidak ada yang meng-approve PR-nya sendiri).
 >
-> **Sebelum mulai:** selesaikan [01-persiapan-semua-anggota.md](01-persiapan-semua-anggota.md) (Git terpasang, nama/email diatur, undangan kolaborator diterima, kedua repo sudah di-clone ke `C:\Proyek`).
+> **Sebelum mulai:** selesaikan [01-persiapan-semua-anggota.md](01-persiapan-semua-anggota.md) (Git terpasang, nama/email diatur, fork dibuat, template dan fork sudah di-clone ke `C:\Proyek`, remote `upstream` sudah ditambahkan).
+
+> **⚠️ Jangan pernah `git push` ke `main`.** Hanya branch `docs/readme` yang di-push, ke fork-mu (`origin`). `main` hanya berubah lewat Pull Request yang di-merge.
 
 Kembali ke: [00-mulai-di-sini.md](00-mulai-di-sini.md)
 
@@ -32,11 +34,13 @@ cd /c/Proyek/JendEdu
 git switch main
 ```
 
-3. Ambil update terbaru:
+3. Ambil update terbaru dari repo tim (upstream):
 
 ```
-git pull origin main
+git pull upstream main
 ```
+
+Fork-mu di GitHub boleh tertinggal (`X commits behind`). Itu tidak masalah, karena branch baru selalu dibuat dari `main` lokal yang sudah di-pull dari upstream. Jangan menjalankan apa pun yang push ke `main`.
 
 4. Buat branch baru:
 
@@ -126,7 +130,7 @@ git switch main
 ```
 
 ```
-git pull origin main
+git pull upstream main
 ```
 
 ```
@@ -178,7 +182,7 @@ git add README.md presentasi
 git commit -m "Tambah README dan presentasi proyek"
 ```
 
-4. Push:
+4. Push (terkirim ke **fork-mu**, bukan ke repo tim):
 
 ```
 git push -u origin docs/readme
@@ -186,11 +190,17 @@ git push -u origin docs/readme
 
 Saat push pertama, jendela login GitHub bisa muncul (Git Credential Manager). Login dan klik **Authorize**.
 
-### Langkah 7. Buka Pull Request (Browser)
+### Langkah 7. Buka Pull Request lintas fork (Browser)
 
-1. Buka https://github.com/Borayaa/JendEdu.
-2. Klik tombol kuning **Compare & pull request** (muncul setelah push).
-3. Pastikan **base: `main`** dan **compare: `docs/readme`**.
+1. Buka fork-mu: `https://github.com/<username-kamu>/JendEdu` (ganti dengan username-mu).
+2. Klik tombol kuning **Compare & pull request** pada bar "docs/readme had recent pushes". Kalau bar tidak muncul: tab **Pull requests**, **New pull request**, lalu **compare across forks**.
+3. **Cek empat dropdown** di bagian atas:
+   - base repository: `Borayaa/JendEdu`
+   - base: `main`
+   - head repository: `<username-kamu>/JendEdu`
+   - compare: `docs/readme`
+
+   Kalau tertulis "There isn't anything to compare", berarti ada dropdown yang salah.
 4. Judul, contoh: `Tambah README dan presentasi proyek`.
 5. Deskripsi, contoh:
 
@@ -200,8 +210,9 @@ Placeholder nama dan username sudah diganti dengan data asli.
 Screenshot di presentasi sudah diisi.
 ```
 
-6. Di panel kanan, klik **Reviewers** dan pilih Reviewer (**@username-3**).
-7. Klik **Create pull request**.
+6. Centang **Allow edits by maintainers**.
+7. Klik **Create pull request**. Kamu diarahkan ke halaman PR di `Borayaa/JendEdu`.
+8. Di panel kanan halaman PR itu, klik **Reviewers** dan pilih Reviewer (**@username-3**). Kalau tidak bisa memilih (non-kolaborator kadang tidak bisa meminta reviewer), tulis komentar `@username-3 mohon di-review ya` di PR.
 
 ### Langkah 8. Setelah itu
 
@@ -213,15 +224,15 @@ Kalau Reviewer memberi komentar, lihat bagian **Menanggapi komentar review** di 
 
 Di akhir proyek, Reviewer membuat PR `docs/review-log` (folder `review\`). Karena tidak ada yang boleh meng-approve PR sendiri, **kamu yang me-review dan meng-approve** PR itu.
 
-1. Buka https://github.com/Borayaa/JendEdu/pulls dan klik PR `docs/review-log`.
+1. Buka https://github.com/Borayaa/JendEdu/pulls dan klik PR `docs/review-log` (tertulis "<username> wants to merge 1 commit into Borayaa:main from <username>:docs/review-log").
 2. Klik tab **Files changed**.
 3. Periksa bahwa:
    - Ada `review/review.md` dan folder `review/codes/`.
    - Isinya rapi, memakai Bahasa Indonesia, dan tidak ada tulisan placeholder yang aneh.
    - Tidak ada file yang bukan milik folder `review` (misalnya folder `panduan`).
 4. Kalau ada yang perlu diperbaiki: arahkan kursor ke baris, klik tanda **+** biru, tulis komentar, klik **Start a review**. Setelah selesai klik **Review changes** (kanan atas), pilih **Request changes**, tulis ringkasan, lalu **Submit review**.
-5. Kalau sudah baik: klik **Review changes**, pilih **Approve**, lalu **Submit review**.
-6. Setelah approve, Reviewer (pembuat PR) atau pemilik repo yang menekan **Merge pull request**. Kalau kamu diberi tugas merge: klik **Merge pull request**, lalu **Confirm merge**, lalu **Delete branch**.
+5. Kalau sudah baik: klik **Review changes**, pilih **Approve**, lalu **Submit review**. Siapa pun yang punya akun GitHub boleh memberi Approve, jadi kamu tidak perlu jadi kolaborator.
+6. Setelah kamu approve, PR di-merge oleh pemilik repo (Borayaa) atau Reviewer (pembuat PR, yang punya akses Write): **Merge pull request**, lalu **Confirm merge**. Kamu sendiri tidak perlu merge. Branch di fork Reviewer dihapus oleh Reviewer sendiri.
 
 ---
 
@@ -250,13 +261,14 @@ git commit -m "Perbaiki sesuai review"
 git push
 ```
 
-(Tidak perlu `-u` karena branch sudah pernah di-push.) PR akan **otomatis terupdate**.
+(Tidak perlu `-u` karena branch sudah pernah di-push. Push ini masuk ke fork-mu, dan PR di `Borayaa/JendEdu` akan **otomatis terupdate**.)
 
 4. Kembali ke GitHub, balas setiap komentar dengan `Sudah diperbaiki`.
 5. Tunggu Reviewer menekan **Approve** dan melakukan merge.
 
 Kalau error:
 - `git push` ditolak ("rejected"): jalankan `git pull origin docs/readme`, lalu `git push` lagi.
+- `403` ke Borayaa/JendEdu: kamu push ke `upstream` secara tidak sengaja. Pakai `origin` (fork-mu).
 - Lupa mengganti satu placeholder: perbaiki, commit lagi, push lagi.
 
 ---
@@ -270,10 +282,22 @@ git switch main
 ```
 
 ```
-git pull origin main
+git pull upstream main
 ```
 
-Selesai! Branch `docs/readme` boleh dibiarkan (GitHub biasanya menawarkan **Delete branch** setelah merge).
+Hapus branch lokal yang sudah selesai:
+
+```
+git branch -d docs/readme
+```
+
+(Opsional) hapus juga branch di fork-mu:
+
+```
+git push origin --delete docs/readme
+```
+
+Selesai! Ingat, tidak ada `git push` ke `main`. Kalau fork-mu di GitHub tertulis "X commits behind", biarkan saja.
 
 ## Bonus: cek tampilan README di GitHub
 
@@ -281,17 +305,17 @@ Setelah merge, buka https://github.com/Borayaa/JendEdu. README tampil otomatis d
 
 ## Checklist akhir Dokumentator
 
-- [ ] Sudah menyelesaikan [01-persiapan-semua-anggota.md](01-persiapan-semua-anggota.md).
-- [ ] Branch `docs/readme` dibuat dari `main` yang terbaru.
+- [ ] Sudah menyelesaikan [01-persiapan-semua-anggota.md](01-persiapan-semua-anggota.md) (fork, clone, `git remote -v` menunjukkan `origin` dan `upstream`).
+- [ ] Branch `docs/readme` dibuat dari `main` yang terbaru (`git pull upstream main`).
 - [ ] `README.md` dan folder `presentasi\` tersalin (`panduan\` TIDAK ikut tersalin).
 - [ ] Semua `[Nama Anggota 1..4]` dan `@username-1..4` di README.md sudah diganti.
 - [ ] URL clone di README sudah memakai `https://github.com/Borayaa/JendEdu.git`.
 - [ ] Placeholder nama/username di kedua PPTX juga sudah diganti.
 - [ ] Screenshot di PPTX sudah diisi dengan tampilan situs asli.
 - [ ] `git add`, `git commit`, `git push -u origin docs/readme` sudah dijalankan.
-- [ ] PR dibuat (base `main`, compare `docs/readme`) dan Reviewer @username-3 dipilih.
+- [ ] PR dibuat lintas fork (base `Borayaa/JendEdu` `main` dari head `<username-kamu>/JendEdu` `docs/readme`), **Allow edits by maintainers** dicentang, dan Reviewer @username-3 dipilih.
 - [ ] Semua komentar review sudah dibalas "Sudah diperbaiki" dan PR di-approve lalu di-merge.
 - [ ] PR `docs/review-log` milik Reviewer sudah kamu review dan approve.
-- [ ] Sudah `git switch main` dan `git pull origin main`.
+- [ ] Sudah `git switch main` dan `git pull upstream main` (tanpa push ke `main`).
 
 Kembali ke: [00-mulai-di-sini.md](00-mulai-di-sini.md)

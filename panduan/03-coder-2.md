@@ -6,7 +6,9 @@
 > - Kamu adalah **pemilik** blok navbar dan footer beserta CSS-nya. Kalau Reviewer minta perbaikan navbar/footer di halaman mana pun, **kamu** yang memperbaikinya.
 > - Setiap branch = satu Pull Request (PR) yang di-review oleh Reviewer (@username-3).
 
-**Sebelum mulai: selesaikan [01-persiapan-semua-anggota.md](01-persiapan-semua-anggota.md).** Pastikan Git terpasang, `user.name`/`user.email` terisi, undangan collaborator sudah diterima, dan `C:\Proyek\JendEdu-template` serta `C:\Proyek\JendEdu` sudah di-clone.
+**Sebelum mulai: selesaikan [01-persiapan-semua-anggota.md](01-persiapan-semua-anggota.md).** Pastikan Git terpasang, `user.name`/`user.email` terisi, kamu sudah mem-fork Borayaa/JendEdu menjadi https://github.com/username-2/JendEdu (`origin`), remote `upstream` (https://github.com/Borayaa/JendEdu.git) sudah ditambahkan (cek `git remote -v`), dan `C:\Proyek\JendEdu-template` serta `C:\Proyek\JendEdu` (clone dari fork kamu) sudah ada. Kamu **tidak** push langsung ke Borayaa/JendEdu.
+
+> **⚠️ Jangan pernah `git push` ke `main`.** Hanya branch kerja (`feature/...`, `chore/...`) yang di-push, dan hanya ke `origin` (fork kamu). `main` hanya berubah lewat PR yang di-merge. Fork kamu di GitHub boleh tertinggal (`X commits behind`); itu tidak masalah, karena branch baru selalu dibuat dari `main` lokal yang sudah di-pull dari upstream. Jangan klik/jalankan apa pun yang mem-push ke main.
 
 ---
 
@@ -25,7 +27,7 @@ Branch 2-4 sebaiknya dikerjakan satu per satu.
 
 - **Git Bash** = semua perintah `git ...`.
 - **Command Prompt (cmd)** = pindah folder, menyalin file, membuka website.
-- **Browser (github.com)** = membuat PR.
+- **Browser (github.com)** = membuat PR dari fork kamu ke Borayaa/JendEdu.
 
 Cara membuka:
 - cmd: `Win + R`, ketik `cmd`, Enter.
@@ -52,7 +54,7 @@ git switch main
 ```
 
 ```bash
-git pull origin main
+git pull upstream main
 ```
 
 ```bash
@@ -73,7 +75,7 @@ xcopy ..\JendEdu-template\css css\ /E /I /Y
 copy ..\JendEdu-template\img\logo.png img\
 ```
 
-Kalau `img\` belum ada (PR Coder 1 belum ter-pull), jalankan `git pull origin main` di Git Bash dulu. Cek:
+Kalau `img\` belum ada (PR Coder 1 belum ter-pull), jalankan `git pull upstream main` di Git Bash dulu. Cek:
 
 ```cmd
 dir css
@@ -101,11 +103,22 @@ git commit -m "Tambah CSS navbar-footer dan logo"
 git push -u origin feature/navbar-footer
 ```
 
+Branch terkirim ke **fork kamu**.
+
 Pertama kali push akan muncul jendela login GitHub (Git Credential Manager); login lalu **Authorize**.
 
 ### Langkah 1.4 - Buat PR (Browser)
 
-Buka https://github.com/Borayaa/JendEdu, klik **Compare & pull request**, base `main` <- compare `feature/navbar-footer`.
+Buka fork kamu di browser: https://github.com/username-2/JendEdu. Klik tombol kuning **Compare & pull request** (muncul di bar "feature/navbar-footer had recent pushes"). Kalau tombol tidak muncul: tab **Pull requests** -> **New pull request** -> **compare across forks**.
+
+Cek **empat dropdown** (ini penting):
+
+- base repository: `Borayaa/JendEdu`
+- base: `main`
+- head repository: `username-2/JendEdu`
+- compare: `feature/navbar-footer`
+
+Isi judul dan deskripsi (di bawah), centang **Allow edits by maintainers**, lalu klik **Create pull request**. Setelah PR terbuat (halamannya di Borayaa/JendEdu), di panel kanan klik **Reviewers** dan pilih **@username-3**. Kalau tidak bisa memilih, tulis komentar `@username-3 mohon di-review` di PR.
 
 Judul:
 
@@ -131,17 +144,29 @@ Menambahkan styling bersama (navbar, footer, dan gaya umum) beserta logo JendEdu
 Belum ada halaman di PR ini. Cukup cek folder `css` dan `img/logo.png` ada. Tampilan lengkap terlihat setelah halaman pertama di-merge.
 ```
 
-Reviewers: **@username-3** -> **Create pull request**. Kabari tim bahwa PR ini siap, karena PR halaman Coder 1 menunggu ini.
+Setelah deskripsi terisi: centang **Allow edits by maintainers** -> **Create pull request** -> minta review **@username-3** (panel kanan **Reviewers**, atau mention `@username-3` di komentar). Kabari tim bahwa PR ini siap, karena PR halaman Coder 1 menunggu ini.
 
 ### Langkah 1.5 - Setelah di-merge (Git Bash)
+
+Setelah Reviewer me-merge PR, perbarui `main` lokal dari upstream (tanpa push ke main):
 
 ```bash
 git switch main
 ```
 
 ```bash
-git pull origin main
+git pull upstream main
 ```
+
+```bash
+git branch -d feature/navbar-footer
+```
+
+```bash
+git push origin --delete feature/navbar-footer
+```
+
+Baris terakhir menghapus branch di fork kamu (opsional, tapi rapi). Hanya branch kerja yang pernah di-push; `main` tidak.
 
 ---
 
@@ -158,7 +183,7 @@ git switch main
 ```
 
 ```bash
-git pull origin main
+git pull upstream main
 ```
 
 ```bash
@@ -199,6 +224,8 @@ git commit -m "Tambah halaman Kontak (contact.html)"
 git push -u origin feature/contact
 ```
 
+Branch terkirim ke **fork kamu**.
+
 ### Langkah 2.4 - Buat PR (Browser)
 
 Judul:
@@ -228,7 +255,29 @@ Menambahkan halaman kontak JendEdu dengan peta lokasi dan formulir.
 Bergantung pada PR setup-template dan navbar-footer yang sudah di-merge.
 ```
 
-Reviewers: **@username-3** -> **Create pull request**.
+Setelah deskripsi terisi: centang **Allow edits by maintainers** -> **Create pull request** -> minta review **@username-3** (panel kanan **Reviewers**, atau mention `@username-3` di komentar).
+
+### Langkah 2.5 - Setelah di-merge (Git Bash)
+
+Setelah Reviewer me-merge PR, perbarui `main` lokal dari upstream (tanpa push ke main):
+
+```bash
+git switch main
+```
+
+```bash
+git pull upstream main
+```
+
+```bash
+git branch -d feature/contact
+```
+
+```bash
+git push origin --delete feature/contact
+```
+
+Baris terakhir menghapus branch di fork kamu (opsional, tapi rapi). Hanya branch kerja yang pernah di-push; `main` tidak.
 
 ---
 
@@ -247,7 +296,7 @@ git switch main
 ```
 
 ```bash
-git pull origin main
+git pull upstream main
 ```
 
 ```bash
@@ -310,6 +359,8 @@ git commit -m "Tambah 3 halaman artikel edukatif"
 git push -u origin feature/posts
 ```
 
+Branch terkirim ke **fork kamu**.
+
 ### Langkah 3.4 - Buat PR (Browser)
 
 Judul:
@@ -339,7 +390,29 @@ Menambahkan tiga artikel edukatif untuk blog JendEdu.
 Bergantung pada PR setup-template dan navbar-footer yang sudah di-merge. Gambar berita dikerjakan di PR `feature/news`.
 ```
 
-Reviewers: **@username-3** -> **Create pull request**.
+Setelah deskripsi terisi: centang **Allow edits by maintainers** -> **Create pull request** -> minta review **@username-3** (panel kanan **Reviewers**, atau mention `@username-3` di komentar).
+
+### Langkah 3.5 - Setelah di-merge (Git Bash)
+
+Setelah Reviewer me-merge PR, perbarui `main` lokal dari upstream (tanpa push ke main):
+
+```bash
+git switch main
+```
+
+```bash
+git pull upstream main
+```
+
+```bash
+git branch -d feature/posts
+```
+
+```bash
+git push origin --delete feature/posts
+```
+
+Baris terakhir menghapus branch di fork kamu (opsional, tapi rapi). Hanya branch kerja yang pernah di-push; `main` tidak.
 
 ---
 
@@ -358,7 +431,7 @@ git switch main
 ```
 
 ```bash
-git pull origin main
+git pull upstream main
 ```
 
 ```bash
@@ -417,6 +490,8 @@ git commit -m "Tambah 3 halaman berita"
 git push -u origin feature/news
 ```
 
+Branch terkirim ke **fork kamu**.
+
 ### Langkah 4.4 - Buat PR (Browser)
 
 Judul:
@@ -446,7 +521,29 @@ Menambahkan tiga halaman berita terkini tentang JendEdu.
 Bergantung pada PR setup-template dan navbar-footer yang sudah di-merge.
 ```
 
-Reviewers: **@username-3** -> **Create pull request**.
+Setelah deskripsi terisi: centang **Allow edits by maintainers** -> **Create pull request** -> minta review **@username-3** (panel kanan **Reviewers**, atau mention `@username-3` di komentar).
+
+### Langkah 4.5 - Setelah di-merge (Git Bash)
+
+Setelah Reviewer me-merge PR, perbarui `main` lokal dari upstream (tanpa push ke main):
+
+```bash
+git switch main
+```
+
+```bash
+git pull upstream main
+```
+
+```bash
+git branch -d feature/news
+```
+
+```bash
+git push origin --delete feature/news
+```
+
+Baris terakhir menghapus branch di fork kamu (opsional, tapi rapi). Hanya branch kerja yang pernah di-push; `main` tidak.
 
 ---
 
@@ -513,7 +610,7 @@ git commit -m "Perbaiki sesuai review: tautan footer di artikel"
 git push
 ```
 
-Tanpa `-u` dan tanpa PR baru; PR yang sama ter-update otomatis. (Kalau kamu juga mengubah file artikel lain, tambahkan namanya di `git add`.)
+Perintah ini mengirim ke branch yang sama di **fork kamu** (`origin`). Tanpa `-u` dan tanpa PR baru; PR di Borayaa/JendEdu ter-update otomatis. (Kalau kamu juga mengubah file artikel lain, tambahkan namanya di `git add`.)
 
 5. Balas komentar di GitHub: "Sudah diperbaiki, tautan footer sekarang ke `berita-beasiswa-jendedu-2027.html`."
 6. Tunggu Reviewer meng-**Approve** dan me-merge.
@@ -528,6 +625,7 @@ Kamu pemilik blok ini. Misalnya Reviewer bilang menu "Harga" tidak ada di navbar
 ### Kalau push ditolak atau konflik
 
 - `! [rejected] ... (fetch first)`: `git pull origin <nama-branch>` lalu `git push`.
+- `fatal: 'upstream' does not appear to be a git repository`: jalankan `git remote add upstream https://github.com/Borayaa/JendEdu.git`, lalu ulangi perintah sebelumnya.
 - `CONFLICT (content)`: buka file yang disebut, cari tanda `<<<<<<<`, `=======`, `>>>>>>>`, pilih isi yang benar, hapus tandanya, `git add <file>`, lalu `git commit`. Bingung? Tanya tim.
 
 ---
@@ -541,9 +639,12 @@ Kamu pemilik blok ini. Misalnya Reviewer bilang menu "Harga" tidak ada di navbar
 | `The system cannot find the path specified` | Belum `cd C:\Proyek\JendEdu`, atau folder template belum di-clone. |
 | `The system cannot find the file specified` pada `copy ... artikel-*.html` | Kamu tidak berada di `C:\Proyek\JendEdu`, atau template belum ter-clone. Cek dengan `dir ..\JendEdu-template`. |
 | `A subdirectory or file img\blog already exists` | Aman, abaikan. |
-| `Permission denied` / `403` saat push | Undangan collaborator belum diterima atau salah akun GitHub. |
+| `Permission denied` / `403` saat push | Kamu mem-push ke `upstream` (Borayaa/JendEdu) secara tidak sengaja. Selalu pakai `origin` (fork kamu): `git push -u origin <nama-branch>`. Cek juga login GitHub benar. |
+| `fatal: 'upstream' does not appear to be a git repository` | Jalankan `git remote add upstream https://github.com/Borayaa/JendEdu.git`, lalu `git remote -v` untuk cek. |
+| PR menampilkan "There isn't anything to compare" | Dropdown base/head salah. Pastikan base repository `Borayaa/JendEdu` base `main`, head repository fork kamu, compare nama branch kamu. |
+| Fork tertulis "X commits behind" | Aman, abaikan. Fork boleh tertinggal; branch baru dibuat dari `main` lokal setelah `git pull upstream main`. Jangan push ke main. |
 | `fatal: A branch named ... already exists` | Pakai `git switch <nama-branch>` tanpa `-c`. |
-| Halaman tanpa gaya (polos) | `css` belum ada di `main`. Pastikan PR navbar-footer sudah di-merge lalu `git pull origin main`. |
+| Halaman tanpa gaya (polos) | `css` belum ada di `main`. Pastikan PR navbar-footer sudah di-merge lalu `git pull upstream main`. |
 | Gambar artikel/berita tidak muncul | Cek `dir img\blog` dan nama file; pastikan sudah di-`git add`. |
 
 ---
@@ -556,7 +657,7 @@ Kamu pemilik blok ini. Misalnya Reviewer bilang menu "Harga" tidak ada di navbar
 - [ ] `feature/news` di-merge (3 berita + gambar)
 - [ ] Navbar dan footer identik di semua halaman
 - [ ] Semua komentar Reviewer sudah dibalas "Sudah diperbaiki"
-- [ ] `git switch main` dan `git pull origin main` dijalankan; semua halaman terbuka normal
+- [ ] `git switch main` dan `git pull upstream main` dijalankan; semua halaman terbuka normal
 - [ ] Folder `panduan\` **tidak** ikut disalin ke JendEdu
 
 ---

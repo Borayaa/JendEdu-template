@@ -3,10 +3,17 @@
 > **Tugas kamu**
 > - Memeriksa (review) semua Pull Request (PR) dari Coder 1, Coder 2, dan Dokumentator sebelum masuk ke `main`.
 > - Menguji kode di komputermu sendiri, menulis komentar per baris dengan label, lalu memilih **Request changes**, **Comment**, atau **Approve**.
-> - Meng-**merge** PR yang sudah beres, menghapus branch-nya, dan memperbarui `main` lokal.
-> - Di akhir proyek, membuat PR `docs/review-log` berisi folder `review\` (PR ini di-approve oleh Dokumentator).
+> - Meng-**merge** PR yang sudah beres di repo tim (`Borayaa/JendEdu`) dan memperbarui `main` lokal. Branch di fork dihapus oleh author-nya sendiri.
+> - Di akhir proyek, membuat PR `docs/review-log` berisi folder `review\` dari **fork**-mu (PR ini di-approve oleh Dokumentator).
 
-**Sebelum mulai:** selesaikan [01-persiapan-semua-anggota.md](01-persiapan-semua-anggota.md) (Git terpasang, sudah clone `JendEdu-template` dan `JendEdu` ke `C:\Proyek`, sudah menerima undangan collaborator).
+> ⚠️ **Jangan pernah `git push` ke `main`.** Hanya branch `feature/...`, `chore/...`, atau `docs/...` yang di-push (ke fork-mu, `origin`). `main` hanya berubah lewat PR yang di-merge.
+
+**Sebelum mulai:** selesaikan [01-persiapan-semua-anggota.md](01-persiapan-semua-anggota.md) (Git terpasang, sudah **fork** `Borayaa/JendEdu`, sudah clone `JendEdu-template` dan fork-mu ke `C:\Proyek`, dan sudah menjalankan `git remote add upstream`).
+
+Kamu punya **dua peran sekaligus**:
+
+1. Seperti semua anggota, kamu punya **fork** sendiri (`origin`) dan remote **upstream** (repo tim `Borayaa/JendEdu`). Dipakai untuk PR `docs/review-log` milikmu dan untuk mengambil PR orang lain ke komputermu.
+2. Kamu adalah **collaborator** di `Borayaa/JendEdu` (hak akses Write), supaya bisa **Approve dan Merge** PR. Owner (Borayaa) mengirim undangan; **terima undangannya**: buka email dari GitHub atau https://github.com/Borayaa/JendEdu/invitations lalu klik **Accept invitation**.
 
 Aplikasi yang dipakai:
 
@@ -27,7 +34,7 @@ Aplikasi yang dipakai:
 5. [Menulis komentar per baris](#5-menulis-komentar-per-baris)
 6. [Request changes, Comment, atau Approve?](#6-request-changes-comment-atau-approve)
 7. [Memeriksa ulang setelah author memperbaiki](#7-memeriksa-ulang-setelah-author-memperbaiki)
-8. [Resolve, Approve, Merge, hapus branch](#8-resolve-approve-merge-hapus-branch)
+8. [Resolve, Approve, Merge](#8-resolve-approve-merge)
 9. [Update `main` lokal](#9-update-main-lokal)
 10. [Rekomendasi branch protection (untuk owner)](#10-rekomendasi-branch-protection-untuk-owner)
 11. [PR `docs/review-log` milikmu sendiri](#11-pr-docsreview-log-milikmu-sendiri)
@@ -38,6 +45,14 @@ Aplikasi yang dipakai:
 ---
 
 ## 1. Mencari PR yang harus kamu review
+
+Semua PR ditujukan ke repo tim (**upstream**), tetapi berasal dari **fork** masing-masing anggota. Di halaman PR akan tertulis, misalnya:
+
+```
+username-1 wants to merge 1 commit into Borayaa:main from username-1:feature/homepage
+```
+
+Artinya: PR masuk ke `main` milik `Borayaa/JendEdu`, kodenya ada di branch `feature/homepage` di fork `username-1/JendEdu`.
 
 Author akan memilih kamu di kolom **Reviewers** saat membuat PR. Cara menemukannya:
 
@@ -117,7 +132,9 @@ Perhatikan juga di tab **Conversation** apakah ada tulisan hijau "This branch ha
 
 Membaca kode saja tidak cukup. Jalankan situsnya.
 
-### Langkah 1: ambil branch dari GitHub (Git Bash)
+### Langkah 1: ambil PR dari GitHub (Git Bash)
+
+Karena kodenya ada di fork orang lain, kamu mengambilnya lewat nomor PR (bukan nama branch). Nomor PR tertulis di judul halaman PR, misalnya `#3`.
 
 1. Buka **Git Bash** (klik kanan folder `C:\Proyek\JendEdu` > **Open Git Bash here**, atau lewat menu Start).
 2. Kalau belum di folder yang benar:
@@ -126,32 +143,54 @@ Membaca kode saja tidak cukup. Jalankan situsnya.
 cd /c/Proyek/JendEdu
 ```
 
-3. Ambil info branch terbaru dari GitHub:
+3. Ambil PR ke komputermu sebagai branch lokal bernama `pr-<nomor-PR>`. Contoh untuk PR nomor 3:
 
 ```
-git fetch origin
+git fetch upstream pull/3/head:pr-3
 ```
 
-4. Pindah ke branch yang sedang direview. Contoh untuk `feature/navbar-footer`:
+Hasil yang diharapkan (contoh):
 
 ```
-git switch feature/navbar-footer
+From https://github.com/Borayaa/JendEdu
+ * [new ref]         refs/pull/3/head -> pr-3
+```
+
+4. Pindah ke branch tersebut:
+
+```
+git switch pr-3
 ```
 
 Hasil yang diharapkan:
 
 ```
-branch 'feature/navbar-footer' set up to track 'origin/feature/navbar-footer'.
-Switched to a new branch 'feature/navbar-footer'
+Switched to branch 'pr-3'
 ```
 
-5. Pastikan isinya yang terbaru (penting kalau author baru push perbaikan):
+> Ganti `3` dengan nomor PR yang kamu review. Cara ini bekerja untuk PR dari fork mana pun, tanpa perlu menambah remote baru.
+
+### Kalau author sudah push perbaikan
+
+Branch `pr-3` di komputermu adalah salinan lama, tidak ikut ter-update. Untuk mengambil versi terbaru, hapus lalu ambil ulang:
 
 ```
-git pull origin feature/navbar-footer
+git switch main
 ```
 
-> Ganti `feature/navbar-footer` dengan nama branch PR yang kamu review. Nama branch tertulis di bagian atas halaman PR.
+```
+git branch -D pr-3
+```
+
+```
+git fetch upstream pull/3/head:pr-3
+```
+
+```
+git switch pr-3
+```
+
+(Pakai `-D` huruf besar karena branch ini tidak pernah di-merge dari komputermu.)
 
 ### Langkah 2: buka situs (Command Prompt)
 
@@ -210,6 +249,12 @@ start artikel-nama-berkas.html
 
 ```
 git switch main
+```
+
+Opsional: hapus branch tes yang sudah tidak dipakai (ganti `3` dengan nomor PR-nya):
+
+```
+git branch -D pr-3
 ```
 
 ### Pengecualian: PR #1 (`chore/setup-template`)
@@ -317,21 +362,29 @@ Aturan sederhana: **ada 🔴 = Request changes. Tidak ada 🔴 = Approve.** Paka
 
 ## 7. Memeriksa ulang setelah author memperbaiki
 
-1. Author memperbaiki, melakukan commit dan push ke branch yang sama, lalu membalas komentarmu dengan "Sudah diperbaiki". PR otomatis ter-update, tidak perlu PR baru.
+1. Author memperbaiki, melakukan commit dan push ke branch yang sama **di fork-nya**, lalu membalas komentarmu dengan "Sudah diperbaiki". PR otomatis ter-update, tidak perlu PR baru.
 2. Kamu akan dapat notifikasi. Buka PR-nya.
 3. Di tab **Files changed**, klik menu **Changes from** (dropdown dekat atas) lalu pilih **Changes since your last review** supaya hanya melihat yang baru.
-4. Tarik kode terbaru ke komputermu (Git Bash):
+4. Ambil ulang kode terbaru ke komputermu (Git Bash). Ganti `3` dengan nomor PR-nya:
 
 ```
 cd /c/Proyek/JendEdu
 ```
 
 ```
-git switch feature/navbar-footer
+git switch main
 ```
 
 ```
-git pull origin feature/navbar-footer
+git branch -D pr-3
+```
+
+```
+git fetch upstream pull/3/head:pr-3
+```
+
+```
+git switch pr-3
 ```
 
 5. Jalankan lagi di cmd (`start index.html` dll.) dan cek ulang semua poin 🔴 dari review sebelumnya.
@@ -342,7 +395,7 @@ git pull origin feature/navbar-footer
 
 ---
 
-## 8. Resolve, Approve, Merge, hapus branch
+## 8. Resolve, Approve, Merge
 
 ### Langkah 1: resolve conversation
 
@@ -361,6 +414,8 @@ Untuk setiap komentar yang sudah diperbaiki dengan benar:
 
 ### Langkah 3: merge
 
+Merge dilakukan di halaman PR pada repo **Borayaa/JendEdu** (kamu bisa karena sudah menjadi collaborator).
+
 1. Kembali ke tab **Conversation**, gulir ke bawah sampai kotak hijau "This branch has no conflicts".
 2. Klik tombol hijau **Merge pull request**.
 
@@ -369,14 +424,13 @@ Untuk setiap komentar yang sudah diperbaiki dengan benar:
 3. Klik **Confirm merge**.
 4. Muncul tulisan ungu "Pull request successfully merged and closed".
 
-### Langkah 4: hapus branch
+### Langkah 4: branch dihapus oleh author
 
-1. Setelah merge, klik tombol **Delete branch** yang muncul di kotak ungu tadi.
-2. Aman dilakukan: kodenya sudah ada di `main`, hanya "label" branch-nya yang dihapus.
+Branch PR ada di **fork milik author**, bukan di repo tim, jadi kamu tidak perlu (dan biasanya tidak bisa) menghapusnya. Author yang menghapus branch itu di fork-nya sendiri sesudah merge (ada di panduan mereka). Kalau tombol **Delete branch** tidak muncul, itu normal.
 
 Ulangi untuk PR berikutnya sesuai [urutan di bagian 2](#2-urutan-review-yang-disarankan).
 
-> Setelah PR #1 atau #2 ter-merge, kabari author PR lain lewat grup bahwa mereka bisa mulai mengerjakan atau membuat PR (dan jika perlu menjalankan `git switch main` + `git pull origin main`).
+> Setelah PR #1 atau #2 ter-merge, kabari author PR lain lewat grup bahwa mereka bisa mulai mengerjakan atau membuat PR (dan menjalankan `git switch main` lalu `git pull upstream main`).
 
 ---
 
@@ -393,10 +447,12 @@ git switch main
 ```
 
 ```
-git pull origin main
+git pull upstream main
 ```
 
-Hasil yang diharapkan (contoh):
+> Fork-mu di GitHub boleh tertinggal (`X commits behind`). Itu tidak masalah, karena branch baru selalu dibuat dari `main` lokal yang sudah di-pull dari upstream. Jangan klik atau jalankan apa pun yang melakukan push ke `main`.
+
+Hasil `git pull upstream main` yang diharapkan (contoh):
 
 ```
 Updating 3f2a1b0..9c8d7e6
@@ -405,17 +461,17 @@ Fast-forward
  1 file changed, 120 insertions(+)
 ```
 
-Opsional: hapus branch lokal yang sudah ter-merge supaya daftar tidak penuh:
+Opsional: hapus branch tes `pr-<nomor>` yang sudah ter-merge supaya daftar tidak penuh (ganti `3` dengan nomor PR-nya):
 
 ```
-git branch -d feature/navbar-footer
+git branch -D pr-3
 ```
 
 ---
 
 ## 10. Rekomendasi branch protection (untuk owner)
 
-Minta owner repo (**Borayaa**) mengaktifkan perlindungan `main` supaya tidak ada yang bisa push langsung atau merge tanpa review:
+Minta owner repo (**Borayaa**) mengaktifkan perlindungan `main` di repo tim supaya tidak ada yang bisa push langsung atau merge tanpa review:
 
 1. Buka https://github.com/Borayaa/JendEdu
 2. **Settings** > **Branches** (menu kiri).
@@ -433,7 +489,7 @@ Dengan ini, PR tidak bisa di-merge tanpa satu Approve, dan `main` tetap bersih.
 
 ## 11. PR `docs/review-log` milikmu sendiri
 
-Di akhir, kamu mengumpulkan catatan review (folder `review\`) ke repo. Karena tidak boleh meng-approve PR sendiri, PR ini di-review dan di-approve oleh **Dokumentator** (@username-4).
+Di akhir, kamu mengumpulkan catatan review (folder `review\`) ke repo. PR ini dibuat dari **fork-mu**, sama seperti anggota lain. Karena tidak boleh meng-approve PR sendiri, PR ini di-review dan di-approve oleh **Dokumentator** (@username-4).
 
 **Syarat:** semua PR lain sudah ter-merge (atau minimal sudah selesai direview), dan `main` lokal sudah terbaru (bagian 9).
 
@@ -448,7 +504,7 @@ git switch main
 ```
 
 ```
-git pull origin main
+git pull upstream main
 ```
 
 ```
@@ -475,7 +531,7 @@ Lalu edit `review\review.md` di VS Code atau Notepad:
 
 > Jangan menyalin folder `panduan\` ke JendEdu.
 
-### Langkah 3: commit dan push (Git Bash)
+### Langkah 3: commit dan push ke fork-mu (Git Bash)
 
 ```
 git status
@@ -493,20 +549,24 @@ git commit -m "Tambah log review pull request"
 git push -u origin docs/review-log
 ```
 
+Perintah ini mengirim branch ke **fork-mu** (`origin`), bukan ke repo tim.
+
 > Push pertama kali bisa membuka jendela login GitHub di browser (Git Credential Manager). Login dan klik authorize.
 
 ### Langkah 4: buka PR (Browser)
 
-1. Buka https://github.com/Borayaa/JendEdu
-2. Klik tombol kuning **Compare & pull request**.
-3. Pastikan **base: `main`** dan **compare: `docs/review-log`**.
+1. Buka fork-mu: `https://github.com/username-3/JendEdu` (ganti `username-3` dengan username aslimu).
+2. Klik tombol kuning **Compare & pull request** (atau tab **Pull requests** > **New pull request** > **compare across forks**).
+3. **Periksa empat dropdown**, harus persis seperti ini:
+   `base repository: Borayaa/JendEdu` · `base: main` ← `head repository: username-3/JendEdu` · `compare: docs/review-log`
 4. Isi judul: `Tambah log review pull request`. Isi deskripsi singkat tentang isi `review\`.
-5. Di kolom **Reviewers** pilih **Dokumentator (@username-4)**.
+5. Centang **Allow edits by maintainers**.
 6. Klik **Create pull request**.
+7. Di halaman PR (di `Borayaa/JendEdu`), kolom **Reviewers** di kanan, pilih **Dokumentator (@username-4)**.
 
 ### Langkah 5: tunggu review, lalu merge
 
-1. Dokumentator meninjau dan memberi komentar/Approve.
+1. Dokumentator meninjau dan memberi komentar/Approve (Files changed > Review changes > Approve).
 2. Kalau ada komentar, perbaiki berkasnya, lalu di Git Bash:
 
 ```
@@ -521,9 +581,31 @@ git commit -m "Perbaiki sesuai review"
 git push
 ```
 
+PR di `Borayaa/JendEdu` ter-update otomatis.
+
 3. Balas komentar dengan "Sudah diperbaiki", dan tunggu **Approve** dari Dokumentator.
-4. Setelah di-approve, klik **Merge pull request** > **Confirm merge** > **Delete branch**.
-5. Terakhir `git switch main` dan `git pull origin main` (bagian 9).
+4. **Setelah Approve dari Dokumentator**, PR ini di-merge oleh kamu (Reviewer) atau owner Borayaa: klik **Merge pull request** > **Confirm merge**.
+5. Sinkronkan lokal (Git Bash):
+
+```
+git switch main
+```
+
+```
+git pull upstream main
+```
+
+6. Hapus branch di fork-mu (karena ini PR milikmu, kamu sendiri yang menghapusnya):
+
+```
+git branch -d docs/review-log
+```
+
+```
+git push origin --delete docs/review-log
+```
+
+(Dua perintah terakhir opsional.)
 
 ---
 
@@ -559,6 +641,11 @@ Salin daftar ini ke kotak komentar review kalau perlu. Centang satu per satu unt
 - [ ] Tampilan **responsif**: cek ponsel, tablet, desktop (**Ctrl+Shift+M** di DevTools)
 - [ ] Tidak ada tampilan terpotong atau menumpuk
 
+### Tujuan PR
+
+- [ ] Tidak ada yang **push langsung ke `main`**: `main` hanya berubah lewat PR yang di-merge (cek riwayat commit `main`; kalau ada commit tanpa PR, beri tahu owner)
+- [ ] PR menuju **base `Borayaa/JendEdu` : `main`** (lihat tulisan "wants to merge ... into `Borayaa:main`"), **bukan** ke fork seseorang atau branch lain
+
 ### Hal khusus per PR
 
 - [ ] PR #1: folder `js`, `fonts`, `img` ada; `logo.png` dan `img\blog` **tidak** ikut
@@ -573,25 +660,37 @@ Salin daftar ini ke kotak komentar review kalau perlu. Centang satu per satu unt
 Ini **opsional**. Kalau kamu sudah memasang GitHub CLI (`gh`), beberapa langkah bisa lebih singkat. Jalankan di Git Bash, di folder `/c/Proyek/JendEdu`:
 
 ```
-gh pr list
+gh pr list -R Borayaa/JendEdu
 ```
 
 ```
-gh pr checkout 3
+gh pr checkout 3 -R Borayaa/JendEdu
 ```
 
 ```
-gh pr review 3 --approve
+gh pr review 3 --approve -R Borayaa/JendEdu
 ```
 
-Angka `3` adalah nomor PR. Untuk pemula, cara lewat browser di atas sudah cukup.
+Angka `3` adalah nomor PR. Perintah `gh pr checkout` mengambil PR dari fork author sekaligus berpindah ke branch-nya (pengganti `git fetch upstream pull/3/head:pr-3` dan `git switch pr-3`). Untuk pemula, cara lewat browser di atas sudah cukup.
 
 ---
 
 ## 14. Kalau error
 
-**Kalau `git switch <branch>` bilang "invalid reference"...**
-Kamu belum `git fetch origin`. Jalankan dulu, lalu coba lagi. Periksa juga ejaan nama branch (huruf besar/kecil, `feature/` vs `feat/`).
+**Kalau `git fetch upstream pull/3/head:pr-3` bilang "fatal: 'upstream' does not appear to be a git repository"...**
+Remote `upstream` belum ditambahkan. Jalankan:
+
+```
+git remote add upstream https://github.com/Borayaa/JendEdu.git
+```
+
+Lalu cek dengan `git remote -v` (harus ada `origin` dan `upstream`), dan ulangi perintah fetch.
+
+**Kalau `git fetch` bilang "fatal: a branch named 'pr-3' already exists" atau "refusing to fetch into current branch"...**
+Branch `pr-3` sudah ada dari tes sebelumnya. Jalankan `git switch main`, lalu `git branch -D pr-3`, lalu fetch lagi.
+
+**Kalau `git switch pr-3` bilang "invalid reference"...**
+Kamu belum menjalankan `git fetch upstream pull/3/head:pr-3`, atau nomor PR-nya salah. Periksa nomor di judul PR.
 
 **Kalau `git switch` bilang "Your local changes would be overwritten"...**
 Ada berkas yang kamu ubah di branch sebelumnya. Reviewer sebaiknya tidak mengedit berkas. Buang perubahan yang tidak perlu dengan `git restore .` (hati-hati: perubahan hilang), lalu coba lagi.
@@ -603,7 +702,19 @@ Kamu belum ada di folder yang benar, atau branch ini memang belum berisi `index.
 Itu hampir pasti temuan 🔴: path CSS/gambar salah, atau PR #2 (CSS) belum ter-merge. Pastikan `main` lokal terbaru dan branch yang dites sudah berisi folder `css\`.
 
 **Kalau tombol "Merge pull request" abu-abu...**
-Biasanya ada konflik, atau branch protection menunggu approval. Baca pesan di atas tombol. Untuk konflik, minta author menjalankan `git pull origin main` di branch-nya, menyelesaikan konflik, lalu push lagi.
+Biasanya ada konflik, atau branch protection menunggu approval. Baca pesan di atas tombol. Untuk konflik, minta author menjalankan `git switch main`, `git pull upstream main`, lalu `git switch` ke branch-nya dan `git merge main`, menyelesaikan konflik, lalu `git push` lagi ke fork-nya.
+
+**Kalau halaman PR menulis "There isn't anything to compare" (di PR milikmu) atau PR menuju tujuan yang salah...**
+Dropdown base/head salah. Periksa: `base repository: Borayaa/JendEdu` · `base: main` ← `head repository: username-3/JendEdu` · `compare: docs/review-log`. Kalau PR author lain salah tujuan, minta mereka membuat ulang PR dengan dropdown yang benar.
+
+**Kalau `git push` ditolak dengan "403" ke Borayaa/JendEdu...**
+Kamu mengirim ke upstream secara tidak sengaja. Selalu `git push` ke `origin` (fork-mu), contoh `git push -u origin docs/review-log`.
+
+**Kalau fork-mu tertulis "X commits behind Borayaa:main"...**
+Itu tidak masalah dan tidak perlu diperbaiki: branch baru selalu dibuat dari `main` lokal yang sudah di-pull (`git switch main` lalu `git pull upstream main`). Jangan push ke `main`.
+
+**Kalau tombol Merge atau Approve tidak muncul...**
+Undangan collaborator belum kamu terima. Buka https://github.com/Borayaa/JendEdu/invitations lalu klik **Accept invitation**.
 
 **Kalau tidak bisa meng-approve PR milikmu sendiri...**
 Memang begitu aturan GitHub. Minta anggota lain (Dokumentator untuk `docs/review-log`).

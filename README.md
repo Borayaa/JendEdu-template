@@ -108,15 +108,22 @@ Jika menggunakan VS Code, install ekstension "Live Server" dan klik "Go Live" pa
 
 ### Alur Kerja (Workflow)
 
-1. **Buat Branch**: Buat branch baru dari `main` dengan nama sesuai fitur (contoh: `feature/homepage`, `feature/contact`)
-2. **Kerjakan Fitur**: Lakukan coding dan testing di branch lokal
-3. **Commit**: Commit perubahan dengan pesan yang deskriptif
-4. **Push**: Push branch ke remote repository
-5. **Buka Pull Request**: Buka PR dengan deskripsi lengkap tentang perubahan yang dibuat
-6. **Review**: Reviewer (@username-3) memeriksa kode, memberikan feedback/komentar, dan meminta perbaikan jika diperlukan
-7. **Perbaikan**: Penulis fitur melakukan perbaikan sesuai feedback
-8. **Approve**: Setelah semua feedback terpenuhi, Reviewer approve PR
-9. **Merge**: Merge PR ke branch `main`
+Setiap anggota bekerja lewat **fork** pribadi dari [Borayaa/JendEdu](https://github.com/Borayaa/JendEdu). **Tidak ada yang push langsung ke `main`** — `main` hanya berubah lewat Pull Request yang sudah di-approve.
+
+1. **Fork**: Fork `Borayaa/JendEdu` ke akun GitHub sendiri, clone fork tersebut, lalu tambahkan remote `upstream` ke `Borayaa/JendEdu`
+2. **Sinkron**: `git switch main` lalu `git pull upstream main`
+3. **Buat Branch**: Buat branch baru dari `main` dengan nama sesuai fitur (contoh: `feature/homepage`, `feature/contact`)
+4. **Kerjakan Fitur**: Salin file bagian kamu dari JendEdu-template, cek di browser
+5. **Commit**: Commit perubahan dengan pesan yang deskriptif
+6. **Push**: Push branch `feature/...` ke fork sendiri (`git push -u origin feature/...`)
+7. **Buka Pull Request**: Dari fork ke `Borayaa/JendEdu` branch `main`, minta review ke Reviewer (@username-3)
+8. **Review**: Reviewer memeriksa kode, memberi komentar, dan meminta perbaikan jika diperlukan
+9. **Perbaikan**: Penulis memperbaiki lalu push lagi ke branch yang sama di fork (PR ter-update otomatis)
+10. **Approve & Merge**: Setelah semua komentar terpenuhi, Reviewer approve dan merge PR ke `main`
+
+```
+JendEdu-template ──copy──▶ folder lokal ──push branch──▶ fork kamu (origin) ──Pull Request──▶ Borayaa/JendEdu main (upstream)
+```
 
 ### Panduan Langkah demi Langkah per Peran (Windows)
 
