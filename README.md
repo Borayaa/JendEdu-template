@@ -135,7 +135,7 @@ Repositori ini (**JendEdu-template**) berisi versi final semua file. Setiap angg
 ## Struktur Folder
 
 ```
-JendEdu-template/
+JendEdu/
 ├── index.html                                    # Halaman beranda utama
 ├── about.html                                    # Halaman tentang kami
 ├── courses.html                                  # Halaman katalog kursus
@@ -160,15 +160,7 @@ JendEdu-template/
 │   ├── service1-3.jpg                          # Ikon fitur
 │   ├── team1-4.jpg                             # Foto tim pengajar (400x400)
 │   └── about.jpg                               # Gambar halaman tentang
-├── review/
-│   ├── review.md                                # Catatan dan hasil code review dari reviewer
-│   └── codes/                                   # Folder untuk menyimpan snippet kode yang direview
-├── presentasi/
-│   ├── JendEdu-Presentasi.pptx                 # Presentasi project (format PowerPoint)
-│   └── JendEdu-Presentasi-dengan-Naskah.pptx   # Presentasi project dengan naskah/script
-├── panduan/                                     # Panduan langkah demi langkah per peran (Windows)
 ├── README.md                                    # File dokumentasi ini
-└── readme.txt                                   # Informasi template asli
 
 ```
 
@@ -227,24 +219,7 @@ Saat mengganti gambar, perhatikan dimensi yang sudah ada:
 
 Semua gambar dalam proyek ini bersumber dari Unsplash (Unsplash License) dan bebas digunakan.
 
-## 10. Catatan Penting
-
-1. **Data Placeholder**: Seluruh konten berita, artikel, tim, dan detail kontak yang ada saat ini adalah data placeholder/fiktif dan harus diganti sebelum website go live.
-
-2. **Formulir Kontak**: Formulir kontak di halaman `contact.html` tidak memiliki backend. Untuk membuat formulir benar-benar berfungsi mengirim email, integrasikan dengan layanan seperti:
-   - Formspree (https://formspree.io/)
-   - EmailJS
-   - Backend custom
-
-3. **Google Maps**: Lokasi Maps di halaman kontak menunjuk ke koordinat placeholder dan dapat disesuaikan.
-
-4. **Konten untuk Go Live**:
-   - Ganti foto tim dengan foto asli pengajar
-   - Perbarui testimoni dengan review pelanggan nyata
-   - Ubah semua informasi kontak dengan detail bisnis yang sebenarnya
-   - Proses formulir kontak agar dapat menerima pesan
-
-## 11. Kredit & Lisensi
+## 10. Kredit & Lisensi
 
 Template ini menggunakan "Above Educational Bootstrap Responsive Template" oleh WebThemez di bawah lisensi Creative Commons Attribution 3.0.
 
