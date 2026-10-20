@@ -16,7 +16,7 @@
 
 | No | Branch | Kapan boleh mulai | Isi |
 |----|--------|-------------------|-----|
-| 1 | `chore/setup-template` | Langsung (kamu yang pertama) | js, fonts, img, readme.txt, hapus `style.css` lama |
+| 1 | `chore/setup-template` | Langsung (kamu yang pertama) | js, fonts, img, readme.txt |
 | 2 | `feature/homepage` | Setelah PR #1 **dan** PR navbar-footer (Coder 2) sudah di-merge | `index.html` |
 | 3 | `feature/about` | Sama seperti di atas | `about.html` |
 | 4 | `feature/courses` | Sama seperti di atas | `courses.html` |
@@ -99,25 +99,13 @@ dir
 
 Kamu harus melihat folder `js`, `fonts`, `img`, dan file `readme.txt`.
 
-### Langkah 1.3 - Hapus `style.css` lama (Git Bash)
-
-Kembali ke **Git Bash**:
-
-```bash
-git rm style.css
-```
-
-Output: `rm 'style.css'`. Ini menghapus stylesheet lama dari tugas sebelumnya (stylesheet yang baru ada di folder `css`, dibawa Coder 2).
-
-> Kalau muncul `fatal: pathspec 'style.css' did not match any files`, berarti `style.css` sudah tidak ada. Lewati saja langkah ini.
-
-### Langkah 1.4 - Cek, add, commit, push (Git Bash)
+### Langkah 1.3 - Cek, add, commit, push (Git Bash)
 
 ```bash
 git status
 ```
 
-Kamu akan melihat `deleted: style.css` (hijau, sudah staged) dan daftar file baru (merah, belum di-add).
+Kamu akan melihat daftar folder dan file baru (merah, belum di-add).
 
 ```bash
 git add js fonts img readme.txt
@@ -139,7 +127,7 @@ git push -u origin chore/setup-template
 
 Pertama kali push, akan muncul jendela browser untuk login GitHub (Git Credential Manager). Login lalu klik **Authorize**.
 
-### Langkah 1.5 - Buat Pull Request (Browser)
+### Langkah 1.4 - Buat Pull Request (Browser)
 
 1. Buka https://github.com/Borayaa/JendEdu
 2. Klik tombol kuning **Compare & pull request**.
@@ -161,7 +149,6 @@ Menambahkan aset dasar dari template JendEdu supaya halaman-halaman berikutnya b
 - Menambahkan folder `fonts` (Font Awesome dan ikon kustom)
 - Menambahkan folder `img` (gambar template, kecuali `logo.png` dan `img/blog`)
 - Menambahkan `readme.txt` bawaan template
-- Menghapus `style.css` lama dari tugas sebelumnya (diganti folder `css` di PR navbar-footer)
 
 ## Catatan
 - Logo dan folder `css` dikerjakan Coder 2 di PR terpisah.
@@ -176,7 +163,7 @@ Tidak ada halaman yang ditampilkan di PR ini. Cukup cek bahwa folder `js`, `font
 
 Beritahu tim (grup chat) bahwa PR #1 sudah siap di-review.
 
-### Langkah 1.6 - Setelah di-merge (Git Bash)
+### Langkah 1.5 - Setelah di-merge (Git Bash)
 
 Reviewer akan me-merge PR. Setelah itu:
 
@@ -228,7 +215,7 @@ cd C:\Proyek\JendEdu
 copy ..\JendEdu-template\index.html .
 ```
 
-Akan muncul pertanyaan `Overwrite C:\Proyek\JendEdu\.\index.html? (Yes/No/All):`. Ketik `Yes` lalu Enter. **Ini memang diharapkan**: `index.html` lama dari tugas sebelumnya diganti dengan yang baru.
+Output yang diharapkan: `1 file(s) copied.`
 
 Cek di browser:
 
@@ -272,7 +259,7 @@ Deskripsi:
 
 ```
 ## Ringkasan
-Menambahkan halaman beranda JendEdu menggantikan `index.html` lama.
+Menambahkan halaman beranda JendEdu (`index.html`).
 
 ## Isi halaman
 - Slider utama (FlexSlider)
@@ -286,8 +273,6 @@ Menambahkan halaman beranda JendEdu menggantikan `index.html` lama.
 2. Buka `index.html` di browser
 3. Cek slider berjalan, gambar tampil, tautan menu berfungsi, dan tampilan rapi di ukuran HP (Ctrl+Shift+M di DevTools)
 
-## Catatan
-`index.html` lama dari tugas sebelumnya memang ditimpa.
 ```
 
 Reviewers: **@username-3** -> **Create pull request**.
@@ -743,7 +728,7 @@ Tidak perlu `-u` lagi dan tidak perlu membuat PR baru; PR yang sama otomatis ter
 
 # Checklist akhir Coder 1
 
-- [ ] `chore/setup-template` sudah di-merge (js, fonts, img ada; `style.css` lama hilang)
+- [ ] `chore/setup-template` sudah di-merge (js, fonts, img ada)
 - [ ] `feature/homepage` di-merge
 - [ ] `feature/about` di-merge
 - [ ] `feature/courses` di-merge

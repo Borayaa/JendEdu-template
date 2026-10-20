@@ -13,7 +13,7 @@ Ada dua repo (tempat menyimpan proyek):
 | https://github.com/Borayaa/JendEdu-template | Sumber file jadi (HTML, CSS, gambar, dll). | **Tidak.** Hanya dibaca dan disalin. Jangan edit atau push ke sini. |
 | https://github.com/Borayaa/JendEdu | Repo tempat tim bekerja (branch `main`). | Ya, tapi lewat branch dan Pull Request. |
 
-Repo `JendEdu` saat ini berisi `index.html` dan `style.css` lama dari tugas sebelumnya. File itu akan diganti atau dihapus pada Pull Request di bawah.
+Repo `JendEdu` dimulai dalam keadaan **kosong** (belum ada file). Semua file masuk sedikit demi sedikit lewat Pull Request di bawah.
 
 Caranya: kalian **menyalin file dari template ke JendEdu sedikit demi sedikit**. Setiap potongan kerja dibuat di satu **branch** sendiri, lalu dikirim lewat **Pull Request (PR)**, diperiksa Reviewer, dan baru digabung ke `main`.
 

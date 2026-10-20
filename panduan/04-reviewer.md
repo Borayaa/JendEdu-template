@@ -95,8 +95,6 @@ Aturan praktis:
 4. **`docs/readme`** sebaiknya terakhir di antara PR kode, supaya screenshot di presentasi diambil dari situs yang sudah jadi.
 5. **`docs/review-log`** milikmu paling akhir.
 
-> Catatan: `feature/homepage` akan **menimpa** `index.html` lama. Itu memang yang diharapkan, jangan dianggap kesalahan. Begitu juga `style.css` lama dihapus di PR #1 (`git rm style.css`).
-
 ---
 
 ## 3. Membaca tab "Files changed"
@@ -216,7 +214,7 @@ git switch main
 
 ### Pengecualian: PR #1 (`chore/setup-template`)
 
-PR ini hanya berisi aset (js, fonts, img), belum ada halaman baru. Cukup cek dengan `dir js`, `dir fonts`, `dir img` di cmd bahwa folder-nya terisi, dan di tab Files changed pastikan **tidak ada** `logo.png` dan folder `img\blog` (itu masuk PR lain), serta `style.css` lama sudah dihapus.
+PR ini hanya berisi aset (js, fonts, img), belum ada halaman baru. Cukup cek dengan `dir js`, `dir fonts`, `dir img` di cmd bahwa folder-nya terisi, dan di tab Files changed pastikan **tidak ada** `logo.png` dan folder `img\blog` (itu masuk PR lain).
 
 ---
 
@@ -563,7 +561,7 @@ Salin daftar ini ke kotak komentar review kalau perlu. Centang satu per satu unt
 
 ### Hal khusus per PR
 
-- [ ] PR #1: folder `js`, `fonts`, `img` ada; `logo.png` dan `img\blog` **tidak** ikut; `style.css` lama terhapus
+- [ ] PR #1: folder `js`, `fonts`, `img` ada; `logo.png` dan `img\blog` **tidak** ikut
 - [ ] PR #2: folder `css` lengkap dan `img\logo.png` ada
 - [ ] PR halaman: hanya berkas halaman itu yang berubah (tidak ada berkas nyasar, tidak ada folder `panduan\`)
 - [ ] PR docs: placeholder `[Nama Anggota 1..4]` dan `@username-1..4` sudah diganti nama/username asli

@@ -65,8 +65,6 @@ cd /d C:\Proyek\JendEdu
 copy ..\JendEdu-template\README.md .
 ```
 
-Kalau ditanya "Overwrite README.md?", ketik `Yes` lalu Enter (README lama akan diganti).
-
 4. Salin folder presentasi:
 
 ```
