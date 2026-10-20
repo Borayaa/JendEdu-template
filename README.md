@@ -113,7 +113,7 @@ Setiap anggota bekerja lewat **fork** pribadi dari [Borayaa/JendEdu](https://git
 1. **Fork**: Fork `Borayaa/JendEdu` ke akun GitHub sendiri, clone fork tersebut, lalu tambahkan remote `upstream` ke `Borayaa/JendEdu`
 2. **Sinkron**: `git switch main` lalu `git pull upstream main`
 3. **Buat Branch**: Buat branch baru dari `main` dengan nama sesuai fitur (contoh: `feature/homepage`, `feature/contact`)
-4. **Kerjakan Fitur**: Salin file bagian kamu dari JendEdu-template, cek di browser
+4. **Kerjakan Fitur**: Kerjakan halaman/fitur di branch tersebut, lalu cek di browser
 5. **Commit**: Commit perubahan dengan pesan yang deskriptif
 6. **Push**: Push branch `feature/...` ke fork sendiri (`git push -u origin feature/...`)
 7. **Buka Pull Request**: Dari fork ke `Borayaa/JendEdu` branch `main`, minta review ke Reviewer (@username-3)
@@ -122,20 +122,8 @@ Setiap anggota bekerja lewat **fork** pribadi dari [Borayaa/JendEdu](https://git
 10. **Approve & Merge**: Setelah semua komentar terpenuhi, Reviewer approve dan merge PR ke `main`
 
 ```
-JendEdu-template ──copy──▶ folder lokal ──push branch──▶ fork kamu (origin) ──Pull Request──▶ Borayaa/JendEdu main (upstream)
+folder lokal ──push branch──▶ fork kamu (origin) ──Pull Request──▶ Borayaa/JendEdu main (upstream)
 ```
-
-### Panduan Langkah demi Langkah per Peran (Windows)
-
-Repositori ini (**JendEdu-template**) berisi versi final semua file. Setiap anggota meng-*clone* repo template ini dan repo kerja [Borayaa/JendEdu](https://github.com/Borayaa/JendEdu), lalu menyalin file bagiannya dari template ke repo kerja lewat Command Prompt dan mengirimnya lewat Pull Request. Mulai dari [`panduan/00-mulai-di-sini.md`](panduan/00-mulai-di-sini.md):
-
-| Panduan | Untuk |
-|---------|-------|
-| [01 - Persiapan Semua Anggota](panduan/01-persiapan-semua-anggota.md) | Semua anggota (install Git, clone repo) |
-| [02 - Coder 1](panduan/02-coder-1.md) | Beranda, Tentang Kami, Kursus, Galeri, Harga |
-| [03 - Coder 2](panduan/03-coder-2.md) | Navbar & footer, Kontak, Artikel, Berita |
-| [04 - Reviewer](panduan/04-reviewer.md) | Review, approve, dan merge Pull Request |
-| [05 - Dokumentator](panduan/05-dokumentator.md) | README.md dan presentasi |
 
 ---
 
