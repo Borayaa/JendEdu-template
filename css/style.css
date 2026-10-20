@@ -5,7 +5,7 @@ Licence under Creative Commons Attribution 3.0
 Do not remove the back-link in this web template 
 -------------------------------------------------------*/
 
-@import url('https://fonts.googleapis.com/css?family=Noto+Serif:400,400italic,700|Open+Sans:400,600,700'); 
+@import url('http://fonts.googleapis.com/css?family=Noto+Serif:400,400italic,700|Open+Sans:400,600,700'); 
 @import url('font-awesome.css');  
 @import url('animate.css');
 
@@ -86,6 +86,10 @@ header .navbar {
 .navbar-default .navbar-brand{
 color: #61B331;
 }
+.navbar-brand {
+    font-size: 18px;
+    margin-top: 5px;
+}
 
 header .navbar-collapse  ul.navbar-nav {
     float: right;
@@ -93,6 +97,7 @@ header .navbar-collapse  ul.navbar-nav {
 }
 
 header .navbar-default{
+    min-width: 960px;
     background-color: #FFFFFF;
 }
 
@@ -1005,7 +1010,7 @@ footer{
 background: #14A085;
 }
 footer ul.link-list li a{
-	color: #FFFFFF;
+	color: #0E7A66;
 }
 footer ul.link-list li a:hover {
 	color: #E2E2E2;
@@ -1780,12 +1785,12 @@ padding:50px 0
 }
 .post-body p {
 	font-size: 15px;
-	line-height: 1.8em;
+	line-heigth: 1.8em;
 	margin-bottom: 18px;
 }
 .post-body h3 {
-	margin-top: 30px;
-	font-size: 20px;
+	margin-top: 30px !important;
+	font-size: 20px !important;
 }
 .post-body ul, .post-body ol {
 	font-size: 15px;

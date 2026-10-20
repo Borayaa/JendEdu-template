@@ -275,6 +275,8 @@ Kedua folder harus **bersebelahan** seperti ini, karena perintah `copy` di pandu
 
 PENTING: Jangan pernah mengedit atau `push` dari folder `JendEdu-template`.
 
+Catatan: beberapa file di root `JendEdu-template` (`pricing.html`, `contact.html`, `berita-beasiswa-jendedu-2027.html`, `css\style.css`) sengaja berupa draft dengan kesalahan untuk latihan code review. Penjelasan lengkap ada di bagian "Draft vs versi perbaikan" di [00-mulai-di-sini.md](00-mulai-di-sini.md).
+
 Fork-mu di GitHub boleh tertinggal (`X commits behind`). Itu tidak masalah, karena branch baru selalu dibuat dari `main` lokal yang sudah di-pull dari upstream. Jangan klik atau jalankan apa pun yang push ke `main`.
 
 ## 9. (Opsional) Install Visual Studio Code

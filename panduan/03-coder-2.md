@@ -10,6 +10,15 @@
 
 > **⚠️ Jangan pernah `git push` ke `main`.** Hanya branch kerja (`feature/...`, `chore/...`) yang di-push, dan hanya ke `origin` (fork kamu). `main` hanya berubah lewat PR yang di-merge. Fork kamu di GitHub boleh tertinggal (`X commits behind`); itu tidak masalah, karena branch baru selalu dibuat dari `main` lokal yang sudah di-pull dari upstream. Jangan klik/jalankan apa pun yang mem-push ke main.
 
+> **📌 Draft vs versi perbaikan**
+>
+> - File di **root** `C:\Proyek\JendEdu-template` adalah **draft**. Untuk PR yang ditugaskan ke kamu di bawah ini, draft itu **sengaja mengandung kesalahan** supaya Reviewer punya sesuatu untuk di-review.
+> - PR kamu yang berisi draft dengan kesalahan: **`feature/navbar-footer` (PR #4)** dengan `css\style.css`, **`feature/contact` (PR #5)** dengan `contact.html`, dan **`feature/news` (PR #7)** dengan `berita-beasiswa-jendedu-2027.html` (dua berita lainnya, `berita-kelas-live-utbk-2027.html` dan `berita-kemitraan-sekolah.html`, tidak bermasalah).
+> - Versi **yang sudah diperbaiki** ada di `C:\Proyek\JendEdu-template\review\codes\`.
+> - **Urutan yang benar:** (1) salin **draft** dari root dan buat PR; (2) **tunggu** Reviewer memberi **Request changes**; (3) baru setelah itu salin file perbaikan dari `review\codes\`, commit, dan push.
+> - **Jangan** menyalin dari `review\codes\` sebelum Reviewer berkomentar, dan **jangan pernah** menyalin folder `review\` ke proyek (itu bagian PR dokumentasi di akhir).
+> - PR kamu yang lain (`feature/posts`) **tidak** punya kesalahan yang disengaja, jadi Reviewer langsung **Approve** (tetap dicek).
+
 ---
 
 ## Gambaran urutan kerja
@@ -74,6 +83,8 @@ xcopy ..\JendEdu-template\css css\ /E /I /Y
 ```cmd
 copy ..\JendEdu-template\img\logo.png img\
 ```
+
+Catatan: `css\style.css` di root adalah **draft** (sengaja mengandung kesalahan untuk PR #4). Salin apa adanya; jangan ambil dari `review\codes\` dulu.
 
 Kalau `img\` belum ada (PR Coder 1 belum ter-pull), jalankan `git pull upstream main` di Git Bash dulu. Cek:
 
@@ -146,7 +157,75 @@ Belum ada halaman di PR ini. Cukup cek folder `css` dan `img/logo.png` ada. Tamp
 
 Setelah deskripsi terisi: centang **Allow edits by maintainers** -> **Create pull request** -> minta review **@username-3** (panel kanan **Reviewers**, atau mention `@username-3` di komentar). Kabari tim bahwa PR ini siap, karena PR halaman Coder 1 menunggu ini.
 
-### Langkah 1.5 - Setelah di-merge (Git Bash)
+### Langkah 1.5 - Setelah Reviewer meminta perbaikan (Request changes), PR #4
+
+Reviewer akan memeriksa folder `css` (terutama `css\style.css`) dan memberi status **Request changes** (PR #4) dengan komentar di baris tertentu. Itu normal dan memang direncanakan. Hanya `css\style.css` yang diganti; folder `css` lain dan `img\logo.png` tidak berubah. Lakukan urutan ini:
+
+1. **Baca komentar** di GitHub: buka PR kamu di Borayaa/JendEdu, tab **Files changed** (atau **Conversation**). Komentar yang sama juga tertulis di `C:\Proyek\JendEdu-template\review\review.md` bagian **PR #4**, lengkap dengan nomor baris.
+
+2. **Pastikan masih di branch `feature/navbar-footer`** (Git Bash):
+
+```bash
+cd /c/Proyek/JendEdu
+```
+
+```bash
+git switch feature/navbar-footer
+```
+
+3. **Salin file versi perbaikan** (cmd):
+
+```cmd
+cd C:\Proyek\JendEdu
+```
+
+```cmd
+copy /Y ..\JendEdu-template\review\codes\css\style.css css\
+```
+
+Output yang diharapkan: `1 file(s) copied.` (`/Y` berarti timpa file lama tanpa bertanya).
+
+4. **Cek di browser** (cmd):
+
+Buka salah satu halaman yang sudah ada di `main` (misalnya `start index.html` kalau sudah ter-pull), atau cukup pastikan `css\style.css` sudah berubah di `git status`. Navbar dan footer harus rapi.
+
+```cmd
+dir css\style.css
+```
+
+5. **Cek, add, commit, push** (Git Bash):
+
+```bash
+git status
+```
+
+```bash
+git add css/style.css
+```
+
+```bash
+git commit -m "Perbaiki sesuai review PR #4"
+```
+
+```bash
+git push
+```
+
+Perintah ini mengirim ke branch yang sama di **fork kamu** (`origin`), tanpa `-u` dan tanpa PR baru; PR #4 otomatis ter-update. Jangan push ke `main`.
+
+6. **Balas setiap komentar** di GitHub dengan: `Sudah diperbaiki`. Jangan klik "Resolve conversation" sendiri kalau tidak diminta.
+
+7. **Tunggu** Reviewer meng-**Approve** dan me-merge PR, lalu lanjut ke Langkah 1.6.
+
+> **Alternatif (opsional):** kamu boleh memperbaiki **manual** per komentar, bukan menyalin file. Hasil akhirnya **harus sama persis** dengan file di `review\codes\`. Cek di cmd:
+>
+> ```cmd
+> fc ..\JendEdu-template\review\codes\css\style.css css\style.css
+> ```
+>
+> Hasil yang benar: `FC: no differences encountered`.
+
+### Langkah 1.6 - Setelah di-merge (Git Bash)
 
 Setelah Reviewer me-merge PR, perbarui `main` lokal dari upstream (tanpa push ke main):
 
@@ -204,6 +283,8 @@ copy ..\JendEdu-template\contact.html .
 start contact.html
 ```
 
+Ini **draft** (sengaja mengandung kesalahan untuk PR #5); jangan ambil dari `review\codes\` dulu.
+
 Cek: peta Google Maps tampil (butuh internet), formulir kontak muncul, menu berfungsi.
 
 ### Langkah 2.3 - Commit dan push (Git Bash)
@@ -257,7 +338,73 @@ Bergantung pada PR setup-template dan navbar-footer yang sudah di-merge.
 
 Setelah deskripsi terisi: centang **Allow edits by maintainers** -> **Create pull request** -> minta review **@username-3** (panel kanan **Reviewers**, atau mention `@username-3` di komentar).
 
-### Langkah 2.5 - Setelah di-merge (Git Bash)
+### Langkah 2.5 - Setelah Reviewer meminta perbaikan (Request changes), PR #5
+
+Reviewer akan memeriksa `contact.html` dan memberi status **Request changes** (PR #5) dengan komentar di baris tertentu. Itu normal dan memang direncanakan. Lakukan urutan ini:
+
+1. **Baca komentar** di GitHub: buka PR kamu di Borayaa/JendEdu, tab **Files changed** (atau **Conversation**). Komentar yang sama juga tertulis di `C:\Proyek\JendEdu-template\review\review.md` bagian **PR #5**, lengkap dengan nomor baris.
+
+2. **Pastikan masih di branch `feature/contact`** (Git Bash):
+
+```bash
+cd /c/Proyek/JendEdu
+```
+
+```bash
+git switch feature/contact
+```
+
+3. **Salin file versi perbaikan** (cmd):
+
+```cmd
+cd C:\Proyek\JendEdu
+```
+
+```cmd
+copy /Y ..\JendEdu-template\review\codes\contact.html .
+```
+
+Output yang diharapkan: `1 file(s) copied.` (`/Y` berarti timpa file lama tanpa bertanya).
+
+4. **Cek di browser** (cmd):
+
+```cmd
+start contact.html
+```
+
+5. **Cek, add, commit, push** (Git Bash):
+
+```bash
+git status
+```
+
+```bash
+git add contact.html
+```
+
+```bash
+git commit -m "Perbaiki sesuai review PR #5"
+```
+
+```bash
+git push
+```
+
+Perintah ini mengirim ke branch yang sama di **fork kamu** (`origin`), tanpa `-u` dan tanpa PR baru; PR #5 otomatis ter-update. Jangan push ke `main`.
+
+6. **Balas setiap komentar** di GitHub dengan: `Sudah diperbaiki`. Jangan klik "Resolve conversation" sendiri kalau tidak diminta.
+
+7. **Tunggu** Reviewer meng-**Approve** dan me-merge PR, lalu lanjut ke Langkah 2.6.
+
+> **Alternatif (opsional):** kamu boleh memperbaiki **manual** per komentar, bukan menyalin file. Hasil akhirnya **harus sama persis** dengan file di `review\codes\`. Cek di cmd:
+>
+> ```cmd
+> fc ..\JendEdu-template\review\codes\contact.html contact.html
+> ```
+>
+> Hasil yang benar: `FC: no differences encountered`.
+
+### Langkah 2.6 - Setelah di-merge (Git Bash)
 
 Setelah Reviewer me-merge PR, perbarui `main` lokal dari upstream (tanpa push ke main):
 
@@ -458,6 +605,8 @@ mkdir img\blog
 copy ..\JendEdu-template\img\blog\berita-*.jpg img\blog\
 ```
 
+Catatan: `berita-beasiswa-jendedu-2027.html` di root adalah **draft** (sengaja mengandung kesalahan untuk PR #7); dua berita lain sudah benar. Jangan ambil dari `review\codes\` dulu.
+
 Cek di browser:
 
 ```cmd
@@ -523,7 +672,73 @@ Bergantung pada PR setup-template dan navbar-footer yang sudah di-merge.
 
 Setelah deskripsi terisi: centang **Allow edits by maintainers** -> **Create pull request** -> minta review **@username-3** (panel kanan **Reviewers**, atau mention `@username-3` di komentar).
 
-### Langkah 4.5 - Setelah di-merge (Git Bash)
+### Langkah 4.5 - Setelah Reviewer meminta perbaikan (Request changes), PR #7
+
+Reviewer akan memeriksa `berita-beasiswa-jendedu-2027.html` dan memberi status **Request changes** (PR #7) dengan komentar di baris tertentu. Itu normal dan memang direncanakan. Hanya berita beasiswa yang bermasalah; `berita-kelas-live-utbk-2027.html` dan `berita-kemitraan-sekolah.html` sudah benar, jadi jangan diubah. Lakukan urutan ini:
+
+1. **Baca komentar** di GitHub: buka PR kamu di Borayaa/JendEdu, tab **Files changed** (atau **Conversation**). Komentar yang sama juga tertulis di `C:\Proyek\JendEdu-template\review\review.md` bagian **PR #7**, lengkap dengan nomor baris.
+
+2. **Pastikan masih di branch `feature/news`** (Git Bash):
+
+```bash
+cd /c/Proyek/JendEdu
+```
+
+```bash
+git switch feature/news
+```
+
+3. **Salin file versi perbaikan** (cmd):
+
+```cmd
+cd C:\Proyek\JendEdu
+```
+
+```cmd
+copy /Y ..\JendEdu-template\review\codes\berita-beasiswa-jendedu-2027.html .
+```
+
+Output yang diharapkan: `1 file(s) copied.` (`/Y` berarti timpa file lama tanpa bertanya).
+
+4. **Cek di browser** (cmd):
+
+```cmd
+start berita-beasiswa-jendedu-2027.html
+```
+
+5. **Cek, add, commit, push** (Git Bash):
+
+```bash
+git status
+```
+
+```bash
+git add berita-beasiswa-jendedu-2027.html
+```
+
+```bash
+git commit -m "Perbaiki sesuai review PR #7"
+```
+
+```bash
+git push
+```
+
+Perintah ini mengirim ke branch yang sama di **fork kamu** (`origin`), tanpa `-u` dan tanpa PR baru; PR #7 otomatis ter-update. Jangan push ke `main`.
+
+6. **Balas setiap komentar** di GitHub dengan: `Sudah diperbaiki`. Jangan klik "Resolve conversation" sendiri kalau tidak diminta.
+
+7. **Tunggu** Reviewer meng-**Approve** dan me-merge PR, lalu lanjut ke Langkah 4.6.
+
+> **Alternatif (opsional):** kamu boleh memperbaiki **manual** per komentar, bukan menyalin file. Hasil akhirnya **harus sama persis** dengan file di `review\codes\`. Cek di cmd:
+>
+> ```cmd
+> fc ..\JendEdu-template\review\codes\berita-beasiswa-jendedu-2027.html berita-beasiswa-jendedu-2027.html
+> ```
+>
+> Hasil yang benar: `FC: no differences encountered`.
+
+### Langkah 4.6 - Setelah di-merge (Git Bash)
 
 Setelah Reviewer me-merge PR, perbarui `main` lokal dari upstream (tanpa push ke main):
 
@@ -554,66 +769,29 @@ Label komentar:
 - 🟡 **Saran**: sebaiknya diperbaiki.
 - 🟢 **Nit**: hal kecil, opsional.
 
-### Contoh nyata: tautan footer salah di artikel
+Tiga PR kamu mengandung draft yang sengaja salah, jadi Reviewer pasti meminta perbaikan:
 
-Reviewer menulis di `artikel-tips-belajar-matematika-sd.html`:
+| PR | Branch | File | Salin perbaikan (cmd) | `git add` (Git Bash) |
+|----|--------|------|-----------------------|----------------------|
+| #4 | `feature/navbar-footer` | `css\style.css` | `copy /Y ..\JendEdu-template\review\codes\css\style.css css\` | `git add css/style.css` |
+| #5 | `feature/contact` | `contact.html` | `copy /Y ..\JendEdu-template\review\codes\contact.html .` | `git add contact.html` |
+| #7 | `feature/news` | `berita-beasiswa-jendedu-2027.html` | `copy /Y ..\JendEdu-template\review\codes\berita-beasiswa-jendedu-2027.html .` | `git add berita-beasiswa-jendedu-2027.html` |
 
-> 🔴 **Wajib**: Tautan footer "Berita terbaru" mengarah ke `berita-1.html`, padahal file-nya tidak ada. Seharusnya `berita-beasiswa-jendedu-2027.html`.
+Alur lengkapnya ada di **Langkah 1.5** (navbar-footer), **2.5** (contact), dan **4.5** (news). Ringkasnya, untuk tiap PR: baca komentar (GitHub dan `review\review.md`), `git switch <branch>`, jalankan perintah `copy /Y` di atas, cek di browser, `git status`, `git add <file>`, `git commit -m "Perbaiki sesuai review PR #N"`, `git push`, balas tiap komentar "Sudah diperbaiki", lalu tunggu Approve dan merge.
 
-Langkah memperbaiki (kamu masih di branch `feature/posts`):
+Contoh komentar di PR #5:
 
-1. Pindah ke branch (Git Bash):
+> 🔴 **Wajib**: (komentar Reviewer pada baris tertentu di `contact.html`).
 
-```bash
-cd /c/Proyek/JendEdu
-```
-
-```bash
-git switch feature/posts
-```
-
-2. Buka `C:\Proyek\JendEdu\artikel-tips-belajar-matematika-sd.html` di VS Code atau Notepad. `Ctrl + F`, cari `berita-1.html`. Ubah:
-
-```html
-<a href="berita-1.html">Beasiswa JendEdu 2027</a>
-```
-
-menjadi:
-
-```html
-<a href="berita-beasiswa-jendedu-2027.html">Beasiswa JendEdu 2027</a>
-```
-
-Karena blok footer sama di semua halaman, cari juga kesalahan yang sama di artikel lain (`artikel-belajar-online-efektif-smp.html`, `artikel-strategi-persiapan-ujian-sma.html`). Simpan dengan `Ctrl + S`.
-
-3. Cek di browser (cmd), klik tautan footer-nya:
+Boleh juga memperbaiki manual per komentar, asal hasilnya sama dengan file di `review\codes\`. Cek, misalnya:
 
 ```cmd
-start artikel-tips-belajar-matematika-sd.html
+fc ..\JendEdu-template\review\codes\contact.html contact.html
 ```
 
-4. Commit dan push (Git Bash):
+Hasil yang benar: `FC: no differences encountered`.
 
-```bash
-git status
-```
-
-```bash
-git add artikel-tips-belajar-matematika-sd.html
-```
-
-```bash
-git commit -m "Perbaiki sesuai review: tautan footer di artikel"
-```
-
-```bash
-git push
-```
-
-Perintah ini mengirim ke branch yang sama di **fork kamu** (`origin`). Tanpa `-u` dan tanpa PR baru; PR di Borayaa/JendEdu ter-update otomatis. (Kalau kamu juga mengubah file artikel lain, tambahkan namanya di `git add`.)
-
-5. Balas komentar di GitHub: "Sudah diperbaiki, tautan footer sekarang ke `berita-beasiswa-jendedu-2027.html`."
-6. Tunggu Reviewer meng-**Approve** dan me-merge.
+`feature/posts` **tidak** punya kesalahan yang disengaja; Reviewer langsung Approve. Kalau Reviewer tetap meninggalkan komentar kecil di PR itu, perbaiki dengan mengedit file lalu `git add`, `git commit -m "Perbaiki sesuai review"`, `git push`, dan balas "Sudah diperbaiki".
 
 ### Kalau komentar tentang navbar atau footer
 
@@ -651,10 +829,11 @@ Kamu pemilik blok ini. Misalnya Reviewer bilang menu "Harga" tidak ada di navbar
 
 # Checklist akhir Coder 2
 
-- [ ] `feature/navbar-footer` di-merge (folder `css` dan `img\logo.png` ada)
-- [ ] `feature/contact` di-merge
-- [ ] `feature/posts` di-merge (3 artikel + gambar)
-- [ ] `feature/news` di-merge (3 berita + gambar)
+- [ ] `feature/navbar-footer` (PR #4): draft `css\style.css` disalin dulu, perbaikan dari `review\codes\css\style.css` disalin **setelah** Request changes, lalu di-merge (folder `css` dan `img\logo.png` ada)
+- [ ] `feature/contact` (PR #5): draft dulu, perbaikan dari `review\codes\contact.html` setelah Request changes, lalu di-merge
+- [ ] `feature/posts` di-merge (3 artikel + gambar; tanpa kesalahan yang disengaja)
+- [ ] `feature/news` (PR #7): draft dulu, perbaikan dari `review\codes\berita-beasiswa-jendedu-2027.html` setelah Request changes, lalu di-merge (3 berita + gambar)
+- [ ] Tidak pernah menyalin folder `review\` ke proyek
 - [ ] Navbar dan footer identik di semua halaman
 - [ ] Semua komentar Reviewer sudah dibalas "Sudah diperbaiki"
 - [ ] `git switch main` dan `git pull upstream main` dijalankan; semua halaman terbuka normal

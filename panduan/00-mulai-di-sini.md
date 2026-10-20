@@ -104,6 +104,27 @@ Aturan emas:
 
 > **⚠️ Jangan pernah `git push` ke `main`.** Hanya branch kerja (`feature/...`, `chore/...`, `docs/...`) yang di-push, ke fork-mu (`origin`). `main` hanya berubah lewat Pull Request yang sudah di-merge. Fork-mu di GitHub boleh tertinggal (`X commits behind`); itu tidak masalah.
 
+## Draft vs versi perbaikan
+
+Beberapa file di root `JendEdu-template` sengaja berupa **draft dengan kesalahan** supaya code review benar-benar ada isinya. Versi yang sudah benar ada di folder `review\codes\`.
+
+| PR | Branch | Author | File draft (di root, disalin pertama) | File perbaikan (disalin setelah review) |
+|----|--------|--------|---------------------------------------|------------------------------------------|
+| #3 | `feature/pricing` | Coder 1 (@username-1) | `pricing.html` | `review\codes\pricing.html` |
+| #4 | `feature/navbar-footer` | Coder 2 (@username-2) | `css\style.css` | `review\codes\css\style.css` |
+| #5 | `feature/contact` | Coder 2 | `contact.html` | `review\codes\contact.html` |
+| #7 | `feature/news` | Coder 2 | `berita-beasiswa-jendedu-2027.html` | `review\codes\berita-beasiswa-jendedu-2027.html` |
+
+PR lain (setup-template, homepage, about, courses, gallery, posts, docs/readme, docs/review-log) **tidak punya draft**: Reviewer memeriksa dengan checklist lalu **langsung Approve**.
+
+Ceritanya, 3 langkah:
+
+1. Author menyalin **draft** dari root template, commit, push, dan buka PR.
+2. Reviewer menemukan kesalahan dan memilih **Request changes**. Author baru boleh menyalin **file perbaikan** dari `review\codes\`, lalu commit dan push ke branch yang sama (jangan ke `main`).
+3. Reviewer memeriksa ulang, **Approve**, lalu **Merge**.
+
+Jangan menyalin dari `review\codes\` sebelum Reviewer berkomentar, dan jangan menyalin folder `review\` (itu milik PR `docs/review-log` di akhir).
+
 ## Alur kerja singkat (diulang untuk setiap tugas)
 
 1. **Git Bash:** pindah ke `main`, ambil update terbaru dari upstream (`git pull upstream main`), buat branch baru.

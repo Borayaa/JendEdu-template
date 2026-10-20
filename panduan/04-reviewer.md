@@ -110,6 +110,47 @@ Aturan praktis:
 4. **`docs/readme`** sebaiknya terakhir di antara PR kode, supaya screenshot di presentasi diambil dari situs yang sudah jadi.
 5. **`docs/review-log`** milikmu paling akhir.
 
+### Tabel urutan PR dan PR yang punya kesalahan
+
+| # | Branch | Author | Ada kesalahan yang harus dikomentari? |
+|---|--------|--------|----------------------------------------|
+| 1 | `chore/setup-template` | Coder 1 | Tidak, approve langsung |
+| 2 | `feature/navbar-footer` | Coder 2 | **Ya** (PR #4 di daftar review.md) |
+| 3 | `feature/pricing` | Coder 1 | **Ya** |
+| 4 | `feature/contact` | Coder 2 | **Ya** |
+| 5 | `feature/news` | Coder 2 | **Ya** |
+| lainnya | homepage, about, courses, gallery, posts, docs/readme | Coder 1, Coder 2, Dokumentator | Tidak, periksa dengan checklist lalu approve |
+
+Nomor PR sebenarnya mengikuti urutan pembuatan di GitHub. Pakai nama branch sebagai pegangan: yang berkesalahan adalah `feature/pricing` (#3), `feature/navbar-footer` (#4), `feature/contact` (#5), dan `feature/news` (#7).
+
+### Daftar komentar siap pakai: review\review.md
+
+Untuk PR #3, #4, #5, dan #7, buka daftar komentarmu di:
+
+```
+notepad ..\JendEdu-template\review\review.md
+```
+
+atau di GitHub: https://github.com/Borayaa/JendEdu-template/blob/main/review/review.md
+
+Nomor baris di review.md sama dengan file di dalam PR (karena PR berisi draft dari root template). Posting tiap poin sebagai komentar per baris, lalu kirim review dengan **Request changes**.
+
+Setelah author push perbaikan, ambil ulang branch PR seperti dijelaskan di bagian 4, lalu bandingkan dengan versi benar memakai `fc` di Command Prompt:
+
+```
+fc ..\JendEdu-template\review\codes\pricing.html pricing.html
+```
+
+Untuk #4 (CSS):
+
+```
+fc ..\JendEdu-template\review\codes\css\style.css css\style.css
+```
+
+Kalau muncul `FC: no differences encountered`, lanjut **Approve**, lalu **Merge**. PR lain cukup diperiksa dengan checklist lalu langsung di-approve.
+
+Pada PR `docs/review-log` di akhir, folder `review\` (termasuk `codes` berisi file perbaikan) disalin sebagai dokumentasi.
+
 ---
 
 ## 3. Membaca tab "Files changed"

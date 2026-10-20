@@ -220,6 +220,8 @@ Kalau Reviewer memberi komentar, lihat bagian **Menanggapi komentar review** di 
 
 ---
 
+> **Catatan draft dan perbaikan:** Dokumentator tidak punya file draft. "Perbaikan" setelah review untukmu adalah mengganti placeholder (nama, username, dll). Screenshot untuk PPTX harus diambil **SETELAH semua PR, termasuk perbaikannya, ter-merge**, dari `C:\Proyek\JendEdu` (bukan dari root `JendEdu-template`, karena root berisi file draft dengan kesalahan).
+
 ## Bagian B. Me-review PR `docs/review-log` milik Reviewer
 
 Di akhir proyek, Reviewer membuat PR `docs/review-log` (folder `review\`). Karena tidak ada yang boleh meng-approve PR sendiri, **kamu yang me-review dan meng-approve** PR itu.
@@ -228,6 +230,7 @@ Di akhir proyek, Reviewer membuat PR `docs/review-log` (folder `review\`). Karen
 2. Klik tab **Files changed**.
 3. Periksa bahwa:
    - Ada `review/review.md` dan folder `review/codes/`.
+   - `review/codes` berisi `pricing.html`, `contact.html`, `berita-beasiswa-jendedu-2027.html`, dan `css/style.css`.
    - Isinya rapi, memakai Bahasa Indonesia, dan tidak ada tulisan placeholder yang aneh.
    - Tidak ada file yang bukan milik folder `review` (misalnya folder `panduan`).
 4. Kalau ada yang perlu diperbaiki: arahkan kursor ke baris, klik tanda **+** biru, tulis komentar, klik **Start a review**. Setelah selesai klik **Review changes** (kanan atas), pilih **Request changes**, tulis ringkasan, lalu **Submit review**.

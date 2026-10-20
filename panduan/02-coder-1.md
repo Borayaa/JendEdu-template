@@ -14,6 +14,15 @@
 
 > **⚠️ Jangan pernah `git push` ke `main`.** Hanya branch kerja (`feature/...`, `chore/...`) yang di-push, dan hanya ke `origin` (fork kamu). `main` hanya berubah lewat PR yang di-merge. Fork kamu di GitHub boleh tertinggal (`X commits behind`); itu tidak masalah, karena branch baru selalu dibuat dari `main` lokal yang sudah di-pull dari upstream. Jangan klik/jalankan apa pun yang mem-push ke main.
 
+> **📌 Draft vs versi perbaikan**
+>
+> - File di **root** `C:\Proyek\JendEdu-template` adalah **draft**. Untuk PR yang ditugaskan ke kamu di bawah ini, draft itu **sengaja mengandung kesalahan** supaya Reviewer punya sesuatu untuk di-review.
+> - PR kamu yang berisi draft dengan kesalahan: **`feature/pricing` (PR #3)** dengan file `pricing.html`.
+> - Versi **yang sudah diperbaiki** ada di folder `C:\Proyek\JendEdu-template\review\codes\`.
+> - **Urutan yang benar:** (1) salin **draft** dari root dan buat PR; (2) **tunggu** Reviewer memberi **Request changes**; (3) baru setelah itu salin file perbaikan dari `review\codes\`, commit, dan push.
+> - **Jangan** menyalin dari `review\codes\` sebelum Reviewer berkomentar, dan **jangan pernah** menyalin folder `review\` ke proyek (itu bagian PR dokumentasi di akhir).
+> - PR kamu yang lain (`chore/setup-template`, `homepage`, `about`, `courses`, `gallery`) **tidak** punya kesalahan yang disengaja, jadi Reviewer langsung **Approve** (tetap dicek).
+
 ---
 
 ## Gambaran urutan kerja
@@ -729,7 +738,7 @@ copy ..\JendEdu-template\pricing.html .
 start pricing.html
 ```
 
-Cek harga harus konsisten: **Rp99.000** (SD), **Rp129.000** (SMP), **Rp159.000** (SMA), **Rp249.000** (UTBK Intensif), semuanya "per bulan".
+Ini adalah **draft** (sengaja mengandung kesalahan untuk PR #3). Salin apa adanya; **jangan** mengambil dari `review\codes\` dulu. Harga yang benar nanti: **Rp99.000** (SD), **Rp129.000** (SMP), **Rp159.000** (SMA), **Rp249.000** (UTBK Intensif), semuanya "per bulan".
 
 ### Langkah 6.3 - Commit dan push (Git Bash)
 
@@ -794,7 +803,77 @@ Bergantung pada PR setup-template dan navbar-footer yang sudah di-merge.
 
 Setelah deskripsi terisi: centang **Allow edits by maintainers** -> **Create pull request** -> minta review **@username-3** (panel kanan **Reviewers**, atau mention `@username-3` di komentar).
 
-### Langkah 6.5 - Setelah di-merge (Git Bash)
+### Langkah 6.5 - Setelah Reviewer meminta perbaikan (Request changes)
+
+Reviewer akan memeriksa `pricing.html` dan memberi status **Request changes** (PR #3) dengan komentar di baris tertentu. Itu normal dan memang direncanakan. Lakukan urutan ini:
+
+1. **Baca komentar** di GitHub: buka PR kamu di Borayaa/JendEdu, tab **Files changed** (atau **Conversation**). Komentar yang sama juga tertulis di `C:\Proyek\JendEdu-template\review\review.md` bagian **PR #3**, lengkap dengan nomor baris. Pahami dulu apa yang salah.
+
+2. **Pastikan masih di branch `feature/pricing`** (Git Bash):
+
+```bash
+cd /c/Proyek/JendEdu
+```
+
+```bash
+git switch feature/pricing
+```
+
+3. **Salin file versi perbaikan** (cmd):
+
+```cmd
+cd C:\Proyek\JendEdu
+```
+
+```cmd
+copy /Y ..\JendEdu-template\review\codes\pricing.html .
+```
+
+Output yang diharapkan: `1 file(s) copied.` (`/Y` berarti timpa file lama tanpa bertanya).
+
+4. **Cek di browser** (cmd):
+
+```cmd
+start pricing.html
+```
+
+Pastikan keempat harga sudah `Rp99.000`, `Rp129.000`, `Rp159.000`, `Rp249.000` per bulan dan tampilan rapi.
+
+5. **Cek, add, commit, push** (Git Bash):
+
+```bash
+git status
+```
+
+Harus ada `modified: pricing.html`.
+
+```bash
+git add pricing.html
+```
+
+```bash
+git commit -m "Perbaiki halaman Harga sesuai review PR #3"
+```
+
+```bash
+git push
+```
+
+Perintah ini mengirim ke branch yang sama di **fork kamu** (`origin`), tanpa `-u` dan tanpa PR baru; PR #3 di Borayaa/JendEdu ter-update otomatis. Jangan push ke `main`.
+
+6. **Balas setiap komentar** di GitHub dengan: `Sudah diperbaiki`. Jangan klik "Resolve conversation" sendiri kalau tidak diminta.
+
+7. **Tunggu** Reviewer meng-**Approve** dan me-merge PR. Setelah itu lanjut ke Langkah 6.6.
+
+> **Alternatif (opsional):** kamu boleh memperbaiki **manual** satu per satu sesuai komentar (buka `pricing.html`, ubah barisnya, simpan), bukan menyalin file. Tetapi hasil akhirnya **harus sama persis** dengan `review\codes\pricing.html`. Cek di cmd:
+>
+> ```cmd
+> fc ..\JendEdu-template\review\codes\pricing.html pricing.html
+> ```
+>
+> Hasil yang benar: `FC: no differences encountered`. Kalau ada perbedaan, FC menampilkan baris yang berbeda; perbaiki sampai sama.
+
+### Langkah 6.6 - Setelah di-merge (Git Bash)
 
 Setelah Reviewer me-merge PR, perbarui `main` lokal dari upstream (tanpa push ke main):
 
@@ -827,68 +906,26 @@ Reviewer akan menulis komentar di tab **Files changed**. Labelnya:
 
 Kamu akan mendapat email / notifikasi GitHub. Buka PR-nya, tab **Conversation** atau **Files changed**.
 
-### Contoh nyata: format harga di `pricing.html`
+### Contoh nyata: PR #3 `pricing.html`
 
-Reviewer menulis di baris harga paket SMP:
+`pricing.html` yang kamu salin dari root adalah draft yang sengaja salah, jadi Reviewer pasti meminta perbaikan. Contoh komentar di baris harga paket SMP:
 
 > 🔴 **Wajib**: Harga ditulis `Rp 129,000/bln`. Seharusnya `Rp129.000 per bulan` supaya konsisten dengan README dan halaman lain.
 
-Langkah memperbaiki (kamu masih di branch `feature/pricing`):
+Cara menanggapinya adalah alur lengkap di **Langkah 6.5** (bagian "Setelah Reviewer meminta perbaikan"):
 
-1. **Pastikan berada di branch yang benar** (Git Bash):
+1. Baca semua komentar di GitHub (dan di `review\review.md` bagian PR #3).
+2. Git Bash: `git switch feature/pricing`.
+3. cmd: `copy /Y ..\JendEdu-template\review\codes\pricing.html .` lalu `start pricing.html`.
+4. Git Bash: `git status`, `git add pricing.html`, `git commit -m "Perbaiki halaman Harga sesuai review PR #3"`, `git push`.
+5. Balas tiap komentar: "Sudah diperbaiki".
+6. Tunggu Approve dan merge, lalu Langkah 6.6.
 
-```bash
-cd /c/Proyek/JendEdu
-```
+Boleh juga memperbaiki manual per komentar (alternatif di Langkah 6.5), asal hasilnya sama dengan `review\codes\pricing.html` (cek dengan `fc ..\JendEdu-template\review\codes\pricing.html pricing.html`).
 
-```bash
-git switch feature/pricing
-```
+> Kalau reviewer memakai fitur **Insert a suggestion**, kamu bisa klik **Commit suggestion** di GitHub. Setelah itu jalankan `git pull origin feature/pricing` di Git Bash supaya laptopmu ikut terbaru.
 
-2. **Buka file** `C:\Proyek\JendEdu\pricing.html` di VS Code atau Notepad. Tekan `Ctrl + F`, cari `129`. Ubah:
-
-```html
-<span class="price">Rp 129,000/bln</span>
-```
-
-menjadi:
-
-```html
-<span class="price">Rp129.000 per bulan</span>
-```
-
-(Teks aslinya bisa sedikit berbeda; yang penting formatnya `Rp129.000 per bulan`.) Cari juga harga lain di file yang sama (`99`, `159`, `249`) supaya semuanya konsisten. Simpan dengan `Ctrl + S`.
-
-> Kalau reviewer memakai fitur **Insert a suggestion**, kamu bisa langsung klik **Commit suggestion** di GitHub. Tetapi setelah itu jalankan `git pull origin feature/pricing` di Git Bash supaya laptopmu ikut terbaru.
-
-3. **Cek di browser** (cmd):
-
-```cmd
-start pricing.html
-```
-
-4. **Commit dan push** (Git Bash):
-
-```bash
-git status
-```
-
-```bash
-git add pricing.html
-```
-
-```bash
-git commit -m "Perbaiki sesuai review: format harga di pricing.html"
-```
-
-```bash
-git push
-```
-
-Perintah ini mengirim ke branch yang sama di **fork kamu** (`origin`). Tidak perlu `-u` lagi dan tidak perlu membuat PR baru; PR di Borayaa/JendEdu otomatis ter-update.
-
-5. **Balas komentar** di GitHub: "Sudah diperbaiki, harga sekarang `Rp129.000 per bulan` di semua paket." Jangan klik "Resolve conversation" sendiri kalau tidak diminta; biasanya Reviewer yang me-resolve.
-6. Tunggu Reviewer meng-**Approve** dan me-merge.
+Untuk PR lain (homepage, about, courses, gallery, setup-template) biasanya tidak ada permintaan perbaikan; Reviewer langsung Approve.
 
 > Tips: kalau komentar menyangkut **navbar atau footer** (menu salah, tautan rusak di footer), itu urusan **Coder 2**. Beri tahu Coder 2 atau balas "Ini bagian Coder 2, sudah saya teruskan".
 
@@ -926,7 +963,8 @@ Perintah ini mengirim ke branch yang sama di **fork kamu** (`origin`). Tidak per
 - [ ] `feature/about` di-merge
 - [ ] `feature/courses` di-merge
 - [ ] `feature/gallery` di-merge
-- [ ] `feature/pricing` di-merge
+- [ ] `feature/pricing` (PR #3): draft dari root disalin lebih dulu, perbaikan dari `review\codes\pricing.html` disalin **setelah** Reviewer Request changes, lalu di-merge
+- [ ] Tidak pernah menyalin folder `review\` ke proyek
 - [ ] Semua komentar Reviewer sudah dibalas "Sudah diperbaiki"
 - [ ] Harga konsisten: Rp99.000 / Rp129.000 / Rp159.000 / Rp249.000 per bulan
 - [ ] `git switch main` dan `git pull upstream main` sudah dijalankan; semua halaman terbuka normal dengan `start index.html`
