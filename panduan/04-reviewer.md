@@ -112,20 +112,22 @@ Aturan praktis:
 
 ### Tabel urutan PR dan PR yang punya kesalahan
 
-| # | Branch | Author | Ada kesalahan yang harus dikomentari? |
-|---|--------|--------|----------------------------------------|
-| 1 | `chore/setup-template` | Coder 1 | Tidak, approve langsung |
-| 2 | `feature/navbar-footer` | Coder 2 | **Ya** (PR #4 di daftar review.md) |
-| 3 | `feature/pricing` | Coder 1 | **Ya** |
-| 4 | `feature/contact` | Coder 2 | **Ya** |
-| 5 | `feature/news` | Coder 2 | **Ya** |
-| lainnya | homepage, about, courses, gallery, posts, docs/readme | Coder 1, Coder 2, Dokumentator | Tidak, periksa dengan checklist lalu approve |
+| Urutan merge | Branch | Author | PR di review.md | Ada kesalahan yang harus dikomentari? |
+|--------------|--------|--------|-----------------|----------------------------------------|
+| 1 | `chore/setup-template` | Coder 1 | #1 | Tidak, approve langsung |
+| 2 | `feature/navbar-footer` | Coder 2 | #4 | **Ya** (`css\style.css`) |
+| 3 | `feature/pricing` | Coder 1 | #3 | **Ya** (`pricing.html`) |
+| 3 | `feature/contact` | Coder 2 | #5 | **Ya** (`contact.html`) |
+| 3 | `feature/news` | Coder 2 | #7 | **Ya** (`berita-beasiswa-jendedu-2027.html`) |
+| 3 | `feature/homepage`, `feature/about`, `feature/courses`, `feature/gallery` (Coder 1), `feature/posts` (Coder 2) | Coder 1 / Coder 2 | #2, #6, dst. | Tidak, periksa dengan checklist lalu approve |
+| 4 | `docs/readme` | Dokumentator | #8 | Tidak, periksa dengan checklist lalu approve |
+| 5 | `docs/review-log` | Kamu | - | Di-approve oleh Dokumentator |
 
-Nomor PR sebenarnya mengikuti urutan pembuatan di GitHub. Pakai nama branch sebagai pegangan: yang berkesalahan adalah `feature/pricing` (#3), `feature/navbar-footer` (#4), `feature/contact` (#5), dan `feature/news` (#7).
+Nomor di kolom "PR di review.md" hanya contoh dari `review\review.md`. Nomor sebenarnya di GitHub mengikuti urutan pembuatan PR dan bisa berbeda. Pakai **nama branch** sebagai pegangan; yang berkesalahan adalah `feature/pricing`, `feature/navbar-footer`, `feature/contact`, dan `feature/news`.
 
 ### Daftar komentar siap pakai: review\review.md
 
-Untuk PR #3, #4, #5, dan #7, buka daftar komentarmu di:
+Untuk PR `feature/pricing`, `feature/navbar-footer`, `feature/contact`, dan `feature/news` (#3, #4, #5, #7 di review.md), buka daftar komentarmu di (Command Prompt, dari folder `C:\Proyek\JendEdu`):
 
 ```
 notepad ..\JendEdu-template\review\review.md
@@ -141,7 +143,7 @@ Setelah author push perbaikan, ambil ulang branch PR seperti dijelaskan di bagia
 fc ..\JendEdu-template\review\codes\pricing.html pricing.html
 ```
 
-Untuk #4 (CSS):
+Untuk `feature/navbar-footer` (CSS):
 
 ```
 fc ..\JendEdu-template\review\codes\css\style.css css\style.css
@@ -175,7 +177,7 @@ Membaca kode saja tidak cukup. Jalankan situsnya.
 
 ### Langkah 1: ambil PR dari GitHub (Git Bash)
 
-Karena kodenya ada di fork orang lain, kamu mengambilnya lewat nomor PR (bukan nama branch). Nomor PR tertulis di judul halaman PR, misalnya `#3`.
+Karena kodenya ada di fork orang lain, kamu mengambilnya lewat nomor PR (bukan nama branch). Nomor PR tertulis di judul halaman PR di GitHub, misalnya `#3` (nomor di sini hanya contoh; pakai nomor asli PR-nya).
 
 1. Buka **Git Bash** (klik kanan folder `C:\Proyek\JendEdu` > **Open Git Bash here**, atau lewat menu Start).
 2. Kalau belum di folder yang benar:
@@ -298,7 +300,7 @@ Opsional: hapus branch tes yang sudah tidak dipakai (ganti `3` dengan nomor PR-n
 git branch -D pr-3
 ```
 
-### Pengecualian: PR #1 (`chore/setup-template`)
+### Pengecualian: PR `chore/setup-template`
 
 PR ini hanya berisi aset (js, fonts, img), belum ada halaman baru. Cukup cek dengan `dir js`, `dir fonts`, `dir img` di cmd bahwa folder-nya terisi, dan di tab Files changed pastikan **tidak ada** `logo.png` dan folder `img\blog` (itu masuk PR lain).
 
@@ -471,7 +473,7 @@ Branch PR ada di **fork milik author**, bukan di repo tim, jadi kamu tidak perlu
 
 Ulangi untuk PR berikutnya sesuai [urutan di bagian 2](#2-urutan-review-yang-disarankan).
 
-> Setelah PR #1 atau #2 ter-merge, kabari author PR lain lewat grup bahwa mereka bisa mulai mengerjakan atau membuat PR (dan menjalankan `git switch main` lalu `git pull upstream main`).
+> Setelah PR `chore/setup-template` atau `feature/navbar-footer` ter-merge, kabari author PR lain lewat grup bahwa mereka bisa mulai mengerjakan atau membuat PR (dan menjalankan `git switch main` lalu `git pull upstream main`).
 
 ---
 
@@ -689,8 +691,8 @@ Salin daftar ini ke kotak komentar review kalau perlu. Centang satu per satu unt
 
 ### Hal khusus per PR
 
-- [ ] PR #1: folder `js`, `fonts`, `img` ada; `logo.png` dan `img\blog` **tidak** ikut
-- [ ] PR #2: folder `css` lengkap dan `img\logo.png` ada
+- [ ] PR `chore/setup-template`: folder `js`, `fonts`, `img` ada; `logo.png` dan `img\blog` **tidak** ikut
+- [ ] PR `feature/navbar-footer`: folder `css` lengkap dan `img\logo.png` ada
 - [ ] PR halaman: hanya berkas halaman itu yang berubah (tidak ada berkas nyasar, tidak ada folder `panduan\`)
 - [ ] PR docs: placeholder `[Nama Anggota 1..4]` dan `@username-1..4` sudah diganti nama/username asli
 
@@ -740,7 +742,7 @@ Ada berkas yang kamu ubah di branch sebelumnya. Reviewer sebaiknya tidak mengedi
 Kamu belum ada di folder yang benar, atau branch ini memang belum berisi `index.html`. Cek dengan `cd` dan `dir`.
 
 **Kalau halaman terbuka tapi tanpa gaya/gambar...**
-Itu hampir pasti temuan 🔴: path CSS/gambar salah, atau PR #2 (CSS) belum ter-merge. Pastikan `main` lokal terbaru dan branch yang dites sudah berisi folder `css\`.
+Itu hampir pasti temuan 🔴: path CSS/gambar salah, atau PR `feature/navbar-footer` (CSS) belum ter-merge. Pastikan `main` lokal terbaru dan branch yang dites sudah berisi folder `css\`.
 
 **Kalau tombol "Merge pull request" abu-abu...**
 Biasanya ada konflik, atau branch protection menunggu approval. Baca pesan di atas tombol. Untuk konflik, minta author menjalankan `git switch main`, `git pull upstream main`, lalu `git switch` ke branch-nya dan `git merge main`, menyelesaikan konflik, lalu `git push` lagi ke fork-nya.

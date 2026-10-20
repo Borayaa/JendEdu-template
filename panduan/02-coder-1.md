@@ -17,7 +17,7 @@
 > **📌 Draft vs versi perbaikan**
 >
 > - File di **root** `C:\Proyek\JendEdu-template` adalah **draft**. Untuk PR yang ditugaskan ke kamu di bawah ini, draft itu **sengaja mengandung kesalahan** supaya Reviewer punya sesuatu untuk di-review.
-> - PR kamu yang berisi draft dengan kesalahan: **`feature/pricing` (PR #3)** dengan file `pricing.html`.
+> - PR kamu yang berisi draft dengan kesalahan: **`feature/pricing` (disebut "PR #3" di review.md)** dengan file `pricing.html`. Nomor PR (#3, #4, dst.) di panduan ini mengikuti contoh di `review\review.md`. Nomor sebenarnya di GitHub bisa berbeda, tergantung urutan PR dibuka. Selalu kenali PR lewat **nama branch**-nya.
 > - Versi **yang sudah diperbaiki** ada di folder `C:\Proyek\JendEdu-template\review\codes\`.
 > - **Urutan yang benar:** (1) salin **draft** dari root dan buat PR; (2) **tunggu** Reviewer memberi **Request changes**; (3) baru setelah itu salin file perbaikan dari `review\codes\`, commit, dan push.
 > - **Jangan** menyalin dari `review\codes\` sebelum Reviewer berkomentar, dan **jangan pernah** menyalin folder `review\` ke proyek (itu bagian PR dokumentasi di akhir).
@@ -30,7 +30,7 @@
 | No | Branch | Kapan boleh mulai | Isi |
 |----|--------|-------------------|-----|
 | 1 | `chore/setup-template` | Langsung (kamu yang pertama) | js, fonts, img, readme.txt |
-| 2 | `feature/homepage` | Setelah PR #1 **dan** PR navbar-footer (Coder 2) sudah di-merge | `index.html` |
+| 2 | `feature/homepage` | Setelah PR `chore/setup-template` **dan** PR `feature/navbar-footer` (Coder 2) sudah di-merge | `index.html` |
 | 3 | `feature/about` | Sama seperti di atas | `about.html` |
 | 4 | `feature/courses` | Sama seperti di atas | `courses.html` |
 | 5 | `feature/gallery` | Sama seperti di atas | `portfolio.html` |
@@ -83,7 +83,7 @@ Output terakhir yang diharapkan: `Switched to a new branch 'chore/setup-template
 Buka **Command Prompt** (jangan tutup Git Bash, biarkan terbuka), lalu:
 
 ```cmd
-cd C:\Proyek\JendEdu
+cd /d C:\Proyek\JendEdu
 ```
 
 ```cmd
@@ -142,7 +142,7 @@ Perintah ini mengirim branch ke **fork kamu** (`origin`). Pertama kali push, aka
 
 ### Langkah 1.4 - Buat Pull Request (Browser)
 
-1. Buka fork kamu di browser: https://github.com/username-1/JendEdu. Klik tombol kuning **Compare & pull request** (muncul di bar "chore/setup-template had recent pushes"). Kalau tombol tidak muncul: tab **Pull requests** -> **New pull request** -> **compare across forks**.
+Buka fork kamu di browser: https://github.com/username-1/JendEdu. Klik tombol kuning **Compare & pull request** (muncul di bar "chore/setup-template had recent pushes"). Kalau tombol tidak muncul: tab **Pull requests** -> **New pull request** -> **compare across forks**.
 
 Cek **empat dropdown** (ini penting):
 
@@ -151,14 +151,15 @@ Cek **empat dropdown** (ini penting):
 - head repository: `username-1/JendEdu`
 - compare: `chore/setup-template`
 
-Isi judul dan deskripsi (di bawah), centang **Allow edits by maintainers**, lalu klik **Create pull request**. Setelah PR terbuat (halamannya di Borayaa/JendEdu), di panel kanan klik **Reviewers** dan pilih **@username-3**. Kalau tidak bisa memilih, tulis komentar `@username-3 mohon di-review` di PR.
-2. Isi **judul**:
+Lalu isi judul dan deskripsi seperti di bawah.
+
+Judul:
 
 ```
 Setup aset template (js, fonts, img)
 ```
 
-3. Isi **deskripsi**:
+Deskripsi:
 
 ```
 ## Ringkasan
@@ -178,9 +179,9 @@ Menambahkan aset dasar dari template JendEdu supaya halaman-halaman berikutnya b
 Tidak ada halaman yang ditampilkan di PR ini. Cukup cek bahwa folder `js`, `fonts`, `img` ada.
 ```
 
-4. Centang **Allow edits by maintainers**, klik **Create pull request**, lalu minta review **@username-3** di panel kanan **Reviewers** (atau mention `@username-3` di komentar).
+Setelah deskripsi terisi: centang **Allow edits by maintainers** -> **Create pull request** -> minta review **@username-3** (panel kanan **Reviewers**, atau mention `@username-3` di komentar).
 
-Beritahu tim (grup chat) bahwa PR #1 sudah siap di-review.
+Beritahu tim (grup chat) bahwa PR `chore/setup-template` sudah siap di-review.
 
 ### Langkah 1.5 - Setelah di-merge (Git Bash)
 
@@ -233,7 +234,7 @@ git switch -c feature/homepage
 ### Langkah 2.2 - Salin file (cmd)
 
 ```cmd
-cd C:\Proyek\JendEdu
+cd /d C:\Proyek\JendEdu
 ```
 
 ```cmd
@@ -256,7 +257,7 @@ Pastikan slider tampil, gambar muncul, navbar dan footer rapi.
 git status
 ```
 
-Harus ada `modified: index.html`.
+Harus ada `index.html` (daftar file baru / `Untracked files`, karena repo `JendEdu` awalnya kosong).
 
 ```bash
 git add index.html
@@ -362,7 +363,7 @@ git switch -c feature/about
 ### Langkah 3.2 - Salin file (cmd)
 
 ```cmd
-cd C:\Proyek\JendEdu
+cd /d C:\Proyek\JendEdu
 ```
 
 ```cmd
@@ -483,7 +484,7 @@ git switch -c feature/courses
 ### Langkah 4.2 - Salin file (cmd)
 
 ```cmd
-cd C:\Proyek\JendEdu
+cd /d C:\Proyek\JendEdu
 ```
 
 ```cmd
@@ -606,7 +607,7 @@ git switch -c feature/gallery
 ### Langkah 5.2 - Salin file (cmd)
 
 ```cmd
-cd C:\Proyek\JendEdu
+cd /d C:\Proyek\JendEdu
 ```
 
 ```cmd
@@ -727,7 +728,7 @@ git switch -c feature/pricing
 ### Langkah 6.2 - Salin file (cmd)
 
 ```cmd
-cd C:\Proyek\JendEdu
+cd /d C:\Proyek\JendEdu
 ```
 
 ```cmd
@@ -805,7 +806,7 @@ Setelah deskripsi terisi: centang **Allow edits by maintainers** -> **Create pul
 
 ### Langkah 6.5 - Setelah Reviewer meminta perbaikan (Request changes)
 
-Reviewer akan memeriksa `pricing.html` dan memberi status **Request changes** (PR #3) dengan komentar di baris tertentu. Itu normal dan memang direncanakan. Lakukan urutan ini:
+Reviewer akan memeriksa `pricing.html` dan memberi status **Request changes** ("PR #3" di review.md; nomor di GitHub-mu bisa berbeda) dengan komentar di baris tertentu. Itu normal dan memang direncanakan. Lakukan urutan ini:
 
 1. **Baca komentar** di GitHub: buka PR kamu di Borayaa/JendEdu, tab **Files changed** (atau **Conversation**). Komentar yang sama juga tertulis di `C:\Proyek\JendEdu-template\review\review.md` bagian **PR #3**, lengkap dengan nomor baris. Pahami dulu apa yang salah.
 
@@ -822,7 +823,7 @@ git switch feature/pricing
 3. **Salin file versi perbaikan** (cmd):
 
 ```cmd
-cd C:\Proyek\JendEdu
+cd /d C:\Proyek\JendEdu
 ```
 
 ```cmd
@@ -845,7 +846,7 @@ Pastikan keempat harga sudah `Rp99.000`, `Rp129.000`, `Rp159.000`, `Rp249.000` p
 git status
 ```
 
-Harus ada `modified: pricing.html`.
+Harus ada `modified: pricing.html` (file ini sudah ada di branch dari commit pertama).
 
 ```bash
 git add pricing.html
@@ -908,9 +909,9 @@ Kamu akan mendapat email / notifikasi GitHub. Buka PR-nya, tab **Conversation** 
 
 ### Contoh nyata: PR #3 `pricing.html`
 
-`pricing.html` yang kamu salin dari root adalah draft yang sengaja salah, jadi Reviewer pasti meminta perbaikan. Contoh komentar di baris harga paket SMP:
+`pricing.html` yang kamu salin dari root adalah draft yang sengaja salah, jadi Reviewer pasti meminta perbaikan. Contoh komentar di baris harga paket (kutipan dari `review\review.md`):
 
-> 🔴 **Wajib**: Harga ditulis `Rp 129,000/bln`. Seharusnya `Rp129.000 per bulan` supaya konsisten dengan README dan halaman lain.
+> 🔴 **Wajib diperbaiki.** Format harga tidak konsisten di ketiga paket (spasi setelah "Rp", titik ribuan, "bln" vs "bulan"). Samakan dengan format `Rp99.000 / bulan`.
 
 Cara menanggapinya adalah alur lengkap di **Langkah 6.5** (bagian "Setelah Reviewer meminta perbaikan"):
 
@@ -952,6 +953,7 @@ Untuk PR lain (homepage, about, courses, gallery, setup-template) biasanya tidak
 | Fork tertulis "X commits behind" | Aman, abaikan. Fork boleh tertinggal; branch baru dibuat dari `main` lokal setelah `git pull upstream main`. Jangan push ke main. |
 | `fatal: A branch named ... already exists` | Branch sudah ada. Pakai `git switch <nama-branch>`, bukan `-c`. |
 | `Your local changes would be overwritten` saat `git switch` | Ada perubahan belum di-commit. Commit dulu, atau tanya tim sebelum memakai `git stash`. |
+| `error: The branch ... is not fully merged` saat `git branch -d` | PR di-merge dengan cara lain (bukan merge commit). Kalau PR-nya memang sudah ter-merge di GitHub, aman memakai `git branch -D <nama-branch>`. |
 | Halaman tampil tanpa gaya / tanpa gambar | PR setup-template atau navbar-footer belum di-merge ke `main`. Jalankan `git pull upstream main`. |
 
 ---
@@ -963,7 +965,7 @@ Untuk PR lain (homepage, about, courses, gallery, setup-template) biasanya tidak
 - [ ] `feature/about` di-merge
 - [ ] `feature/courses` di-merge
 - [ ] `feature/gallery` di-merge
-- [ ] `feature/pricing` (PR #3): draft dari root disalin lebih dulu, perbaikan dari `review\codes\pricing.html` disalin **setelah** Reviewer Request changes, lalu di-merge
+- [ ] `feature/pricing` ("PR #3" di review.md): draft dari root disalin lebih dulu, perbaikan dari `review\codes\pricing.html` disalin **setelah** Reviewer Request changes, lalu di-merge
 - [ ] Tidak pernah menyalin folder `review\` ke proyek
 - [ ] Semua komentar Reviewer sudah dibalas "Sudah diperbaiki"
 - [ ] Harga konsisten: Rp99.000 / Rp129.000 / Rp159.000 / Rp249.000 per bulan

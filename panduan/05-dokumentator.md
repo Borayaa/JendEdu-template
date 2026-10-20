@@ -12,8 +12,9 @@ Kembali ke: [00-mulai-di-sini.md](00-mulai-di-sini.md)
 
 ## Kapan giliranmu?
 
-- Kamu bisa mulai `docs/readme` kapan saja setelah PR `chore/setup-template` ter-merge, tapi **screenshot** baru bisa diambil setelah halaman-halaman situs ter-merge ke `main`.
-- Saran: siapkan README dulu, lalu isi screenshot di akhir. Bisa juga dibuat satu PR setelah situs selesai.
+- Sesuai urutan PR, `docs/readme` dikerjakan **setelah semua PR halaman situs ter-merge**, supaya screenshot bisa diambil dari situs yang sudah jadi.
+- Sambil menunggu, kamu boleh menyiapkan nama dan username anggota tim.
+- `README.md` di template adalah README untuk repo **JendEdu** (bukan untuk template); itu sebabnya kamu menyalinnya ke JendEdu bersama folder `presentasi\`.
 - Mintalah **Reviewer (@username-3)** me-review PR `docs/readme`-mu.
 
 ---
@@ -100,12 +101,7 @@ Cara paling mudah memakai VS Code (atau Notepad):
 2. Di VS Code tekan **Ctrl + H** (Find and Replace). Di Notepad tekan **Ctrl + H** (Replace).
 3. Ganti satu per satu: ketik `@username-1` pada kolom Find, username asli pada kolom Replace, lalu klik **Replace All**. Lakukan sama untuk `@username-2`, `@username-3`, `@username-4`.
 4. Lakukan hal yang sama untuk `[Nama Anggota 1]` sampai `[Nama Anggota 4]` (sertakan tanda kurung siku saat mencari).
-5. Cari juga kata `username-1` (tanpa `@`), karena ada di contoh perintah clone pada bagian "Cara Menjalankan Secara Lokal". Ganti URL itu menjadi:
-
-```
-https://github.com/Borayaa/JendEdu.git
-```
-
+5. Cek bagian "Cara Menjalankan Secara Lokal": URL clone harus `https://github.com/Borayaa/JendEdu.git` (sudah benar, tidak perlu diubah).
 6. Hapus baris catatan "*Catatan: Silakan ganti placeholder di atas...*" jika sudah tidak diperlukan.
 7. Simpan dengan **Ctrl + S**.
 8. Cek: tekan Ctrl + F, cari `username-` dan `[Nama`. Hasilnya harus 0 (tidak ditemukan).
@@ -123,7 +119,7 @@ Lakukan hal yang sama untuk kedua file PPTX.
 
 Langkah ini dikerjakan **setelah** halaman situs sudah ter-merge ke `main`.
 
-1. Di **Git Bash**, pastikan `main` ter-update lalu kembali ke branch kamu. Karena `docs/readme` dibuat dari `main` lama, lakukan:
+1. Kalau saat Langkah 1 `main` kamu sudah berisi semua halaman situs, lewati langkah ini. Kalau belum (ada PR halaman yang baru ter-merge), di **Git Bash** ambil `main` terbaru lalu gabungkan ke branch-mu:
 
 ```
 git switch main
@@ -168,7 +164,7 @@ Browser akan membuka beranda. Buka halaman lain dengan `start about.html`, `star
 git status
 ```
 
-Harus terlihat `README.md` dan folder `presentasi/`.
+Harus terlihat `README.md` dan folder `presentasi/`. Kalau ada file bernama `.~lock.JendEdu-Presentasi.pptx#` (file kunci sementara LibreOffice), **jangan** di-commit: hapus di cmd dengan `del /F /A presentasi\.~lock*`, lalu cek `git status` lagi.
 
 2. Tambahkan file:
 
@@ -312,7 +308,7 @@ Setelah merge, buka https://github.com/Borayaa/JendEdu. README tampil otomatis d
 - [ ] Branch `docs/readme` dibuat dari `main` yang terbaru (`git pull upstream main`).
 - [ ] `README.md` dan folder `presentasi\` tersalin (`panduan\` TIDAK ikut tersalin).
 - [ ] Semua `[Nama Anggota 1..4]` dan `@username-1..4` di README.md sudah diganti.
-- [ ] URL clone di README sudah memakai `https://github.com/Borayaa/JendEdu.git`.
+- [ ] URL clone di README memakai `https://github.com/Borayaa/JendEdu.git` (sudah benar dari template).
 - [ ] Placeholder nama/username di kedua PPTX juga sudah diganti.
 - [ ] Screenshot di PPTX sudah diisi dengan tampilan situs asli.
 - [ ] `git add`, `git commit`, `git push -u origin docs/readme` sudah dijalankan.

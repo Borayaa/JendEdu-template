@@ -91,7 +91,7 @@ Kemudian buka browser dan akses: `http://localhost:8000`
 
 ### Opsi 4: VS Code Live Server
 
-Jika menggunakan VS Code, install ekstension "Live Server" dan klik "Go Live" pada file `index.html`.
+Jika menggunakan VS Code, install ekstensi "Live Server" dan klik "Go Live" pada file `index.html`.
 
 ---
 
@@ -101,10 +101,10 @@ Jika menggunakan VS Code, install ekstension "Live Server" dan klik "Go Live" pa
 
 | Anggota | Peran | Tugas | Branch / Kontribusi |
 |---------|-------|-------|-------------------|
-| Coder 1 (@username-1) | Coder 1 | Beranda (index.html), Tentang Kami (about.html), Kursus (courses.html), Galeri (portfolio.html), Harga (pricing.html) | feature/homepage, feature/about, feature/courses, feature/gallery, feature/pricing |
+| Coder 1 (@username-1) | Coder 1 | Beranda (index.html), Tentang Kami (about.html), Kursus (courses.html), Galeri (portfolio.html), Harga (pricing.html) | chore/setup-template, feature/homepage, feature/about, feature/courses, feature/gallery, feature/pricing |
 | Coder 2 (@username-2) | Coder 2 | Navbar & footer (semua halaman), Kontak (contact.html), 3 Artikel (artikel-*.html), 3 Berita (berita-*.html), CSS artikel | feature/navbar-footer, feature/contact, feature/posts, feature/news |
 | Reviewer (@username-3) | Reviewer | Memeriksa setiap Pull Request, memberi komentar, meminta perbaikan, lalu approve & merge setelah diperbaiki. Catatan review ada di folder `review/` | review/review.md, review/codes/ |
-| Dokumentator (@username-4) | Dokumentator | README.md dan presentasi project | presentasi/JendEdu-Presentasi.pptx, presentasi/JendEdu-Presentasi-dengan-Naskah.pptx |
+| Dokumentator (@username-4) | Dokumentator | Menyusun profil bisnis dan timeline kerja, menulis README.md, membuat presentasi (2 versi) beserta naskah presenter, mengambil screenshot situs, serta me-review dan meng-approve PR catatan review | docs/readme: README.md, presentasi/JendEdu-Presentasi.pptx, presentasi/JendEdu-Presentasi-dengan-Naskah.pptx |
 
 ### Alur Kerja (Workflow)
 
@@ -127,7 +127,7 @@ folder lokal ──push branch──▶ fork kamu (origin) ──Pull Request─
 
 ---
 
-## Struktur Folder
+## 8. Struktur Folder
 
 ```
 JendEdu/
@@ -159,7 +159,7 @@ JendEdu/
 
 ```
 
-## 8. Daftar Halaman
+## 9. Daftar Halaman
 
 | Halaman | File | Deskripsi |
 |---------|------|-----------|
@@ -178,7 +178,7 @@ JendEdu/
 
 Berita dan artikel dapat diakses dari footer di setiap halaman (bagian "Artikel Terbaru" dan "Berita Terkini") serta dari sidebar di setiap artikel.
 
-## 9. Kustomisasi
+## 10. Kustomisasi
 
 ### Mengubah Harga
 
@@ -190,7 +190,7 @@ Informasi kontak tersebar di beberapa tempat:
 1. **Footer**: Edit bagian footer di setiap file HTML
    - Alamat: Jl. Pendidikan Raya No. 21 Tebet Jakarta Selatan
    - Email: halo@jendedu.id
-   - Telepon: (sesuaikan dengan nomor Anda)
+   - Telepon: (021) 8765-4321
 
 2. **Halaman Kontak** (`contact.html`): Edit bagian kontak dan update Google Maps embed
 
@@ -214,12 +214,12 @@ Saat mengganti gambar, perhatikan dimensi yang sudah ada:
 
 Semua gambar dalam proyek ini bersumber dari Unsplash (Unsplash License) dan bebas digunakan.
 
-## 10. Kredit & Lisensi
+## 11. Kredit & Lisensi
 
-Template ini menggunakan "Above Educational Bootstrap Responsive Template" oleh WebThemez di bawah lisensi Creative Commons Attribution 3.0.
+Website ini menggunakan "Above Educational Bootstrap Responsive Template" oleh WebThemez di bawah lisensi Creative Commons Attribution 3.0.
 
 **Atribusi:**
-- Kredit template: "Template oleh WebThemez" (tautan di footer dapat tetap ada atau diganti sesuai kebijakan)
+- Kredit template: "Template oleh WebThemez" (tautan di footer wajib dipertahankan, sesuai ketentuan lisensi CC BY 3.0 yang mensyaratkan atribusi)
 - Teknologi: Bootstrap 3.3.1, jQuery, FlexSlider, Fancybox, Quicksand, Font Awesome 4
 - Gambar: Unsplash (Unsplash License - bebas penggunaan komersial)
 

@@ -4,6 +4,8 @@
 - **Periode:** Oktober 2026
 - **Repositori:** JendEdu (situs statis Bootstrap 3, Bahasa Indonesia)
 
+Nomor PR di dokumen ini adalah contoh; nomor sebenarnya di GitHub bisa berbeda — cocokkan dengan nama branch.
+
 > **Catatan:** File di root template untuk PR #3, #4, #5, #7 adalah draft yang sengaja berisi kesalahan; versi yang sudah diperbaiki ada di `review/codes/`. Nomor baris di bawah mengacu pada file draft di root template (sama dengan file yang ada di PR).
 
 ## Ringkasan Status
@@ -12,11 +14,11 @@
 |----|-------|--------|--------|--------|
 | #1 | Setup template dasar & struktur folder | `chore/setup-template` | @username-1 | ✅ Approved & merged |
 | #2 | Halaman Beranda (index.html) | `feature/homepage` | @username-1 | ✅ Approved & merged |
-| #3 | Tambah halaman Harga | `feature/pricing-page` | @username-1 | 🔴 Changes requested |
+| #3 | Tambah halaman Harga | `feature/pricing` | @username-1 | 🔴 Changes requested |
 | #4 | Navbar dan footer bersama (CSS) | `feature/navbar-footer` | @username-2 | 🔴 Changes requested |
-| #5 | Halaman Kontak | `feature/contact-page` | @username-2 | 🔴 Changes requested |
-| #6 | Tiga halaman artikel + CSS artikel | `feature/artikel-pages` | @username-2 | ✅ Approved & merged |
-| #7 | Tiga halaman berita | `feature/berita-pages` | @username-2 | 🔴 Changes requested |
+| #5 | Halaman Kontak | `feature/contact` | @username-2 | 🔴 Changes requested |
+| #6 | Tiga halaman artikel + CSS artikel | `feature/posts` | @username-2 | ✅ Approved & merged |
+| #7 | Tiga halaman berita | `feature/news` | @username-2 | 🔴 Changes requested |
 | #8 | README.md | `docs/readme` | @username-4 | ✅ Approved & merged |
 
 Label komentar: 🔴 Wajib diperbaiki - 🟡 Saran - 🟢 Nit (hal kecil, opsional).
@@ -25,7 +27,7 @@ Label komentar: 🔴 Wajib diperbaiki - 🟡 Saran - 🟢 Nit (hal kecil, opsion
 
 ## PR #3 - Tambah halaman Harga
 
-- **Branch:** `feature/pricing-page` -> `main`
+- **Branch:** `feature/pricing` -> `main`
 - **Author:** @username-1
 - **File di PR:** `pricing.html`
 
@@ -226,7 +228,7 @@ Versi setelah diperbaiki: [`review/codes/css/style.css`](codes/css/style.css)
 
 ## PR #5 - Halaman Kontak
 
-- **Branch:** `feature/contact-page` -> `main`
+- **Branch:** `feature/contact` -> `main`
 - **Author:** @username-2
 - **File di PR:** `contact.html`
 
@@ -289,7 +291,7 @@ Versi setelah diperbaiki: [`review/codes/css/style.css`](codes/css/style.css)
 <br>
 ```
 
-**`contact.html` baris 122-123** (blok alamat)
+**`contact.html` baris 123** (blok alamat, setelah baris Telepon)
 
 ```html
 Telepon: (021) 8765-4321<br>
@@ -320,7 +322,7 @@ Versi setelah diperbaiki: [`review/codes/contact.html`](codes/contact.html)
 
 ## PR #7 - Tiga halaman berita
 
-- **Branch:** `feature/berita-pages` -> `main`
+- **Branch:** `feature/news` -> `main`
 - **Author:** @username-2
 - **File di PR:** `berita-beasiswa-jendedu-2027.html` (dan dua halaman berita lainnya)
 

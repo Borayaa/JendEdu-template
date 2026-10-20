@@ -13,7 +13,8 @@
 > **📌 Draft vs versi perbaikan**
 >
 > - File di **root** `C:\Proyek\JendEdu-template` adalah **draft**. Untuk PR yang ditugaskan ke kamu di bawah ini, draft itu **sengaja mengandung kesalahan** supaya Reviewer punya sesuatu untuk di-review.
-> - PR kamu yang berisi draft dengan kesalahan: **`feature/navbar-footer` (PR #4)** dengan `css\style.css`, **`feature/contact` (PR #5)** dengan `contact.html`, dan **`feature/news` (PR #7)** dengan `berita-beasiswa-jendedu-2027.html` (dua berita lainnya, `berita-kelas-live-utbk-2027.html` dan `berita-kemitraan-sekolah.html`, tidak bermasalah).
+> - PR kamu yang berisi draft dengan kesalahan: **`feature/navbar-footer` ("PR #4" di review.md)** dengan `css\style.css`, **`feature/contact` ("PR #5")** dengan `contact.html`, dan **`feature/news` ("PR #7")** dengan `berita-beasiswa-jendedu-2027.html` (dua berita lainnya, `berita-kelas-live-utbk-2027.html` dan `berita-kemitraan-sekolah.html`, tidak bermasalah).
+> - Nomor PR (#4, #5, #7) mengikuti contoh di `review\review.md`; nomor sebenarnya di GitHub bisa berbeda. Kenali PR lewat **nama branch**.
 > - Versi **yang sudah diperbaiki** ada di `C:\Proyek\JendEdu-template\review\codes\`.
 > - **Urutan yang benar:** (1) salin **draft** dari root dan buat PR; (2) **tunggu** Reviewer memberi **Request changes**; (3) baru setelah itu salin file perbaikan dari `review\codes\`, commit, dan push.
 > - **Jangan** menyalin dari `review\codes\` sebelum Reviewer berkomentar, dan **jangan pernah** menyalin folder `review\` ke proyek (itu bagian PR dokumentasi di akhir).
@@ -73,7 +74,7 @@ git switch -c feature/navbar-footer
 ### Langkah 1.2 - Salin file (cmd)
 
 ```cmd
-cd C:\Proyek\JendEdu
+cd /d C:\Proyek\JendEdu
 ```
 
 ```cmd
@@ -176,7 +177,7 @@ git switch feature/navbar-footer
 3. **Salin file versi perbaikan** (cmd):
 
 ```cmd
-cd C:\Proyek\JendEdu
+cd /d C:\Proyek\JendEdu
 ```
 
 ```cmd
@@ -272,7 +273,7 @@ git switch -c feature/contact
 ### Langkah 2.2 - Salin file (cmd)
 
 ```cmd
-cd C:\Proyek\JendEdu
+cd /d C:\Proyek\JendEdu
 ```
 
 ```cmd
@@ -357,7 +358,7 @@ git switch feature/contact
 3. **Salin file versi perbaikan** (cmd):
 
 ```cmd
-cd C:\Proyek\JendEdu
+cd /d C:\Proyek\JendEdu
 ```
 
 ```cmd
@@ -453,7 +454,7 @@ git switch -c feature/posts
 ### Langkah 3.2 - Salin file (cmd)
 
 ```cmd
-cd C:\Proyek\JendEdu
+cd /d C:\Proyek\JendEdu
 ```
 
 ```cmd
@@ -588,7 +589,7 @@ git switch -c feature/news
 ### Langkah 4.2 - Salin file (cmd)
 
 ```cmd
-cd C:\Proyek\JendEdu
+cd /d C:\Proyek\JendEdu
 ```
 
 ```cmd
@@ -691,7 +692,7 @@ git switch feature/news
 3. **Salin file versi perbaikan** (cmd):
 
 ```cmd
-cd C:\Proyek\JendEdu
+cd /d C:\Proyek\JendEdu
 ```
 
 ```cmd

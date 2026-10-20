@@ -101,14 +101,17 @@ Aturan emas:
 - Jangan pernah mengerjakan langsung di `main`.
 - Tidak ada yang meng-approve PR miliknya sendiri.
 - Folder `panduan\` (panduan ini) **tidak** disalin ke repo JendEdu.
+- Dokumentator menyalin `README.md` dan folder `presentasi\` dari template; README itu untuk repo JendEdu.
 
 > **⚠️ Jangan pernah `git push` ke `main`.** Hanya branch kerja (`feature/...`, `chore/...`, `docs/...`) yang di-push, ke fork-mu (`origin`). `main` hanya berubah lewat Pull Request yang sudah di-merge. Fork-mu di GitHub boleh tertinggal (`X commits behind`); itu tidak masalah.
 
 ## Draft vs versi perbaikan
 
+> **Soal nomor PR:** kolom `PR` di bawah memakai nomor contoh dari `review\review.md` ("PR #3 di review.md"). Nomor sebenarnya di GitHub bisa berbeda, tergantung urutan PR dibuka. Kenali PR lewat **nama branch**.
+
 Beberapa file di root `JendEdu-template` sengaja berupa **draft dengan kesalahan** supaya code review benar-benar ada isinya. Versi yang sudah benar ada di folder `review\codes\`.
 
-| PR | Branch | Author | File draft (di root, disalin pertama) | File perbaikan (disalin setelah review) |
+| PR (nomor di review.md) | Branch | Author | File draft (di root, disalin pertama) | File perbaikan (disalin setelah review) |
 |----|--------|--------|---------------------------------------|------------------------------------------|
 | #3 | `feature/pricing` | Coder 1 (@username-1) | `pricing.html` | `review\codes\pricing.html` |
 | #4 | `feature/navbar-footer` | Coder 2 (@username-2) | `css\style.css` | `review\codes\css\style.css` |
